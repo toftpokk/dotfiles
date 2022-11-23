@@ -1,12 +1,12 @@
 -- Toftpokk's Vim Config
 
 ---- Plugins
+require('user.plugins')
 require('user.cmp')
 require('user.fzf')
 require('user.keymap')
 require('user.lsp')
 require('user.nvim-tree')
-require('user.plugins')
 require('user.theme')
 require('user.treesitter')
 require('user.null-ls')
