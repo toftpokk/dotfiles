@@ -1,4 +1,5 @@
-# Prerequisites
+# README
+## Prerequisites
 1. Archlinux
 2. Installed Packages
   - nano
