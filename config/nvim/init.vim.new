@@ -1,0 +1,157 @@
+" My Vim Config
+"
+" Basic Settings {{{
+set number relativenumber
+set foldlevelstart=0
+set nowrap		" No wrap text
+set hlsearch " Highlight search
+set incsearch " Highlight while typing
+" }}}
+
+" Mappings {{{
+let mapleader = " "
+let maplocalleader = "\\"
+noremap <leader>- ddp
+noremap <leader>_ ddkP
+inoremap <C-u> <Esc>lviwUi
+nnoremap <leader><C-u> viwU
+
+" Open Vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" Source Vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Add brackets/Quotes around word
+nnoremap <Leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <Leader>' viw<esc>a'<esc>bi'<esc>lel
+nnoremap <Leader>< viw<esc>a><esc>bi<<esc>lel
+nnoremap <Leader>> viw<esc>a><esc>bi<<esc>lel
+
+" Added Brackets/Quotes around selection
+vnoremap <Leader>" <Esc>a"<Esc>`<i"<Esc>
+vnoremap <Leader>' <Esc>a'<Esc>`<i'<Esc>
+vnoremap <Leader>< <Esc>a><Esc>`<i<<Esc>
+vnoremap <Leader>> <Esc>a><Esc>`<i<<Esc>
+
+nnoremap H gg
+nnoremap L G
+nnoremap <C-K> <C-W>k
+nnoremap <C-J> <C-W>j
+" }}}
+
+" Operator Pending Mappings {{{
+"" parentheses
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap il( :<c-u>normal! F)vi(<cr>
+
+onoremap an( :<c-u>normal! f(va(<cr>
+onoremap al( :<c-u>normal! F)va(<cr>
+"" Curly Brackets
+onoremap in{ :<c-u>normal! f{vi{<cr>
+onoremap il{ :<c-u>normal! F}vi{<cr>
+
+onoremap an{ :<c-u>normal! f{va{<cr>
+onoremap al{ :<c-u>normal! F}va{<cr>
+
+" Email
+onoremap in@ :<c-u>execute "normal! /.*@.*\..*\r:nohlsearch\rvt@"<cr>
+" }}}
+
+" Abbreviations {{{
+iabbrev	@@ -- <CR>Toftpokk<CR>toftpokk@protonmail.com
+
+iabbrev <head> <head></head>
+" }}}
+
+" Markdown {{{
+augroup filetype_md
+	autocmd!
+	autocmd Filetype markdown setlocal spell
+	autocmd Filetype markdown :onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+	autocmd Filetype markdown :onoremap ah :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rg_vk0"<cr>
+
+	autocmd Filetype markdown :onoremap iH :<c-u>execute "normal! ?^--r:nohlsearch\rg_vk0"<cr>
+	autocmd Filetype markdown :onoremap aH :<c-u>execute "normal! ?^--r:nohlsearch\rg_vk0"<cr>
+augroup END
+" }}}
+
+" HTML {{{
+augroup filetype_html
+	autocmd!
+	autocmd Filetype html setlocal wrap
+	autocmd Filetype html nnoremap <buffer> <localleader>c I<!-- <esc>A --><esc>
+augroup END
+" }}}
+
+" JS {{{
+augroup filetype_javascript
+	autocmd!
+	autocmd Filetype javascript :iabbrev <buffer> iff if()<left>
+augroup END
+" }}}
+
+" CSV {{{
+au! BufNewFile,BufRead *.csv setfiletype csv
+augroup filetype_csv
+	autocmd!
+	autocmd Filetype csv setlocal nowrap
+augroup END
+" }}}
+
+" Python {{{
+augroup filetype_python
+	autocmd!
+	autocmd Filetype python nnoremap <buffer> <localleader>c I# <esc>
+	autocmd Filetype python :iabbrev <buffer> iff if:<left>
+	autocmd Filetype python :iabbrev <buffer> deff def():<left><left><left>
+	autocmd Filetype python :iabbrev <buffer> cdeff def():<left><left><left>
+	autocmd Filetype python :iabbrev <buffer> classs class():<left><left><left>
+	autocmd Filetype python :iabbrev <buffer> print print()<left>
+	autocmd Filetype python :iabbrev <buffer> Main # -------- Main -------- #<cr>if __name__ == "__main__":<cr>
+	autocmd Filetype python :iabbrev <buffer> __init def __init__(self,):<left><left>
+augroup END
+" }}}
+"
+" Vimscript file settings {{{
+augroup filetype_vim
+	autocmd!
+	autocmd Filetype vim setlocal foldmethod=marker
+augroup END
+" }}}
+
+" My status {{{
+" Git
+set statusline=
+" set statusline+=%1*
+set statusline+=%#User2#
+set statusline+=%<\ %f		" File Path
+set statusline+=%#User3#
+"set statusline+=%m%w%r%h	" Modified, Preview, Readonly, Help
+set statusline+=\ %m
+set statusline+=%(\ [%W%R%H]%)	" Modified, Preview, Readonly, Help
+
+set statusline+=%=		" Right Side
+
+set statusline+=%#User4#
+set statusline+=\ (%l,		" Line, Column
+set statusline+=%c)		" Line, Column
+set statusline+=%#User5#
+set statusline+=\ %y 		" Filetype
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding} " Encoding
+set statusline+=%#User6#
+set statusline+=\ %P\ 		" Percentage
+" }}}
+
+" Execute
+nnoremap <leader>b :execute "bel split " . bufname('')<CR>
+" Hightlight Error
+nnoremap <leader>w :execute "match Error ".'/ \+$/'<CR>
+nnoremap <leader>W :execute "match"<CR>
+" Auto Very magic
+nnoremap / /\v
+nnoremap <leader>h :nohlsearch<CR>
+" foo
+" CaseStudy
+"nnoremap <leader>g :silent execute "grep! -R ".shellescape(expand("<cWORD>"))." ."<cr>:copen 5<cr>
+" that's
+" nnoremap;ls

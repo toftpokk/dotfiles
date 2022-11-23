@@ -1,0 +1,21 @@
+
+# ~/.bash_profile
+#
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+export PATH="$HOME/.local/bin:$HOME/.local/scripts:$HOME/.local/scripts/dwmblocks:$HOME/.local/scripts/notify:$HOME/.local/scripts/lemonbar:$PATH"
+export EDITOR="nvim"
+export XDG_CONFIG_HOME="$HOME/.config"	# XDG_CONFIG_HOME
+export BROWSER="firefox"
+export EDITOR="nvim"
+export TERMINAL="alacritty"
+export PAGER="less"
+export READER="zathura"
+export SUDO_ASKPASS="$HOME/.local/scripts/ask_password"
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export SDL_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi

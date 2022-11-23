@@ -1,0 +1,19 @@
+#!/bin/sh
+icon_range(){
+	for i in $(seq $1 $2); do printf "\\u$(printf "%x" $i)\n"; done
+}
+
+testprint(){
+	for i in $(seq $1 $2); do echo $i; done
+}
+
+allfonts=
+# for i in {58874..58923}; do allfonts+="$(printf "%x " "\\u$i")"; done
+allfonts+=$(icon_range 58874 58923)
+allfonts+=$(icon_range 59136 59333)
+# allfonts+=$(icon_range 50 100)
+# a=$(icon_range 10 100)
+printf "$a"
+printf "$allfonts" | dmenu -p "Pick an icon:" -c -l 20 -fn "monospace:pixelsize=30"
+# printf $allfonts
+

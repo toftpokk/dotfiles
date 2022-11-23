@@ -1,0 +1,30 @@
+#!/bin/sh
+
+menu="Poweroff\nSuspend\nLogout\nReboot"
+ans="$(echo -e $menu | dmenu -c -l 20 -p 'Power: ')"
+
+case $ans in
+	Logout)
+		# kill -TERM $(pgrep -u $USER "\bdwm$")
+		killall lf
+		bspc quit
+		;;
+	Suspend)
+		systemctl suspend
+		;;
+	Reboot)
+		sudo -A reboot
+		;;
+	Poweroff)
+		if pgrep openvpn; then
+			notify-send -u "critical" "Powermenu" "OpenVPN is still up"
+			exit;
+		else
+			killall lf
+			shutdown -h now
+		fi
+		;;
+	*)
+		exit
+		;;
+esac

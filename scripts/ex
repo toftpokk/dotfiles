@@ -1,0 +1,49 @@
+#!/bin/sh
+error_exit(){
+	echo "$1" >&2
+	exit 1
+}
+usage(){
+    echo "usage: `basename "$0"` [ -h help ] target"
+}
+
+help(){
+    echo "Usage:
+    $0 filename"
+}
+
+exdir="."
+if [ ! -z "$2" ]; then
+	if [ -d "$2" ]; then
+		exdir="$2"
+	else
+		echo "No dir $2"
+		exit
+	fi
+fi
+
+
+if [ -f "$1" ]
+then
+	case "$1" in
+		*.tar.bz2)   tar xjf "$1" --directory="$exdir";;
+		*.tar.gz)    tar xzf "$1"  --directory="$exdir";;
+		*.tar.xz)    tar xf "$1"   --directory="$exdir";;
+		*.bz2)       bunzip2 "$1"  ;;
+		*.rar)       unrar x "$1" "$exdir";;
+		*.gz)        gunzip "$1"    ;;
+		*.tar)       tar xf "$1" --directory="$exdir";;
+		*.tbz2)      tar xjf "$1" --directory="$exdir";;
+		*.tgz)       tar xzf "$1" --directory="$exdir";;
+		*.zip|*.cbz)       unzip "$1" -d "$exdir";;
+		*.Z)         uncompress "$1";;
+		*.7z)        7z x "$1"      ;;
+		*)
+			error_exit "'$1' cannot be extracted via ex()"
+			;;
+	esac
+else
+	error_exit "'$1' is not a valid file"
+fi
+filename=$(basename -- "${1}")
+notify-send "Extract" "Finished extracting ${filename}"

@@ -1,0 +1,3 @@
+#!/bin/sh
+duration=5
+(echo -e "%{c}${1}"; sleep ${duration}) | lemonbar -g 1000x32+760+50 -o 0 -f "Hack Nerd Font"-20 -o -2 -f "Hack Nerd Font"-20 -f "Noto Serif CJK TC Medium"-20 -B "#282828" -F "#b8b8b8"

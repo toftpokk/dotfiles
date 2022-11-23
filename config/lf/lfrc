@@ -1,0 +1,171 @@
+# interpreter for shell commands (needs to be POSIX compatible)
+
+set shellopts '-eu'
+set ifs "\n"
+
+# Periodic Checks
+set period 10
+
+# Basic Settings
+set preview on
+set previewer preview
+set cleaner preview-image
+# set hidden on
+set icons on
+
+# Custom Commands
+cmd open ${{
+    case $(file --mime-type "$f" -Lb) in
+        text/*|application/json|inode/x-empty|application/csv) $EDITOR "$f";;
+		image/*) nsxiv-rifle "$f";;
+		application/gzip|application/x-rar|application/x-tar|application/x-object);;
+		application/x-object|application/x-pie-executable);;
+		application/octet-stream);;
+        *) xdg-open "$f" ;;
+    esac
+}}
+
+cmd img_view ${{
+	path=$(dirname "${f}")
+	# nsxiv -at "${path}"
+	for i in $(nsxiv -ato "${path}"); do
+		lf -remote "send $id glob-select \"${i##*/}\""
+	done
+}}
+
+cmd mkfile %{{
+	#set -f # Enable wildcard and ranges
+	printf "Filename: "
+	read ans
+	touch "$ans"
+}}
+
+cmd mkdir %{{
+	set -f # Enable wildcard and ranges
+	printf "Directory Name: "
+	read ans
+	mkdir "$ans"
+}}
+
+cmd mkex ${{
+	chmod u+x $f
+	lf -remote "reload"
+}}
+
+cmd mknoex ${{
+	chmod a-x $f
+	lf -remote "send reload"
+}}
+
+cmd mkextract ${{
+	mkdir "${f}.d"
+	ex "$f" "${f}.d"
+}}
+
+cmd mkwall ${{
+	xwallpaper --zoom "$f"
+	echo "$f" > ~/.config/wallpaper
+}}
+
+cmd mklock ${{
+	# cp "$f" ~/.config/lock.png
+	convert -resize 1920x1080^ "$f" ~/.config/lock.png
+}}
+
+cmd link ${{
+	printf "Link to: "
+	read ans
+	[-f ans ] && exit 1
+	ln -sf "$f" ans
+}}
+
+cmd fuzzy_find ${{
+	file_name=$(find * -type f | fzf)
+	fname=$(basename "${file_name}")
+	dir=$(dirname "${file_name}")
+	[ -z "$dir" ] && exit 0
+	lf -remote "send $id cd \"$dir\""
+	lf -remote "send $id push /${fname}<enter>"
+}}
+
+cmd duplicate &{{
+	nohup 1>/dev/null 2>/dev/null $TERMINAL -e lf &
+}}
+
+cmd goto_mount %{{
+	lf -remote "send $id cd /run/media/$USER"
+}}
+
+# cmd trash-put %trash-put "$fx"
+cmd trash-rem %{{
+	for i in $fx; do
+		trash-rm "$i"
+	done
+}}
+cmd trash-put %{{
+	for i in $fx; do
+		trash-put "$i"
+	done
+}}
+
+cmd perm-delete %{{
+	for i in $fx; do
+		rm -rf "$i"
+	done
+}}
+
+cmd mkpdf %{{
+	convert $fx out.pdf
+}}
+
+cmd sudo_edit ${{
+	sudo $EDITOR ${f}
+}}
+
+cmd zipup ${{
+	echo ${f}
+	zip -Xr "${f}.zip" "${f}"
+}}
+
+# # Bindings
+# # Remove Defaults
+map m
+map f
+map F
+map t
+
+# # Functions
+map md mkdir
+map mf mkfile
+map mw mkwall
+map ml mklock
+map mx mkextract
+map mv img_view
+map mp mkpdf
+map tt trash-put
+map tr trash-rem
+map td perm-delete
+map f fuzzy_find
+map D duplicate
+map R reload
+map zu zipup
+
+map x mkex
+map X mknoex
+
+map E sudo_edit
+# # Folders
+map gc cd ~/.config
+map gl cd ~/.config/lf
+map gb cd ~/.local/scripts
+
+map gB cd ~/Backgrounds
+map gd cd ~/dotfiles
+map gD cd ~/Downloads
+map gM cd ~/Music
+map gp cd ~/git-projects
+map gt cd ~/test
+map gT cd ~/.local/share/Trash
+map gS cd ~/Screenshots
+
+map gm goto_mount

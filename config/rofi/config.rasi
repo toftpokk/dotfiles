@@ -1,0 +1,5 @@
+@theme "kong.rasi"
+configuration{
+	font: "Hack Nerd Font 14";
+	show-icons: true;
+}

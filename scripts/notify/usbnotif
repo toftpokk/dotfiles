@@ -1,0 +1,45 @@
+#!/bin/sh
+
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+# export XAUTHORITY=/home//.Xauthority
+# export DISPLAY=:0.0
+action=
+dev_path=
+bus_num=
+dev_num=
+
+notif(){
+	su toftpokk -c "notify-send \"USB\" \"$1\""
+}
+
+while getopts a:p:b:d: opt; do
+  case $opt in
+  a)
+      action=$OPTARG
+      ;;
+  p)
+      dev_path=$OPTARG
+      ;;
+  b)
+      bus_num=$OPTARG
+      ;;
+  d)
+      dev_num=$OPTARG
+      ;;
+  esac
+done
+
+[ -z "$dev_num" ] || [ -z "$bus_num" ] && exit
+
+# escaped_dev_path=`echo "$dev_path" | sed 's/[\/&*.^$]/\\\&/g'`
+# device=$(sed -i "s#^\([0-9]\{3\}:\)\{2\}\($escaped_dev_path\)#$bus_num:$dev_num:$dev_path#")
+
+case $action in
+	add)
+		# notif "Connected $(readlink -f $dev_path)"
+		notif "Connected"
+		;;
+	remove)
+		notif "Disconnected"
+		;;
+esac

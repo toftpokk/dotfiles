@@ -1,0 +1,49 @@
+(include "./variables.yuck")
+(include "./widgets/kong-bar.yuck")
+(include "./widgets/audio-pop.yuck")
+(include "./widgets/network-pop.yuck")
+(include "./widgets/disk-pop.yuck")
+
+; Bar
+(defwindow kong-bar
+  :monitor 0
+  :geometry (geometry :x "0"
+  :y "0"
+  :width "100%"
+  :height 40
+  :anchor "top center")
+  :reserve (struts :distance "45px" :side "top")
+  :windowtype "dock"
+  :stacking "bg"
+  :wm-ignore false
+  (bar))
+
+(defwindow audio-pop
+  :stacking "fg"
+  :focusable "false"
+  :geometry (geometry
+    :x -10
+    :y 50
+    :width 500
+    :anchor "top right")
+  (audio-widget))
+
+(defwindow network-pop
+  :stacking "fg"
+  :focusable "false"
+  :geometry (geometry
+    :x -10
+    :y 50
+    :width 500
+    :anchor "top right")
+  (network-widget))
+
+(defwindow disk-pop
+  :stacking "fg"
+  :focusable "false"
+  :geometry (geometry
+    :x -10
+    :y 50
+    :width 500
+    :anchor "top right")
+  (disk-widget))

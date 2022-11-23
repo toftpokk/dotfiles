@@ -1,0 +1,164 @@
+# Terminal
+super + Return
+	$TERMINAL
+
+# Reload sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Close program
+super + q
+	bspc node -c
+
+# Kill program
+super + shift + q
+	bspc node -k
+
+# Restart bspwm
+super + d
+	bspc wm -r
+
+# Quit bspwm
+super + shift + x
+	bspc quit
+
+## Layouts ##
+
+# Monocle layout
+super + shift + m
+	bspc node -t fullscreen
+
+# Tiled layout
+super + shift + t
+	bspc node -t tiled
+
+# Floating layout
+super + shift + f
+	bspc node -t floating
+
+## Node Switching ##
+
+# focus or swap node
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# swap the current node and the biggest window
+super + shift + Return
+	bspc node -s biggest.window
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# focus the node for the given path jump
+super + {bracketleft,bracketright,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous desktop in the current monitor
+super + shift + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# send the newest marked node to the newest preselected node
+super + slash
+	bspc node -n newest.!automatic.local
+
+# focus the last node/desktop
+super + Tab
+	bspc node -f last
+
+## Apps ##
+
+# Dmenu
+super + @space
+	rofi -show drun
+
+super + r
+	$TERMINAL -e lf
+
+super + shift + r
+	$TERMINAL -e htop
+
+super + b
+	$BROWSER
+
+
+super + ctrl + b
+	firefox --private-window
+
+super + t
+	toolbox
+
+super + o
+	handler
+
+super + g
+	powermenu
+
+super + a
+	$TERMINAL -e pulsemixer
+
+super + shift + a
+	$TERMINAL -c MOCP -e mocp
+
+super + w
+	wifi_view; pkill lemonconfig -36
+
+super + u
+	bluetooth_view
+
+super + g
+	powermenu
+
+super + shift + w
+	runvpn; pkill lemonconfig -36
+
+super + p
+	dislock
+
+super + {_,shift + } v
+	{mount_script,umount_script}
+
+XF86MonBrightness{Up,Down}
+	xbacklight -{inc,dec} 5 && brightness_bar
+
+super + shift + {equal,minus}
+	xbacklight -{inc,dec} 5 && brightness_bar
+
+XF86AudioMute
+	pamixer -t && volume_bar && pkill lemonconfig -37
+
+XF86Audio{Raise,Lower}Volume
+	pamixer -{i,d} 5 && volume_bar && pkill lemonconfig -37
+
+super + {equal,minus}
+	pamixer -{i,d} 5 && volume_bar && pkill lemonconfig -37
+
+super + m
+	pamixer -t && volume_bar && pkill lemonconfig -37
+
+{_,shift} + Print
+	screenshot {_,-s}

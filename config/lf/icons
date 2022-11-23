@@ -1,0 +1,85 @@
+# default
+ln		# LINK
+or		# ORPHAN LINK
+tw		# STICKY_OTHER_WRITABLE
+ow		# OTHER_WRITABLE
+st		# STICKY
+di		# DIR
+pi		# FIFO
+so		# SOCK
+bd		# BLK
+cd		# CHR
+su		# SETUID
+sg		# SETGID
+ex		# EXEC
+fi		# FILE
+
+# extensions
+
+# languages
+*.c	
+*.o	
+*.h	
+*.cpp 
+*.sh 
+*.xml 
+*.html 
+*.css 
+*.js 
+*.ts 
+*.py 
+*.pyc 
+*.json 
+*.php 
+*.el ﬦ
+*.md 
+
+# Documents
+*.zip 
+*.rar 
+*.tar 
+*.gz 
+*.xz 
+*.mkv 
+*.mp4 
+*.png 
+*.jpg 
+*.ico 
+*.JPG 
+*.svg 
+*.webp 
+*.mp3 墳
+*.opus 墳
+*.m4a 墳
+*.ttf 
+*.woff 
+*.woff2 
+*.eot 
+*.otf 
+*.odt 	# Docs
+*.odp 	# Slides
+*.ods 	# Sheets
+*.docx 	# Docs
+*.pptx 	# Slides
+*.xlsx 	# Sheets
+
+*.pdf 
+
+*.epub 
+*.cbz 
+
+*.dll 
+*.exe 
+
+*.gitignore 
+
+*.ini 
+*.cfg 
+*.yml 
+*.yaml 
+*.toml 
+*.conf 
+
+*.bak 
+
+*.torrent 

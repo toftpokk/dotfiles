@@ -1,0 +1,51 @@
+#!/bin/sh
+
+SONG_DIR=/home/public/Songs
+selectsong(){
+	song="$(ssh kongdell ls "$SONG_DIR" | grep "\.m3u$" | dmenu -c -l 10)"
+	[ -z "$song" ] && exit
+	echo "$song"
+}
+
+playsong(){
+	mpv --input-ipc-server=/tmp/mpv-socket --volume=60 --no-video --shuffle sftp://kongdell:"$SONG_DIR/$1" &
+}
+
+dunsty(){
+	dunstify -t 0 -u low -i  emblem-music-symbolic.symbolic \
+		-h string:x-dunst-stack-tag:music \
+		--action="next,Next" --action="pause,Pause/Play" \
+		--action="prev,Previous" --action="stop,Stop" \
+		"Playing..."
+	echo "$ACTION"
+}
+
+if ! pgrep mpv; then
+	song="$(selectsong)"
+	playsong "$song"
+fi
+while true; do
+	ACTION=""
+	ACTION=$(dunsty)
+	case "$ACTION" in
+	"pause")
+		echo cycle pause | socat - "/tmp/mpv-socket"
+		;;
+	"prev")
+		echo playlist-prev | socat - "/tmp/mpv-socket"
+		;;
+	"next")
+		echo playlist-next | socat - "/tmp/mpv-socket"
+		;;
+	"stop")
+		echo quit | socat - "/tmp/mpv-socket"
+		exit 0
+		;;
+	"2")
+		echo quit | socat - "/tmp/mpv-socket"
+		killall mpv
+		killall dunst
+		exit 1
+		;;
+	esac
+done

@@ -1,0 +1,29 @@
+[Default Applications]
+image/jpeg=nsxiv.desktop;
+image/bmp=nsxiv.desktop;
+image/gif=nsxiv.desktop;
+image/jpg=nsxiv.desktop;
+image/png=nsxiv.desktop;
+image/x-xcf=gimp.desktop;
+image/svg+xml=nsxiv.desktop;
+application/pdf=org.pwmt.zathura.desktop;
+application/epub+zip=org.pwmt.zathura.desktop;
+audio/ogg=mpv.desktop;
+audio/wav=mpv.desktop;
+audio/x-m4a=mpv.desktop;
+video/x-matroska=mpv.desktop;
+video/mp4=mpv.desktop;
+application/vnd.oasis.opendocument.text=libreoffice.desktop;
+application/vnd.oasis.opendocument.spreadsheet=libreoffice.desktop;
+application/vnd.oasis.opendocument.presentation=libreoffice.desktop;
+text/html=firefox.desktop;
+text/xml=firefox.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/ftp=firefox.desktop;
+x-scheme-handler/chrome=firefox.desktop;
+
+[Added Associations]
+application/x.bittorrent=torrent.desktop;
+x-scheme-handler/magnet=torrent.desktop;
+image/svg+xml=gimp.desktop;firefox.desktop;inkscape.desktop;

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case $BUTTON in
+	1) $TERMINAL -e htop;;
+esac
+printf " \\uf85a "
+# free -h | awk '/^Mem/{print $3 "/" $2}'
+printf "%d%%" $(($(free -m | awk '/^Mem/{print $3 "*100/" $2}')))

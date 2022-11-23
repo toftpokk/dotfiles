@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ffprobe -v quiet -i "$1" -of ini -show_format | tail +3 | sed "s/\([^=]*\)=\(.*\)/$(printf "\e[32m")\1$(printf "\e[37m") = \2/"

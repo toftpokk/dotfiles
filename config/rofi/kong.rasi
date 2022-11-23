@@ -1,0 +1,119 @@
+*{
+	base00: #181818;
+	base01: #282828;
+	base02: #383838;
+	base03: #585858;
+	base04: #b8b8b8;
+	base05: #d8d8d8;
+	base06: #e8e8e8;
+	base07: #f8f8f8;
+	base08: #ee3632;
+	base09: #ee9e56;
+	base0A: #F7DE4F;
+	base0B: #6ab544;
+	base0C: #70CCAD;
+	base0D: #5066C6;
+	base0E: #bf72ad;
+	base0F: #a16946;
+	background-color: transparent;
+	text-color: @base07;
+}
+window {
+	transparency: "real";
+	/*fullscreen: true;*/
+	// background-color: #263238CC; 
+	background-color: #282828;
+	border-radius: 20px;
+	/*base00 + CC (80% opacity)*/
+}
+
+mainbox {
+	children: [inputbar, message, mode-switcher, listview];
+	spacing: 30px;
+	/*margin: 20%;*/
+	padding: 30px 0;
+	// border: 1px;
+	// border-color: @base0D;
+}
+
+inputbar {
+	padding: 0 30px;
+	children: [prompt, textbox-prompt-colon, entry, case-indicator];
+}
+
+prompt {
+	text-color: @base0D;
+}
+
+textbox-prompt-colon {
+	expand: false;
+	str: ":";
+	margin: 0 1ch 0 0;
+	text-color: @base0D;
+}
+
+entry {
+	text-color: @base07;
+}
+
+case-indicator {
+	text-color: @base0F;
+}
+
+mode-switcher, message {
+	// border: 1px 0;
+	// border-color: @base0D;
+}
+
+button, textbox {
+	background-color: @base03;
+	text-color: @base07;
+	padding: 5px;
+}
+
+button selected {
+	background-color: @base0D;
+}
+
+listview {
+	scrollbar: true;
+	margin: 0 10px 0 30px;
+}
+
+scrollbar {
+	background-color: @base03;
+	handle-color: @base0D;
+	handle-width: 10px;
+	// border: 0 1px;
+	// border-color: @base0D;
+	margin: 0 0 0 20px;
+}
+
+element {
+	padding: 5px;
+	highlight: bold underline;
+}
+
+element normal {
+	background-color: transparent;
+}
+
+element.selected {
+	background-color: @base0D;
+}
+
+element alternate {
+	/*background-color: @base03;*/
+}
+
+element normal normal, element selected normal, element alternate normal {
+	text-color: @base07;
+}
+
+element normal urgent, element selected urgent, element alternate urgent {
+	text-color: @base0F;
+}
+
+element normal active, element selected active, element alternate active {
+	text-color: @base0B;
+}

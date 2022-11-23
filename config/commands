@@ -1,0 +1,19 @@
+change_wallpaper
+nmtui
+nmcli device wifi show -s
+xprop
+xev
+arandr
+killall dunst; dunst
+printf "\\uF85A" | xclip -selection primary
+udevadm monitor --environment --udev
+xmllint --format % | tail -n +2
+:%!jq .
+xrdb -merge .Xresources
+trap -l | less
+launchlemon
+echo "Hex dump" od -A x -t x1z -v
+objdump -d a.out
+killall bspswallow; bspswallow
+sftplay
+dunstctl set-paused toggle

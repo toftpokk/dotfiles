@@ -1,0 +1,39 @@
+#!/bin/sh
+cmd="import -window root"
+
+while getopts ":sa" opts
+do
+	case $opts in
+		s)
+			cmd="import"
+			;;
+		*)
+			exit 1
+			;;
+	esac
+done
+
+
+dir="$HOME/Screenshots"; [ -d "$dir" ] || mkdir "$dir" # Check if dir
+
+fileinc(){
+	# $1 dirname $2 filename
+	# Add filename increment
+	i=1
+	while [ -f "${1}/${2}-$i.png" ]
+	do
+		i=$((i+1))
+	done
+	#
+	echo "${2}-$i"
+}
+
+tmp_img="/tmp/screenshot.png"
+
+$cmd "$tmp_img"
+
+filename=$(fileinc "$dir" "screenshot-$(date '+%Y-%m-%d')" | dmenu -p "Save Screenshot: ")
+[ -z "$filename" ] && exit 0
+path="$dir/$filename.png"
+
+mv "$tmp_img" "$path" && notify-send -i "$path" "Screenshot" "$path"

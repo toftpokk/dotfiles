@@ -1,0 +1,195 @@
+#!/bin/sh
+
+trap 'update workspaces' 35 # Desktop / Node Focus
+trap 'update wifi' 36 # Wifi
+trap 'update sound' 37 # Sound
+trap 'update keyboard' 38 # Keyboard
+trap 'update bluetooth' 39 # Bluetooth
+
+normbgcolor="#282828"
+normfgcolor="#b8b8b8"
+selbgcolor="#383838"
+selfgcolor="#5066C6"
+accentfgcolor="#6ab544"
+normbordercolor="#383838"
+selbordercolor="#5066C6"
+errfgcolor="#ee3632"
+modules=(workspaces currentwindow memory wifi bluetooth sound keyboard timedate battery)
+bar=()
+
+format(){
+	echo -e "%{+u}$1%{-u}"
+}
+
+workspaces(){
+	desktops=$(bspc query -D --names)
+	focused=$(bspc query -D --names -d focused)
+	output=
+	for desktop in $desktops; do
+		nodes=$(bspc query -N -d $desktop)
+		if [ ! -z "$nodes" ]; then
+			d="%{F$selfgcolor}$desktop%{F-}"
+		else
+			d="$desktop"
+		fi
+		if [ "$desktop" == "$focused" ]; then
+			d="%{+u}$d%{-u}"
+		fi
+		output="$output $d"
+	done
+	echo "[$output ]"
+}
+
+print_battery(){
+	if [ $1 -lt 9 ]; then
+		printf "\\uf58d"
+	elif [ $1 -lt 18 ]; then
+		printf "\\uf579"
+	elif [ $1 -lt 27 ]; then
+		printf "\\uf57a"
+	elif [ $1 -lt 36 ]; then
+		printf "\\uf57b"
+	elif [ $1 -lt 45 ]; then
+		printf "\\uf57c"
+	elif [ $1 -lt 54 ]; then
+		printf "\\uf57d"
+	elif [ $1 -lt 63 ]; then
+		printf "\\uf57e"
+	elif [ $1 -lt 72 ]; then
+		printf "\\uf57f"
+	elif [ $1 -lt 90 ]; then
+		printf "\\uf57d"
+	else
+		printf "\\uf578"
+	fi
+}
+
+battery(){
+	if [ -f "/sys/class/power_supply/BAT0/charge_now" ]; then
+		bat_now=$(cat /sys/class/power_supply/BAT0/charge_now)
+		bat_full=$(cat /sys/class/power_supply/BAT0/charge_full)
+		percent=$((bat_now * 100 / bat_full))
+		icon=$(print_battery $percent)
+		is_charging=$(cat /sys/class/power_supply/AC/online)
+		output="$percent% ${icon}"
+		[ $is_charging = 1 ] && output="$output\\uf0e7"
+		# Battery monitor
+		if [ $is_charging = 0 ] && [ $((bat_now*100/bat_full)) -lt 20  ]; then
+			dunstify -i "battery-symbolic.symbolic" -u "critical" -r 90212 "Battery" "Battery Low!"
+			output="%{F$errfgcolor}$output%{F-}"
+		fi
+	else
+		output="--% \uf590 "
+	fi
+	format "$output"
+}
+
+timedate(){
+	format "\\uf5f4 $(date '+%0e/%m/%Y %0k:%0M')"
+}
+
+keyboard(){
+	format "[$(xkblayout-state print "%s")]"
+}
+
+lock(){
+	status=$(xidlehook-client --socket /tmp/lockhook query | grep disabled | awk '{print $2}'| head -n1)
+
+	[ "$status" = "true," ] && output="\\uf13e" || output="\\uf023"
+}
+
+memory(){
+	format " \\uf85a $(($(free -m | awk '/^Mem/{print $3 "*100/" $2}')))%%"
+}
+
+wifi(){
+	IFS=' ' read wifi_status ssid <<< $(nmcli -f STATE,TYPE,CONNECTION dev | awk '/wifi\s+/{print $1 " " $3}')
+	case $wifi_status in
+		unavailable)
+			output="%{F$errfgcolor}Unavailable%{F-} \\ufaa9";;
+		disconnected)
+			output="%{F$errfgcolor}Disconnected%{F-} \\ufaa9";;
+		connecting)
+			output="Connecting \\ufaa8?";;
+		connected)
+			output="$ssid \\ufaa8";;
+	esac
+	if [ -d /proc/sys/net/ipv4/conf/tun0 ]; then
+		output="$output%{F$accentfgcolor}[VPN]%{F-}"
+	fi
+	if [ -d /proc/sys/net/ipv4/conf/tap0 ]; then
+		output="$output%{F$accentfgcolor}[KUVPN]%{F-}"
+	fi
+	format "$output"
+}
+
+sound(){
+	vol="$(pamixer --get-volume)"
+	bar=$((vol*3/100))
+	icon=
+	case $bar in
+		0) icon="\\ufc5c";;
+		1) icon="\\ufa7e";;
+		2) icon="\\ufa7f";;
+		3) icon="\\ufa7d";;
+	esac
+	[ "$(pamixer --get-mute)" = "true" ] && icon="\\ufc5d"
+	format "${icon} ${vol}%%"
+}
+
+currentwindow(){
+	echo -e "%{F$selfgcolor}" "$(xdotool getwindowfocus getwindowname)" "%{F-}"
+}
+
+bluetooth(){
+	if systemctl is-active --quiet bluetooth.service; then
+		if bluetoothctl &>/dev/null; then
+			bluetoothctl info > /dev/null && format "\\uF293" || printf ""
+		fi
+	fi
+}
+
+# update(){
+# 	echo -e "%{l}$(workspaces)  $(currentwindow) %{r} $(memory) $(wifi) $(sound) $(timedate) $(keyboard) $(battery) "
+# }
+
+update_all(){
+	for ((i=0;i<${#modules[@]};i++)); do
+		bar[$i]="$(${modules[$i]})"
+	done
+}
+
+update(){
+	# workspaces currentwindow memory wifi bluetooth sound keyboard timedate battery
+	# 0          1             2      3    4         5     6        7        8
+	case $1 in
+		workspaces)
+			bar[0]="$(${modules[0]})"
+			bar[1]="$(${modules[1]})"
+			;;
+		wifi)
+			bar[3]="$(${modules[3]})"
+			;;
+		sound)
+			bar[5]="$(${modules[5]})"
+			;;
+		keyboard)
+			bar[6]="$(${modules[6]})"
+			;;
+		bluetooth)
+			bar[4]="$(${modules[4]})"
+			;;
+	esac
+}
+
+render(){
+	echo "%{Sl}%{l}${bar[@]:0:2}%{r}${bar[@]:2:7}"
+}
+
+update_all
+while true; do
+	update_all
+	render
+	sleep 5s &
+	wait
+done

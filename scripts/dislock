@@ -1,0 +1,17 @@
+#!/bin/sh
+
+ans=$(echo -e "Off\nOn" | dmenu -c -l 10 -p "Lockscreen: ")
+[ -z "${ans}" ] && exit
+if [ "${ans}" = "On" ];
+then
+	xidlehook-client --socket /tmp/lockhook control --action enable && \
+		notify-send -i "changes-prevent-symbolic.symbolic" "Lockscreen" "Is set to On" || \
+		notify-send -i "dialog-warning-symbolic.symbolic" -u "critical" "Lockscreen" "Unable to set"
+		kill -38 $(pidof dwmblocks)
+else
+	xidlehook-client --socket /tmp/lockhook control --action disable && \
+		notify-send -i "changes-allow-symbolic.symbolic" "Lockscreen" "Is set to Off" || \
+		notify-send -i "dialog-warning-symbolic.symbolic" -u "critical" "Lockscreen" "Unable to set"
+			kill -38 $(pidof dwmblocks)
+fi
+exit

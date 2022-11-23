@@ -1,0 +1,90 @@
+!! Default font
+
+!! name		dark	light
+!! black	0	8
+!! red		1	9
+!! green	2	10
+!! yellow	3	11
+!! blue		4	12
+!! purple	5	13
+!! cyan		6	14
+!! white	7	15
+
+!! black
+#define base00 #181818
+!! grey
+#define base01 #282828
+#define base02 #383838
+#define base03 #585858
+#define base04 #b8b8b8
+#define base05 #d8d8d8
+#define base06 #e8e8e8
+!! white
+#define base07 #f8f8f8
+
+!! red
+#define base08 #ee3632
+!! orange
+#define base09 #ee9e56
+!! yellow
+#define base0A #F7DE4F
+!! green
+#define base0B #6ab544
+!! cyan
+#define base0C #70CCAD
+!! blue
+#define base0D #5066C6
+!! purple
+#define base0E #bf72ad
+!! brown
+#define base0F #a16946
+
+!! *.foreground: base07
+!! *.background: base07
+
+*.font: Hack Nerd Font:size=15
+
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base07
+
+*color8:       base03
+*color9:       base08
+*color10:      base0B
+*color11:      base0A
+*color12:      base0D
+*color13:      base0E
+*color14:      base0C
+*color15:      base07
+
+dwm.topbar: 1
+!! topbar background
+dwm.normbgcolor: base01
+!! topbar foreground
+dwm.normfgcolor: base04
+!! topbar special selected
+dwm.selbgcolor: base0D
+!! topbar special selected fg
+dwm.selfgcolor: base06
+
+!! window border
+dwm.normbordercolor: base02
+!! window select
+dwm.selbordercolor: base0D
+
+Sxiv.background: base00
+Sxiv.foreground: base0D
+
+! background
+Nsxiv.window.background: base00
+! selection box
+Nsxiv.window.foreground: base0D
+! marker
+Nsxiv.mark.foreground: base0D
+Nsxiv.bar.background: base02
+Nsxiv.bar.foreground: base07

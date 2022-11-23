@@ -1,0 +1,35 @@
+# Base16 toft-colors
+# Author: toftpokk
+
+set default-bg                  "#181818"
+set default-fg                  "#282828"
+
+set statusbar-fg                "#b8b8b8"
+set statusbar-bg                "#383838"
+
+set inputbar-bg                 "#181818"
+set inputbar-fg                 "#f8f8f8"
+
+set notification-bg             "#181818"
+set notification-fg             "#f8f8f8"
+
+set notification-error-bg       "#181818"
+set notification-error-fg       "#ee3632"
+
+set notification-warning-bg     "#181818"
+set notification-warning-fg     "#ee3632"
+
+set highlight-color             "#f7de4f"
+set highlight-active-color      "#5066C6"
+
+set completion-bg               "#282828"
+set completion-fg               "#5066C6"
+
+set completion-highlight-fg     "#f8f8f8"
+set completion-highlight-bg     "#5066C6"
+
+set recolor-lightcolor          "#181818"
+set recolor-darkcolor           "#e8e8e8"
+
+set font	"Hack Nerd Font normal 15"
+set selection-clipboard clipboard
