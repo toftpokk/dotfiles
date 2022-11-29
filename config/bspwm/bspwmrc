@@ -20,7 +20,7 @@ bspc subscribe desktop | while read line; do pkill lemonconfig -35; done &
 # bspc subscribe node_focus | while read line; do pkill lemonconfig -35; done &
 # bspc subscribe node_remove | while read line; do pkill lemonconfig -35; done &
 bspc subscribe node | while read line; do pkill lemonconfig -35; done &
-pgrep bspswallow || bspswallow &
+# pgrep bspswallow || bspswallow &
 
 # bspc rule -a Gimp desktop='^8' state=floating follow=on
 # bspc rule -a Chromium desktop='^2'
