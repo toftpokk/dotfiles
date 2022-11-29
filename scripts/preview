@@ -2,7 +2,7 @@
 
 case "$(file --mime-type "$1" -L -b)" in
 	application/json|text/*)
-		highlight "$1" -s /home/toftpokk/.config/highlight/toft-colors.theme -O truecolor --force;;
+		highlight "$1" -s $HOME/.config/highlight/toft-colors.theme -O truecolor --force;;
     image/*) preview-image draw "$1" "$2" "$3" "$4" "$5" && exit 1;;
 	audio/*|video/*) audinfo "$1";;
 	application/pdf) pdftotext -l 10 -nopgbrk -q -- "$1" -;;
