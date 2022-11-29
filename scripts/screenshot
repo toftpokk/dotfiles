@@ -1,11 +1,11 @@
 #!/bin/sh
-cmd="import -window root"
+cmd="maim"
 
 while getopts ":sa" opts
 do
 	case $opts in
 		s)
-			cmd="import"
+			cmd="maim -s -o"
 			;;
 		*)
 			exit 1

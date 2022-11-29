@@ -7,7 +7,7 @@ LOCAL="$HOME/.local"
 
 # Paru
 echo "Installing paru"
-sudo pacman -S --noconfirm --needed 'rust' 'base-devel'
+sudo pacman -S --noconfirm --needed 'rustup' 'base-devel'
 git clone https://aur.archlinux.org/paru.git
 pushd paru
 makepkg -si
@@ -22,10 +22,11 @@ sudo pacman -Syu --noconfirm --needed \
 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc'  'wget' \
 'highlight' 'picom' 'rofi' 'playerctl' 'wmctrl' \
 'xdotool' 'rsync' 'fzf' 'sshfs' 'udisks2' 'ueberzug' 'unzip' \
-'xwallpaper' 'cmus' 'openvpn'
+'xwallpaper' 'cmus' 'openvpn' 'htop' 'trash-cli' 'maim'
 # 'zenity' 'wine' 'winetricks'
 
-paru -S --needed --noconfirm 'nsxiv' 'fonts-tlwg'
+paru -S --needed --noconfirm \
+'nsxiv' 'fonts-tlwg' 'eww-git'
 
 
 # Clone dots
