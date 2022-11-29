@@ -67,6 +67,9 @@ ln -sf $DOTS/scripts $LOCAL/
 [ ! -d "$LOCAL/share" ] && mkdir "$LOCAL/share"
 ln -sf $DOTS/fonts $LOCAL/share/
 
+[ ! -d "$LOCAL/bin" ] && mkdir "$LOCAL/bin"
+ln -sf $DOTS/other/autostart $LOCAL/bin/autostart
+
 # Vim plug
 echo "Installing Vim-plug"
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
