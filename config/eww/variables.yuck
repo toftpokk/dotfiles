@@ -27,9 +27,9 @@
 (deflisten disks :initial '(box "No disks")'
   `./scripts/autoMount`)
 
-(defpoll time :interval "1s"
+(defpoll time :interval "10s"
               :initial "00:00:00"  ; optional, defaults to poll at startup
-  `date +%H:%M:%S`)
+  `date "+%a %d %b %H:%M"`)
 (defpoll volume :interval "2s"
                 :initial "100"
   `pactl get-sink-volume @DEFAULT_SINK@ | awk '/^V/{print $5}' | tr -d "%"`)
