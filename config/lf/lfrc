@@ -109,7 +109,7 @@ cmd trash-put %{{
 	done
 }}
 
-cmd perm-delete %{{
+cmd perm-delete ${{
 	for i in $fx; do
 		rm -rf "$i"
 	done
@@ -168,5 +168,6 @@ map gp cd ~/git-projects
 map gt cd ~/test
 map gT cd ~/.local/share/Trash
 map gS cd ~/Screenshots
+map gu cd ~/uni
 
 map gm goto_mount
