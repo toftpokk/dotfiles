@@ -13,34 +13,26 @@
   (box
     :halign "center"
     :orientation "h"
-    ""))
+    time))
 
 (defwidget stats []
   (box
     :halign "end"
     :orientation "h"
     :space-evenly false
-    (button :class "stat music"
+    (button :class ""
             :onclick "playerctl play-pause" 
       (label 
         :limit-width 40
-        :text { (is-playing == "Playing" ? "" : "" ) + " " + music-artist + " - " + music-title}))
+        :text { (is-playing == "Playing" ? "" : "" ) + " " + music-title + "  "}))
     ; (literal :content disks)
-    (button :class "stat disk"
-            :onclick "eww open --toggle disk-pop" 
-      { " " + round(EWW_DISK["/"]["used_perc"],0)+"%"})
-    (button :class "stat ram"
-      { " " + round(EWW_RAM["used_mem_perc"],0) + "%"})
-    (button :class "stat audio"
+    (button :class ""
             :onclick "eww open --toggle audio-pop" 
-      {" "+ (is-muted == "yes" ? "Muted" : volume+"%")})
-    (button :class "stat network"
+      {" "+ (is-muted == "yes" ? "Muted" : volume+"%") + "  "})
+    (button :class ""
             :onclick "eww open --toggle network-pop" 
-      {"直 "+ wifi})
-    (button :class "stat time"
-            :onclick "notify-send 'Music' 'Music'" 
-      time)
-    (button :class "stat battery"
+      {"直 "+ wifi + " "})
+    (button :class ""
       battery)
     ))
 

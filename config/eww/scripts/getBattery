@@ -10,19 +10,19 @@ icon() {
 		icon=""
 	elif [ "$per" -gt "70" ]; then
 		icon=""
-	elif [ "$per" -gt "60" ]; then
+	elif [ "$per" -gt "65" ]; then
 		icon=""
-	elif [ "$per" -gt "50" ]; then
+	elif [ "$per" -gt "60" ]; then
 		icon=""
-	elif [ "$per" -gt "40" ]; then
+	elif [ "$per" -gt "50" ]; then
 		icon=""
-	elif [ "$per" -gt "30" ]; then
+	elif [ "$per" -gt "40" ]; then
 		icon=""
+	elif [ "$per" -gt "30" ]; then
+		icon=""
 	elif [ "$per" -gt "20" ]; then
 		icon=""
 	elif [ "$per" -gt "10" ]; then
-		icon=""
-	elif [ "$per" -gt "0" ]; then
 		icon=""
 	else
 		icon=""
@@ -32,7 +32,7 @@ icon() {
 	if [ "$per" -lt "20" ] && [ ! "$status" = "Charging" ]; then
 		dunstify -i "battery-symbolic.symbolic" -u "critical" -r 90212 "Battery Low" "Connect Charger"
 	fi
-	echo "$icon"
+	echo "$per%$icon"
 }
 
 percent() {

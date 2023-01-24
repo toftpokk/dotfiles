@@ -1,5 +1,7 @@
 .kong-bar {
-	background-color: unset;
+  font-size: 1.2em;
+  font-family: 'Hack Nerd Font';
+	background-color: rgb(24,24,24,0.8);
 	.stat{
 		background: none;
 		border: none;
@@ -44,28 +46,33 @@
 	}
 	.workspace{
 		margin: 2px 2px;
-		border-radius: 10px;
+		// border-radius: 10px;
+    // border: none;
 	}
 	.workspace :first-child{
-		border-radius: 10px 0 0 10px;
+		// border-radius: 10px 0 0 10px;
 	}
 	.workspace :last-child{
-		border-radius: 0 10px 10px 0;
+		// border-radius: 0 10px 10px 0;
 	}
 
 	.workspace button{
 		background: unset;
-		border: unset;
-		color: #fff;
-		background-color: $workspace-bg;
-		padding: 10px 15px;
-		border-radius: unset;
+		// border: unset;
+		// color: #fff;
+    font-size: 1.2em;
+		color: $workspace-bg;
+		padding: 5px 10px;
+		// border-radius: unset;
+    // border: 
 	}
 	.workspace button.active{
-		background-color: $workspace-bg-active;
+		// color: $workspace-bg-active;
+    color: #fff;
 	}
 	.workspace button.focused{
-		background-color: $workspace-bg-focused;
+		color: $workspace-bg-focused;
+    border-bottom: 5px solid $blue;
 	}
 	.workspace button:hover{
 		background-color: $workspace-bg-hover;
