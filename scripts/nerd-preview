@@ -1,19 +1,20 @@
 #!/bin/sh
 icon_range(){
-	for i in $(seq $1 $2); do printf "\\u$(printf "%x" $i)\n"; done
-}
-
-testprint(){
-	for i in $(seq $1 $2); do echo $i; done
+  j=0
+	for i in $(seq $1 $2); do
+    printf "\\u$(printf "%x" $i)  "
+    # --- Newline every 20 characters
+    if [ "$j" -eq 20 ]; then
+      printf "\n$((i+1)) %x " $i && j=0
+    fi
+    j=$((j+1))
+    # ---
+  done
 }
 
 allfonts=
-# for i in {58874..58923}; do allfonts+="$(printf "%x " "\\u$i")"; done
-allfonts+=$(icon_range 58874 58923)
-allfonts+=$(icon_range 59136 59333)
-# allfonts+=$(icon_range 50 100)
-# a=$(icon_range 10 100)
-printf "$a"
-printf "$allfonts" | dmenu -p "Pick an icon:" -c -l 20 -fn "monospace:pixelsize=30"
-# printf $allfonts
-
+# Language parts 0-57344
+allfonts+=$(icon_range 57344 59333)
+allfonts+=$(icon_range 59333 64838)
+# Language parts 64838-65600 END
+printf "$allfonts"
