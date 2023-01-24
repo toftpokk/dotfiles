@@ -27,8 +27,8 @@ alias bc="bc -l"
 
 # Bash configs
 HISTCONTROL=ignoreboth # ignore duplicate commands and those with prepended whitespace
-HISTSIZE=1000 # number of commands while bash is running
-HISTFILESIZE=1000 # number of commands in history file
+HISTSIZE= # number of commands while bash is running
+HISTFILESIZE= # number of commands in history file
 
 shopt -s checkwinsize	# Bash always checks window size
 shopt -s dirspell	# Bash auto checks name
