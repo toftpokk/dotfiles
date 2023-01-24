@@ -4,7 +4,7 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export PATH="$HOME/.local/bin:$HOME/.local/scripts:$HOME/.local/scripts/dwmblocks:$HOME/.local/scripts/notify:$HOME/.local/scripts/lemonbar:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/scripts:$HOME/.local/scripts/notify:$PATH"
 export EDITOR="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"	# XDG_CONFIG_HOME
 export BROWSER="firefox"
