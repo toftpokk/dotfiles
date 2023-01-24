@@ -105,6 +105,8 @@ super + shift + r
 super + b
 	$BROWSER
 
+super + shift + b
+	$BROWSER -P "uni"
 
 super + ctrl + b
 	firefox --private-window
