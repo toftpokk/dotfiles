@@ -30,7 +30,7 @@ fileinc(){
 
 tmp_img="/tmp/screenshot.png"
 
-$cmd "$tmp_img"
+$cmd | tee "$tmp_img" | xclip -selection clipboard -t image/png
 
 filename=$(fileinc "$dir" "screenshot-$(date '+%Y-%m-%d')" | dmenu -p "Save Screenshot: ")
 [ -z "$filename" ] && exit 0

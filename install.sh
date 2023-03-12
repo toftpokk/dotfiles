@@ -22,7 +22,7 @@ sudo pacman -Syu --noconfirm --needed \
 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc'  'wget' \
 'highlight' 'picom' 'rofi' 'playerctl' 'wmctrl' \
 'xdotool' 'rsync' 'fzf' 'sshfs' 'udisks2' 'ueberzug' 'unzip' \
-'xwallpaper' 'cmus' 'openvpn' 'htop' 'trash-cli' 'maim'
+'xwallpaper' 'cmus' 'openvpn' 'htop' 'trash-cli' 'maim' 'xclip'
 # 'zenity' 'wine' 'winetricks'
 
 paru -S --needed --noconfirm \
