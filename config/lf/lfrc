@@ -124,7 +124,7 @@ cmd sudo_edit ${{
 }}
 
 cmd zipup ${{
-	echo ${f}
+	echo "$f"
 	zip -Xr "${f}.zip" "${f}"
 }}
 
@@ -169,5 +169,6 @@ map gt cd ~/test
 map gT cd ~/.local/share/Trash
 map gS cd ~/Screenshots
 map gu cd ~/uni
+map gP cd ~/Projects
 
 map gm goto_mount
