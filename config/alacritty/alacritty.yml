@@ -8,8 +8,8 @@
 #
 # All imports must either be absolute paths starting with `/`, or paths relative
 # to the user's home directory starting with `~/`.
-#import:
-#  - /path/to/alacritty.yml
+import:
+  - "~/.config/alacritty/colors.yml"
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -175,23 +175,6 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
-
-# Colors (Tomorrow Night)
-colors:
-  # Default colors
-  primary:
-    background: '#181818'
-    foreground: '#f8f8f8'
-
-  normal:
-    black: "#181818"
-    red: "#ee3632"
-    green: "#6ab544"
-    yellow: "#F7DE4F"
-    blue: "#5066C6"
-    magenta: "#bf72ad"
-    cyan: "#70CCAD"
-    white: "#f8f8f8"
 
   # bright:
   #   black: "#181818"
@@ -428,7 +411,7 @@ colors:
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #

@@ -1,0 +1,49 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+  wifi_con="$(nmcli -t connection show --active | grep wlp2s0 | cut -d: -f 1,1)"
+  case "$wifi_con" in
+    "Nartnet-5G"|"Nartnet-2.5G")
+      mode="home";;
+    *)
+      mode="work";;
+  esac
+else
+  mode="$1"
+fi
+
+case "$mode" in
+  "home")
+    # Wallpaper
+    dir=~/Backgrounds/unsafe
+    wall=$(ls $dir | shuf -n 1)
+    xwallpaper --zoom "$dir/$wall"
+    # Music
+    if ! df | grep Music ; then
+      mount ~/Music/server
+    fi
+    if ! pgrep -x cmus ; then
+      bspc desktop -f '^10'
+      $TERMINAL -e cmus &
+      sleep 0.5
+      bspc node -f last
+      cmus-remote -p
+    else
+      cmus-remote -p
+    fi
+    ;;
+  "work")
+    if pgrep -x cmus ; then
+      cmus-remote -s
+    fi
+    xwallpaper --zoom "$(cat ~/.config/wallpaper)"
+    ;;
+  "dark")
+    sed -i "s/^colors: \*.*/colors: *dark/" $XDG_CONFIG_HOME/alacritty/colors.yml
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    ;;
+  "light")
+    sed -i "s/^colors: \*.*/colors: *light/" $XDG_CONFIG_HOME/alacritty/colors.yml
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+    ;;
+esac

@@ -1,0 +1,28 @@
+schemes:
+  light: &light
+    primary:
+      background: '#f8f8f8'
+      foreground: '#181818'
+    normal:
+      black: "#181818"
+      red: "#ee3632"
+      green: "#6ab544"
+      yellow: "#F7DE4F"
+      blue: "#5066C6"
+      magenta: "#bf72ad"
+      cyan: "#70CCAD"
+      white: "#f8f8f8"
+  dark: &dark
+    primary:
+      background: '#181818'
+      foreground: '#f8f8f8'
+    normal:
+      black: "#181818"
+      red: "#ee3632"
+      green: "#6ab544"
+      yellow: "#F7DE4F"
+      blue: "#5066C6"
+      magenta: "#bf72ad"
+      cyan: "#70CCAD"
+      white: "#f8f8f8"
+colors: *dark
