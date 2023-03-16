@@ -16,12 +16,17 @@ video/mp4=mpv.desktop;
 application/vnd.oasis.opendocument.text=libreoffice.desktop;
 application/vnd.oasis.opendocument.spreadsheet=libreoffice.desktop;
 application/vnd.oasis.opendocument.presentation=libreoffice.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=libreoffice.desktop;
+application/vnd.openxmlformats-officedocument.presentationml.presentation=libreoffice.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice.desktop;
 text/html=firefox.desktop;
 text/xml=firefox.desktop;
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/ftp=firefox.desktop;
 x-scheme-handler/chrome=firefox.desktop;
+inode/directory=lf.desktop
+x-scheme-handler/file=nvim.desktop
 
 [Added Associations]
 application/x.bittorrent=torrent.desktop;
