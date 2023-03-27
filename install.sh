@@ -8,6 +8,7 @@ LOCAL="$HOME/.local"
 # Paru
 echo "Installing paru"
 sudo pacman -S --noconfirm --needed 'rustup' 'base-devel'
+rustup default stable
 git clone https://aur.archlinux.org/paru.git
 pushd paru
 makepkg -si
@@ -26,10 +27,6 @@ sudo pacman -Syu --noconfirm --needed \
 
 paru -S --needed --noconfirm \
 'nsxiv' 'fonts-tlwg' 'eww-git'
-
-# Clone dots
-echo "Cloning dotfiles"
-git clone https://github.com/kong-wep/dotfiles.git
 
 # Symlinks
 echo "Symlinking"
