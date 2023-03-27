@@ -52,6 +52,7 @@ ln -sf $DOTS/config/commands $CONFIG/
 ln -sf $DOTS/config/locations $CONFIG/
 ln -sf $DOTS/config/mimeapps.list $CONFIG/
 ln -sf $DOTS/config/stalonetrayrc $CONFIG/
+ln -sf $DOTS/config/python $CONFIG/
 
 ln -sf $DOTS/home/bash_profile $HOME/.bash_profile
 ln -sf $DOTS/home/bashrc $HOME/.bashrc
