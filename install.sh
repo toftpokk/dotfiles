@@ -4,13 +4,17 @@ set -euo pipefail
 DOTS="$HOME/dotfiles"
 CONFIG="$HOME/.config"
 LOCAL="$HOME/.local"
+GIT_PROJECTS="$HOME/git-projects"
+DESKTOP="$HOME/Desktop"
 
 # Paru
 echo "Installing paru"
+[ ! -d "$GIT_PROJECTS" ] && mkdir "$GIT_PROJECTS"
 sudo pacman -S --noconfirm --needed 'rustup' 'base-devel'
 rustup default stable
+pushd "$GIT_PROJECTS"
 git clone https://aur.archlinux.org/paru.git
-pushd paru
+cd paru
 makepkg -si
 popd
 
@@ -18,22 +22,23 @@ popd
 echo "Installing dependencies"
 sudo pacman -Syu --noconfirm --needed \
 'neovim' 'alacritty' 'sxhkd' 'bspwm' 'git' 'xorg' 'xorg-xinit' 'lf' 'pipewire' \
-'pipewire-jack' 'wireplumber' 'noto-fonts' 'noto-fonts-cjk' \
+'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'noto-fonts' 'noto-fonts-cjk' \
 'firefox' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf' 'dunst' \
-'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc'  'wget' \
+'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'wget' 'pamixer' \
 'highlight' 'picom' 'rofi' 'playerctl' 'wmctrl' \
 'xdotool' 'rsync' 'fzf' 'sshfs' 'udisks2' 'ueberzug' 'unzip' \
-'xwallpaper' 'cmus' 'openvpn' 'htop' 'trash-cli' 'maim' 'xclip'
+'xwallpaper' 'cmus' 'openvpn' 'htop' 'trash-cli' 'maim' 'xclip' 'mpv'
 
 paru -S --needed --noconfirm \
-'nsxiv' 'fonts-tlwg' 'eww-git'
+'nsxiv' 'fonts-tlwg' 'eww'
 
 # Symlinks
 echo "Symlinking"
 [ ! -d "$CONFIG" ] && mkdir "$CONFIG"
 ln -sf $DOTS/config/alacritty $CONFIG/
 ln -sf $DOTS/config/bspwm $CONFIG/
-ln -sf $DOTS/config/cmus $CONFIG/
+[ ! -d "$CONFIG/cmus" ] && mkdir "$CONFIG/cmus"
+ln -sf $DOTS/config/cmus/superblue.theme $CONFIG/cmus
 ln -sf $DOTS/config/dunst $CONFIG/
 ln -sf $DOTS/config/eww $CONFIG/
 ln -sf $DOTS/config/fcitx5 $CONFIG/
@@ -70,9 +75,6 @@ ln -sf $DOTS/fonts/* $LOCAL/share/fonts
 [ ! -d "$LOCAL/bin" ] && mkdir "$LOCAL/bin"
 ln -sf $DOTS/other/autostart $LOCAL/bin/autostart
 
-# Vim plug
-echo "Installing Vim-plug"
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+[ ! -d "$DESKTOP" ] && mkdir "$DESKTOP"
 
 echo "Done!"
