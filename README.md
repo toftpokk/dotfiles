@@ -26,6 +26,7 @@ cd ~/dotfiles
 3. Install language servers using npm, https://github.com/neovim/nvim-lspconfig
   - bash-language-server
   - typescript-language-server
+  - pacman -S typescript
 4. Install pyright
   - pacman -S pyright
 
@@ -40,6 +41,14 @@ systemctl --user status wireplumber pipewire pipewire-pulse
 
 ### Firefox
 Set firefox settings, install extensions, add user.js
+
+Passwords: key4.db, logins.json
+
+userChrome:
+1. create ./mozilla/<profile>/chrome directory
+2. add chrome chrome/userChrome.css
+3. set about:config toolkit.legacyUserProfileCustomizations.stylesheet=true
+
 
 ### pacman
 Edit /etc/pacman.conf, line 29 add ILoveCandy, uncomment Color
@@ -63,6 +72,10 @@ ssh-keygen -t ed25519
 ### Backlights
 If backlight does not work `super+shift+plus` add backlight.rules to
 /etc/udev/rules.d, with VENDOR as filename of backlight in `/sys/class/backlight/xxx`
+
+### Bluetooth
+pacman -S bluez bluez-utils
+enable bluetooth.service
 
 ## Optional Packages
 
