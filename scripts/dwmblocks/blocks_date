@@ -1,4 +1,0 @@
-#!/bin/sh
-
-printf "\\uf5f4 "
-date '+%0e/%m/%Y %0k:%0M'

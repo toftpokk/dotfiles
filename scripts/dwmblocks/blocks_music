@@ -1,2 +1,0 @@
-#!/bin/sh
-mocp -i 2>/dev/null | sed -n "s/SongTitle: \(.*\)/\1/p"

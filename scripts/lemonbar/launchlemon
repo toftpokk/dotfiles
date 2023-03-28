@@ -1,5 +1,0 @@
-#!/bin/sh
-
-killall lemonconfig
-killall lemonbar
-lemonconfig | lemonbar -p -B "#282828" -F "#b8b8b8" -U "#5066C6" -u 4 -f "Hack Nerd Font"-14
