@@ -23,7 +23,7 @@ echo "Installing dependencies"
 sudo pacman -Syu --noconfirm --needed \
 'neovim' 'alacritty' 'sxhkd' 'bspwm' 'git' 'xorg' 'xorg-xinit' 'lf' 'pipewire' \
 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'noto-fonts' 'noto-fonts-cjk' \
-'firefox' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf' 'dunst' \
+'firefox' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf' 'dunst' 'libnotify' \
 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'wget' 'pamixer' \
 'highlight' 'picom' 'rofi' 'playerctl' 'wmctrl' \
 'xdotool' 'rsync' 'fzf' 'sshfs' 'udisks2' 'ueberzug' 'unzip' \
