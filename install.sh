@@ -6,6 +6,9 @@ CONFIG="$HOME/.config"
 LOCAL="$HOME/.local"
 GIT_PROJECTS="$HOME/git-projects"
 DESKTOP="$HOME/Desktop"
+PERSONAL="$HOME/Personal"
+PROJECTS="$HOME/Projects"
+BACKGROUNDS="$HOME/Backgrounds"
 
 # Paru
 echo "Installing paru"
@@ -28,7 +31,7 @@ sudo pacman -Syu --noconfirm --needed \
 'highlight' 'picom' 'rofi' 'playerctl' 'wmctrl' \
 'xdotool' 'rsync' 'fzf' 'sshfs' 'udisks2' 'ueberzug' 'unzip' \
 'xwallpaper' 'cmus' 'openvpn' 'htop' 'trash-cli' 'maim' 'xclip' 'mpv' \
-'libcanberra'
+'libcanberra' 'ncdu'
 
 paru -S --needed --noconfirm \
 'nsxiv' 'fonts-tlwg' 'eww'
@@ -77,5 +80,8 @@ ln -sf $DOTS/fonts/* $LOCAL/share/fonts
 ln -sf $DOTS/other/autostart $LOCAL/bin/autostart
 
 [ ! -d "$DESKTOP" ] && mkdir "$DESKTOP"
+[ ! -d "$PERSONAL" ] && mkdir "$PERSONAL"
+[ ! -d "$PROJECTS" ] && mkdir "$PROJECTS"
+[ ! -d "$BACKGROUNDS" ] && mkdir "$BACKGROUNDS"
 
 echo "Done!"
