@@ -38,7 +38,7 @@ echo "Symlinking"
 ln -sf $DOTS/config/alacritty $CONFIG/
 ln -sf $DOTS/config/bspwm $CONFIG/
 [ ! -d "$CONFIG/cmus" ] && mkdir "$CONFIG/cmus"
-ln -sf $DOTS/config/cmus/superblue.theme $CONFIG/cmus
+ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
 ln -sf $DOTS/config/dunst $CONFIG/
 ln -sf $DOTS/config/eww $CONFIG/
 ln -sf $DOTS/config/fcitx5 $CONFIG/
