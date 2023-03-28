@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -z "$1" ]; then
-  wifi_con="$(nmcli -t connection show --active | grep wlp2s0 | cut -d: -f 1,1)"
+  wifi_con="$(nmcli -t connection show --active | grep wireless | cut -d: -f 1,1)"
   case "$wifi_con" in
     "Nartnet-5G"|"Nartnet-2.5G")
       mode="home";;
