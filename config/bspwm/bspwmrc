@@ -27,10 +27,7 @@ pgrep bspswallow || bspswallow &
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
-bspc rule -a openvpn desktop='^9'
 bspc rule -a Zathura state=tiled
 bspc rule -a obsidian state=tiled
-bspc rule -a obsidian desktop='^4'
-bspc rule -a anki desktop='^4'
 
 autostart
