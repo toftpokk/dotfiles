@@ -60,6 +60,10 @@ edit line 27 `=$(get_ppid $pid)`
 ssh-keygen -t rsa
 ssh-keygen -t ed25519
 
+### Backlights
+If backlight does not work `super+shift+plus` add backlight.rules to
+/etc/udev/rules.d, with VENDOR as filename of backlight in `/sys/class/backlight/xxx`
+
 ## Optional Packages
 
 ### Formatting
