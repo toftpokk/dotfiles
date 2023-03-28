@@ -11,7 +11,7 @@ local highlights ={
 	-- ["LineNr"]={ guifg="#585858", guibg="#282828", ctermfg="240", ctermbg="235"},
 	-- ["CursorLineNr"]={ gui="bold", guifg="#b8b8b8", guibg="#282828", ctermfg="250", ctermbg="235"},
 	-- ["Normal"]={ guifg="#d8d8d8", guibg="FFFFFF", ctermfg="15", ctermbg="237"},
-	["Normal"]={ guifg="#d8d8d8", guibg="NONE", ctermfg="15", ctermbg="237"},
+	["Normal"]={ guifg="#d8d8d8", guibg="#282828", ctermfg="15", ctermbg="237"},
 	-- ["Normal"]={ guifg="#d8d8d8", guibg="#181818", ctermfg="15", ctermbg="237"},
 	["User1"]={ guifg="#181818", guibg="#5066C6", ctermfg="15", ctermbg="237"},
 	["User2"]={ guifg="#f8f8f8", guibg="#383838", ctermfg="15", ctermbg="237"},
