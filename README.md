@@ -49,9 +49,10 @@ userChrome:
 2. add chrome chrome/userChrome.css
 3. set about:config toolkit.legacyUserProfileCustomizations.stylesheet=true
 
-
 ### pacman
 Edit /etc/pacman.conf, line 29 add ILoveCandy, uncomment Color
+
+multilib: uncomment [multilib]
 
 ### Touchpad, Escape
 ```
@@ -66,8 +67,10 @@ edit line 41 `noswallow,terminals`
 edit line 27 `=$(get_ppid $pid)`
 
 ### SSH
-ssh-keygen -t rsa
-ssh-keygen -t ed25519
+`ssh-keygen -t rsa`
+`ssh-keygen -t ed25519`
+`ssh-copy-id <dest_host>`
+also add .ssh/config
 
 ### Backlights
 If backlight does not work `super+shift+plus` add backlight.rules to
@@ -77,7 +80,10 @@ If backlight does not work `super+shift+plus` add backlight.rules to
 pacman -S bluez bluez-utils
 enable bluetooth.service
 
-## Optional Packages
+## wine
+pacman -S wine winetricks
+
+winetricks: need zenity
 
 ### Formatting
 - jq : JSON processing
