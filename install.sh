@@ -9,6 +9,7 @@ DESKTOP="$HOME/Desktop"
 PERSONAL="$HOME/Personal"
 PROJECTS="$HOME/Projects"
 BACKGROUNDS="$HOME/Backgrounds"
+STATE="$HOME/.local/state"
 
 # Paru
 echo "Installing paru"
@@ -83,5 +84,6 @@ ln -sf $DOTS/other/autostart $LOCAL/bin/autostart
 [ ! -d "$PERSONAL" ] && mkdir "$PERSONAL"
 [ ! -d "$PROJECTS" ] && mkdir "$PROJECTS"
 [ ! -d "$BACKGROUNDS" ] && mkdir "$BACKGROUNDS"
+[ ! -d "$STATE" ] && mkdir -p "$STATE"
 
 echo "Done!"
