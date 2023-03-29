@@ -4,8 +4,8 @@ error_exit(){
 	exit
 }
 # VPN directory
-prefix="$HOME/.config/runvpn"
-[ -d "$prefix" ] || mkdir ~/.config/runvpn
+prefix="${XDG_STATE_HOME-$HOME/.config}/runvpn"
+[ -d "$prefix" ] || mkdir "$prefix"
 cd "$prefix" || exit 1
 
 #== Folder Format ==#

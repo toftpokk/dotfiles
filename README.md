@@ -80,7 +80,23 @@ If backlight does not work `super+shift+plus` add backlight.rules to
 pacman -S bluez bluez-utils
 enable bluetooth.service
 
-## wine
+### VPN
+Add vpn files to `$XDG_STATE_HOME/runvpn` in the form of
+```
+#== Folder Format ==#
+#runvpn
+#	vpn_1
+#		vpn_1.ovpn
+#		vpn_1.txt
+#	vpn_2
+#		...
+
+#== vpn_1.txt ==#
+# username
+# password
+```
+
+### wine
 pacman -S wine winetricks
 
 winetricks: need zenity
