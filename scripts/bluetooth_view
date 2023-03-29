@@ -38,7 +38,7 @@ case "$cmd" in
 		echo "$device" | awk '{printf $2}'
 		;;
 	Connect)
-		conn=$(bluetoothctl paired-devices | prompt "Connect")
+		conn=$(bluetoothctl devices | prompt "Connect")
 		[ -z "$conn" ] && exit
 		if bluetoothctl connect "$(echo "$conn" | awk '{printf $2}')"; then
 			notify-send -i "bluetooth-symbolic.symbolic" "Bluetooth" "Connected"
@@ -47,7 +47,7 @@ case "$cmd" in
 		fi
 		;;
 	Disconnect)
-		conn=$(bluetoothctl paired-devices | prompt "Connect")
+		conn=$(bluetoothctl devices | prompt "Connect")
 		[ -z "$conn" ] && exit
 		if bluetoothctl disconnect "$(bluetoothctl info | grep "^Device" -B 8 | awk '{printf $2}')"; then
 			notify-send -i "bluetooth-symbolic.symbolic" "Bluetooth" "Disconnected"
