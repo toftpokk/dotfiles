@@ -104,9 +104,13 @@ cmd trash-rem %{{
 	done
 }}
 cmd trash-put %{{
-	for i in $fx; do
-		trash-put "$i"
-	done
+  for i in $fx; do
+    if [ -d "$i" ]; then
+      rmdir "$i" || trash-put "$i"
+    else
+      trash-put "$i"
+    fi
+  done
 }}
 
 cmd perm-delete ${{
