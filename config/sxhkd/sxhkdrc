@@ -1,3 +1,5 @@
+super + d
+  mode
 # Terminal
 super + Return
 	$TERMINAL
