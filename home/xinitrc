@@ -46,7 +46,7 @@ if type screenlayout &> /dev/null; then
 fi
 
 # Wallpaper
-xwallpaper --zoom "$(cat ~/.config/wallpaper)"
+xwallpaper --zoom "$(cat "$XDG_STATE_HOME/wallpaper")"
 
 # lockscreen
 # lock &
