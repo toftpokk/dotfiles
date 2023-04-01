@@ -1,11 +1,11 @@
 #!/bin/sh
-cmd="maim"
+cmd="maim -u -o"
 
 while getopts ":sa" opts
 do
 	case $opts in
 		s)
-			cmd="maim -s -o"
+			cmd="maim -u -s -o"
 			;;
 		*)
 			exit 1
