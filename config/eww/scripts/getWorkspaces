@@ -8,13 +8,15 @@ focused_out=subprocess.run(["bspc", "query","-D","--names","-d","focused"],captu
 focused = [ a for a in focused_out.decode('utf-8').split('\n') if a != '']
 occupied_out=subprocess.run(["bspc", "query","-D","--names","-d",".occupied"],capture_output=True).stdout
 occupied = [ a for a in occupied_out.decode('utf-8').split('\n') if a != '']
-for d in desktops:
-    if d in focused:
+
+subprocess.run(["notify-send", "hello"],capture_output=True).stdout
+for d in range(0,len(desktops)):
+    if desktops[d] in focused:
         print("(button :class 'focused' ",end="")
-    elif d in occupied:
+    elif desktops[d] in occupied:
         print("(button :class 'active' ",end="")
     else:
         print("(button ",end="")
-    print(":onclick {'wmctrl -s 1'} '"+d+"' ",end="")
+    print(":onclick {'wmctrl -s "+str(d)+"'} '"+str(desktops[d])+"' ",end="")
     print(") ",end="")
 print(")")
