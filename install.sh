@@ -29,10 +29,10 @@ sudo pacman -Syu --noconfirm --needed \
 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'noto-fonts' 'noto-fonts-cjk' \
 'firefox' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf' 'dunst' 'libnotify' \
 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'wget' 'pamixer' \
-'highlight' 'picom' 'rofi' 'playerctl' 'wmctrl' \
+'highlight' 'bash-completion' 'picom' 'rofi' 'playerctl' 'wmctrl' \
 'xdotool' 'rsync' 'fzf' 'sshfs' 'udisks2' 'ueberzug' 'unzip' \
 'xwallpaper' 'cmus' 'openvpn' 'htop' 'trash-cli' 'maim' 'xclip' 'mpv' \
-'libcanberra' 'ncdu'
+'libcanberra' 'ncdu' 'usbutils'
 
 paru -S --needed --noconfirm \
 'nsxiv' 'fonts-tlwg' 'eww'
