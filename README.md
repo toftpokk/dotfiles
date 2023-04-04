@@ -137,3 +137,6 @@ Need to install nfs first
 `pacman -S nfs-utils`
 
 and you can use `mount ~/Music/server` to mount and unmount
+
+### Programming
+paru -S vscodium-bin
