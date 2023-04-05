@@ -140,3 +140,9 @@ and you can use `mount ~/Music/server` to mount and unmount
 
 ### Programming
 paru -S vscodium-bin
+
+### Libreoffice
+pacman -S local/libreoffice-fresh
+
+for dark mode maybe install adwaita-qt6 and adwaita-qt5 and see?
+NEEDS TESTING
