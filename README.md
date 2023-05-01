@@ -96,6 +96,11 @@ Add vpn files to `$XDG_STATE_HOME/runvpn` in the form of
 # password
 ```
 
+for update-resolv problems
+1. `pacman -S openresolv`
+2. get update-resolv-conf from here https://github.com/alfredopalhares/openvpn-update-resolv-conf
+3. put into /etc/openvpn
+
 ### wine
 pacman -S wine winetricks
 
