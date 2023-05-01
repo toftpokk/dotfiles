@@ -17,3 +17,4 @@ objdump -d a.out
 killall bspswallow; bspswallow
 sftplay
 dunstctl set-paused toggle
+date -d @1682480029
