@@ -151,3 +151,11 @@ pacman -S local/libreoffice-fresh
 
 for dark mode maybe install adwaita-qt6 and adwaita-qt5 and see?
 NEEDS TESTING
+
+### Image editing
+imagemagick
+
+### Network Control
+opensnitch
+sudo systemctl start opensnitch
+then run opensnitch-ui
