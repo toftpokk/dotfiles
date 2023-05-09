@@ -22,7 +22,7 @@ dev_name=$(echo "$stat" | cut -f 2 -d " ")
 prompt="Connect"
 
 if [ ! "$wifi" = "--" ]; then
-	prompt="Connect\nDisconnect"
+	prompt="Connect\nDisconnect\nWifi Password"
 fi
 command=$(printf "$prompt" | prompt "Connection: ")
 
@@ -53,4 +53,7 @@ case "$command" in
 			notify_bad "Could not disconnect $dev_name"
 		fi
 		;;
+  "Wifi Password")
+    notify-send "$(nmcli dev wifi show-password)"
+    ;;
 esac
