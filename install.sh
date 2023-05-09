@@ -32,7 +32,7 @@ sudo pacman -Syu --noconfirm --needed \
 'highlight' 'bash-completion' 'picom' 'rofi' 'playerctl' 'wmctrl' \
 'xdotool' 'rsync' 'fzf' 'sshfs' 'udisks2' 'ueberzug' 'unzip' \
 'xwallpaper' 'cmus' 'openvpn' 'htop' 'trash-cli' 'maim' 'xclip' 'mpv' \
-'libcanberra' 'ncdu' 'usbutils'
+'libcanberra' 'ncdu' 'usbutils' 'zip'
 
 paru -S --needed --noconfirm \
 'nsxiv' 'fonts-tlwg' 'eww'
