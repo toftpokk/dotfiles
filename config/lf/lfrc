@@ -161,7 +161,8 @@ map X mknoex
 map E sudo_edit
 # # Folders
 map gc cd ~/.config
-map gl cd ~/.config/lf
+map gL cd ~/.config/lf
+map gl cd ~/.local
 map gb cd ~/.local/scripts
 
 map gB cd ~/Backgrounds
