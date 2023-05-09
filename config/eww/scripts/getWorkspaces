@@ -9,7 +9,6 @@ focused = [ a for a in focused_out.decode('utf-8').split('\n') if a != '']
 occupied_out=subprocess.run(["bspc", "query","-D","--names","-d",".occupied"],capture_output=True).stdout
 occupied = [ a for a in occupied_out.decode('utf-8').split('\n') if a != '']
 
-subprocess.run(["notify-send", "hello"],capture_output=True).stdout
 for d in range(0,len(desktops)):
     if desktops[d] in focused:
         print("(button :class 'focused' ",end="")
