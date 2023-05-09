@@ -1,2 +1,2 @@
 #!/bin/sh
-import png:- | convert -'[1x1]' -format %c histogram:info:- | sed 's/.*#\([0-9A-Fa-f]\+\).*/\1/g' | color -l hex -n
+import png:- | convert -'[1x1]' -format %c histogram:info:- | sed 's/.*#\([0-9A-Fa-f]\+\).*/\1/g'
