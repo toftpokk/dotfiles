@@ -7,11 +7,11 @@ set ifs "\n"
 set period 10
 
 # Basic Settings
-set preview on
+set preview true
 set previewer preview
 set cleaner preview-image
 # set hidden on
-set icons on
+set icons true
 
 # Custom Commands
 cmd open ${{
