@@ -62,6 +62,13 @@ ln -sf $DOTS/config/mimeapps.list $CONFIG/
 ln -sf $DOTS/config/stalonetrayrc $CONFIG/
 ln -sf $DOTS/config/python $CONFIG/
 
+# ZSH
+[ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
+ln -sf $DOTS/config/zsh/zshrc $CONFIG/zsh/.zshrc
+ln -sf $DOTS/config/zsh/zlogin $CONFIG/zsh/.zlogin
+[ ! -d "$STATE/zsh" ] && mkdir "$STATE/zsh"
+ln -sf $DOTS/home/zshenv $HOME/.zshenv
+
 ln -sf $DOTS/home/bash_profile $HOME/.bash_profile
 ln -sf $DOTS/home/bashrc $HOME/.bashrc
 ln -sf $DOTS/home/gtkrc-2.0 $HOME/.gtkrc-2.0

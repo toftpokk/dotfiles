@@ -1,0 +1,45 @@
+autoload -Uz compinit
+autoload -U colors && colors
+
+compinit
+
+zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+zstyle :compinstall filename '/home/toftpokk/.zshrc'
+
+zmodload zsh/complist
+
+HISTFILE="$XDG_STATE_HOME/history"
+HISTSIZE=10000
+SAVEHIST=10000
+
+PROMPT='%B%F{green}[%f%F{red}toftpokk%f%F{green}@kpro%f %c%F{green}]%#%f%b '
+
+# Aliases
+alias cp="cp -i"	# Confirm Copy
+alias df="df -h"	# Human Readable
+# alias free="free -m"	# Free in MBs
+alias ls="ls --color=auto"	# ls with color
+alias grep="grep --color=auto"	# ls with color
+alias more="less"	# more -> less
+
+alias v="nvim"
+alias vim="nvim"
+alias ..="cd .."
+alias bc="bc -l"
+
+bindkey -M menuselect '^[[Z' reverse-menu-complete # Shift-tab reverse menu
+# Control Left/Right 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+bindkey '^H' backward-kill-word # Delete word back
+bindkey '^r' history-incremental-search-backward # backward search
+bindkey '^a' beginning-of-line #  go to beginning
+bindkey '^e' end-of-line # go to end
+
+# exit zsh
+exit_zsh() { exit }
+zle -N exit_zsh
+bindkey '^D' exit_zsh

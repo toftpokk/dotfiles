@@ -1,0 +1,31 @@
+#
+# environmental variables
+#
+
+export PATH="$HOME/.local/bin:$HOME/.local/scripts:$HOME/.local/scripts/notify:$PATH"
+export EDITOR="nvim"
+export XDG_CONFIG_HOME="$HOME/.config"	# XDG_CONFIG_HOME
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_DATA_HOME="$HOME/.local/share"
+export BROWSER="firefox"
+export EDITOR="nvim"
+export TERMINAL="alacritty"
+export PAGER="less"
+export READER="zathura"
+export SUDO_ASKPASS="$HOME/.local/scripts/ask_password"
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export SDL_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# App specific
+export NODE_REPL_HISTORY=$XDG_CACHE_HOME/node_repl_history
+export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
+export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
+export RUSTUP_HOME=$XDG_DATA_HOME/rustup
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir' 2>/dev/null)"
+[ ! -z "$GEM_HOME" ] && export PATH="$GEM_HOME/bin:$PATH"
+export GOPATH="$XDG_CONFIG_HOME/go"; PATH="$GOPATH/bin:$PATH"
