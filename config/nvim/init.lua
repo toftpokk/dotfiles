@@ -43,6 +43,7 @@ local options = {
   showcmd=true,			-- Current command
   termguicolors=true,	-- set gui color
   clipboard="unnamedplus", -- Aways copy to clipboard
+  scrolloff=5, -- top/bottom spacing when scrolling
 }
 vim.syntax=true
 
