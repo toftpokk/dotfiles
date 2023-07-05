@@ -43,4 +43,7 @@ Plug("hrsh7th/cmp-nvim-lua")
 -- Formatting
 Plug("jose-elias-alvarez/null-ls.nvim")
 
+-- Wiki
+Plug("vimwiki/vimwiki")
+
 vim.call('plug#end')
