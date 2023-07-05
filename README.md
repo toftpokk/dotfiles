@@ -19,6 +19,27 @@ Go to dotfiles and run installation script
 
 	./install.sh
 
+## Colors:
+
+colors: {
+    'red': '#ee3632',
+    'orange': '#ee9e56',
+    'yellow': '#F7DE4F',
+    'green':'#6ab544',
+    'cyan':'#70CCAD',
+    'blue':'#5066C6',
+    'purple':'#bf72ad',
+    'brown':'#a16946',
+    'black':'#181818',
+    'gray1':'#282828',
+    'gray2':'#383838',
+    'gray3':'#585858',
+    'gray4':'#b8b8b8',
+    'gray5':'#d8d8d8',
+    'gray6':'#e8e8e8',
+    'white':'#f8f8f8'
+},
+
 ## 2. After Install
 
 ### 2.1 Neovim
