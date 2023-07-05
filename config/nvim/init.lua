@@ -10,6 +10,7 @@ require('user.nvim-tree')
 require('user.theme')
 require('user.treesitter')
 require('user.null-ls')
+require('user.vimwiki')
 
 -- NERDTree
 -- vim.api.nvim_set_keymap("n","<leader>n",":NERDTreeToggle<CR>",{ noremap = true})
