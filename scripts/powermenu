@@ -5,9 +5,8 @@ ans="$(echo -e $menu | dmenu -c -l 20 -p 'Power: ')"
 
 case $ans in
 	Logout)
-		# kill -TERM $(pgrep -u $USER "\bdwm$")
 		killall lf
-		bspc quit
+    hyprctl dispatch exit
 		;;
 	Suspend)
 		systemctl suspend
