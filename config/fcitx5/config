@@ -1,6 +1,8 @@
 [Hotkey]
 # Enumerate when press trigger key repeatedly
 EnumerateWithTriggerKeys=True
+# Temporally switch between first and current Input Method
+AltTriggerKeys=
 # Enumerate Input Method Forward
 EnumerateForwardKeys=
 # Enumerate Input Method Backward
@@ -18,9 +20,6 @@ DeactivateKeys=
 
 [Hotkey/TriggerKeys]
 0=Super+grave
-
-[Hotkey/AltTriggerKeys]
-0=Shift_L
 
 [Hotkey/PrevPage]
 0=Up
