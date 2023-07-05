@@ -25,14 +25,17 @@ popd
 # Dependencies
 echo "Installing dependencies"
 sudo pacman -Syu --noconfirm --needed \
-'neovim' 'alacritty' 'sxhkd' 'bspwm' 'git' 'xorg' 'xorg-xinit' 'lf' 'pipewire' \
+'neovim' 'alacritty' 'git' 'hyprland' 'lf' 'pipewire' \
 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'noto-fonts' 'noto-fonts-cjk' \
 'firefox' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf' 'dunst' 'libnotify' \
 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'wget' 'pamixer' \
-'highlight' 'bash-completion' 'picom' 'rofi' 'playerctl' 'wmctrl' \
-'xdotool' 'rsync' 'fzf' 'sshfs' 'udisks2' 'ueberzug' 'unzip' \
-'xwallpaper' 'cmus' 'openvpn' 'htop' 'trash-cli' 'maim' 'xclip' 'mpv' \
-'libcanberra' 'ncdu' 'usbutils' 'zip'
+'highlight' 'zsh' 'zsh-completion' 'rofi' 'playerctl' \
+'rsync' 'fzf' 'sshfs' 'udisks2' 'unzip' \
+'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
+'libcanberra' 'ncdu' 'usbutils' 'zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion'
+
+# for screenshare
+# xdg-desktop-portal-hyprland https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
 
 paru -S --needed --noconfirm \
 'nsxiv' 'fonts-tlwg' 'eww'
@@ -41,7 +44,6 @@ paru -S --needed --noconfirm \
 echo "Symlinking"
 [ ! -d "$CONFIG" ] && mkdir "$CONFIG"
 ln -sf $DOTS/config/alacritty $CONFIG/
-ln -sf $DOTS/config/bspwm $CONFIG/
 [ ! -d "$CONFIG/cmus" ] && mkdir "$CONFIG/cmus"
 ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
 ln -sf $DOTS/config/dunst $CONFIG/
@@ -52,9 +54,7 @@ ln -sf $DOTS/config/gtk-3.0/settings.ini $CONFIG/gtk-3.0/
 ln -sf $DOTS/config/highlight $CONFIG/
 ln -sf $DOTS/config/lf $CONFIG/
 ln -sf $DOTS/config/nvim $CONFIG/
-ln -sf $DOTS/config/picom $CONFIG/
 ln -sf $DOTS/config/rofi $CONFIG/
-ln -sf $DOTS/config/sxhkd $CONFIG/
 ln -sf $DOTS/config/zathura $CONFIG/
 ln -sf $DOTS/config/commands $CONFIG/
 ln -sf $DOTS/config/locations $CONFIG/
