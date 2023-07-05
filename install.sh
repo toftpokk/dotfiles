@@ -48,7 +48,9 @@ ln -sf $DOTS/config/alacritty $CONFIG/
 ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
 ln -sf $DOTS/config/dunst $CONFIG/
 ln -sf $DOTS/config/eww $CONFIG/
-ln -sf $DOTS/config/fcitx5 $CONFIG/
+[ ! -d "$CONFIG/fcitx5" ] && mkdir "$CONFIG/fcitx5"
+ln -sf $DOTS/config/fcitx5/config $CONFIG/fcitx5/config
+ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
 [ ! -d "$CONFIG/gtk-3.0" ] && mkdir "$CONFIG/gtk-3.0"
 ln -sf $DOTS/config/gtk-3.0/settings.ini $CONFIG/gtk-3.0/
 ln -sf $DOTS/config/highlight $CONFIG/
