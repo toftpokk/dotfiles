@@ -82,6 +82,13 @@ vim.cmd("set statusline="..statusline)
 
 -- Augroup
 local filetype_tsv = vim.api.nvim_create_augroup('filetype_tsv',{clear=true})
+vim.api.nvim_create_autocmd({"BufWritePost"}, {
+	pattern="*.tex",
+	callback = function()
+    vim.api.nvim_exec("exec '!latexmk -pdf %'",true) -- works normally
+    -- vim.api.nvim_exec("exec '!latexmk -xelatex %'",true) -- works with thai text
+	end
+})
 vim.api.nvim_create_autocmd({"BufRead,BufNewFile"}, {
 	pattern="nginx.conf",
 	callback = function()
