@@ -1,0 +1,16 @@
+#!/bin/sh
+if [ "$1" = "-h" ]; then
+  echo "Usage: $0 [IMAGE_DIR]"
+  exit 1
+fi
+
+image_dir=${1:-~/Backgrounds/safe_for_powerpoint}
+if ! swww -V &>/dev/null; then
+  echo "Error: swww not found" >&2
+  exit 1
+fi
+if ! swww query &>/dev/null; then
+  swww init
+fi
+image=$(ls "$image_dir" | shuf -n 1)
+swww img "$image_dir/$image" --transition-type wipe

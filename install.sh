@@ -34,6 +34,9 @@ sudo pacman -Syu --noconfirm --needed \
 'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
 'libcanberra' 'ncdu' 'usbutils' 'zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion'
 
+echo "To Install manually"
+echo 'swww'
+
 # for screenshare
 # xdg-desktop-portal-hyprland https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
 
