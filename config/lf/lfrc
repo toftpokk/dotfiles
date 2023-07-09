@@ -9,7 +9,6 @@ set period 10
 # Basic Settings
 set preview true
 set previewer preview
-set cleaner preview-image
 # set hidden on
 set icons true
 
