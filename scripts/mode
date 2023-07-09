@@ -15,12 +15,10 @@ fi
 case "$mode" in
   "home")
     # Wallpaper
-    dir=~/Backgrounds/unsafe
-    wall=$(ls $dir | shuf -n 1)
-    xwallpaper --zoom "$dir/$wall"
+    set-wall ~/Backgrounds/unsafe
     ;;
   "work")
-    xwallpaper --zoom "$(cat ~/.config/wallpaper)"
+    set-wall ~/Backgrounds/safe_for_powerpoint
     ;;
   "dark")
     sed -i "s/^colors: \*.*/colors: *dark/" $XDG_CONFIG_HOME/alacritty/colors.yml
