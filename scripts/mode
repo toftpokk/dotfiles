@@ -18,24 +18,8 @@ case "$mode" in
     dir=~/Backgrounds/unsafe
     wall=$(ls $dir | shuf -n 1)
     xwallpaper --zoom "$dir/$wall"
-    # Music
-    if ! df | grep Music ; then
-      mount ~/Music/server
-    fi
-    if ! pgrep -x cmus ; then
-      bspc desktop -f '^10'
-      $TERMINAL -e cmus &
-      sleep 0.5
-      bspc node -f last
-      cmus-remote -p
-    else
-      cmus-remote -p
-    fi
     ;;
   "work")
-    if pgrep -x cmus ; then
-      cmus-remote -s
-    fi
     xwallpaper --zoom "$(cat ~/.config/wallpaper)"
     ;;
   "dark")
