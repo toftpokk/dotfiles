@@ -1,4 +1,6 @@
-# README
+# Dotfiles
+
+This is my linux config files, updated as I go.
 
 ## 0. Prerequisites
 
@@ -272,3 +274,7 @@ Then enable
 To see running applications,
 
 	opensnitch-ui
+
+## 2.21 Wallpaper
+
+Install swww
