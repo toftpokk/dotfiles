@@ -61,8 +61,6 @@ ln -sf $DOTS/config/lf $CONFIG/
 ln -sf $DOTS/config/nvim $CONFIG/
 ln -sf $DOTS/config/rofi $CONFIG/
 ln -sf $DOTS/config/zathura $CONFIG/
-ln -sf $DOTS/config/commands $CONFIG/
-ln -sf $DOTS/config/locations $CONFIG/
 ln -sf $DOTS/config/mimeapps.list $CONFIG/
 ln -sf $DOTS/config/stalonetrayrc $CONFIG/
 ln -sf $DOTS/config/python $CONFIG/
