@@ -54,7 +54,7 @@ colors: {
 
 3. Install Language Servers, documentation: https://github.com/neovim/nvim-lspconfig
 	- bash: bash-language-server
-	- typescript/javascript: typescript-language-server`
+	- typescript/javascript: typescript-language-server
 		- Need to install typescript: `pacman -S typescript`
 	- python: pyright
 		- Need to install pyright `pacman -S pyright`
