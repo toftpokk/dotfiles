@@ -88,7 +88,8 @@ ln -sf $DOTS/fonts/* $LOCAL/share/fonts
 
 
 [ ! -d "$LOCAL/bin" ] && mkdir "$LOCAL/bin"
-ln -sf $DOTS/other/autostart $LOCAL/bin/autostart
+# Autostart is just a suggestion
+cp $DOTS/other/autostart $LOCAL/bin/autostart
 
 [ ! -d "$DESKTOP" ] && mkdir "$DESKTOP"
 [ ! -d "$PERSONAL" ] && mkdir "$PERSONAL"
