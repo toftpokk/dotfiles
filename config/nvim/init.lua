@@ -39,7 +39,7 @@ local options = {
   ignorecase=true,		-- Ignore case when searching
   
   -- Decor
-  wrap=false,			-- No wrap text
+  wrap=true,			-- No wrap text
   number=true,			-- Show number
   showcmd=true,			-- Current command
   termguicolors=true,	-- set gui color
