@@ -179,5 +179,6 @@ map gT cd ~/.local/share/Trash
 map gS cd ~/Screenshots
 map gu cd ~/uni
 map gP cd ~/Projects
+map gi cd ~/Personal
 
 map gm goto_mount
