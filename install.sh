@@ -64,6 +64,7 @@ ln -sf $DOTS/config/zathura $CONFIG/
 ln -sf $DOTS/config/mimeapps.list $CONFIG/
 ln -sf $DOTS/config/stalonetrayrc $CONFIG/
 ln -sf $DOTS/config/python $CONFIG/
+ln -sf $DOTS/config/fontconfig $CONFIG/fontconfig
 
 # ZSH
 [ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"

@@ -226,6 +226,11 @@ Note that libxml2 is already a dependency of several packages
 **English**
 - Times New Roman
 
+**Emoji**
+- noto-fonts-emoji
+
+Do an fc-cache as well
+
 ### 2.16 Fstab
 
 For having a dedicated mounting location for certain storage, edit `/etc/fstab` with for example,
