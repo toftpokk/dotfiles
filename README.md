@@ -278,3 +278,9 @@ To see running applications,
 ## 2.21 Wallpaper
 
 Install swww
+
+## 2.22 Ripdrag
+
+Install icon dragger
+
+	cargo install ripdrag
