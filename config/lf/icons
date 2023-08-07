@@ -40,6 +40,7 @@ fi		# FILE
 *.tar 
 *.gz 
 *.xz 
+*.7z 
 *.mkv 
 *.mp4 
 *.png 
@@ -49,6 +50,7 @@ fi		# FILE
 *.JPG 
 *.svg 
 *.webp 
+*.bmp 
 *.mp3 墳
 *.opus 墳
 *.m4a 墳
