@@ -3,7 +3,6 @@
 ---- Plugins
 require('user.plugins')
 require('user.cmp')
-require('user.fzf')
 require('user.keymap')
 require('user.lsp')
 require('user.nvim-tree')
@@ -11,9 +10,11 @@ require('user.theme')
 require('user.treesitter')
 require('user.null-ls')
 require('user.vimwiki')
-
--- NERDTree
--- vim.api.nvim_set_keymap("n","<leader>n",":NERDTreeToggle<CR>",{ noremap = true})
+require('user.indent-blankline')
+require('user.gitsigns')
+require('user.telescope')
+require('user.qf')
+require('user.toggleterm')
 
 local options = {
   -- Tabs
@@ -29,7 +30,7 @@ local options = {
   softtabstop=2,		-- All tabs equal to 4
   shiftwidth=2,			-- >> and << move width
   smarttab=true,		-- Tabs are only used for indentation
-  
+
   -- Indents
   autoindent=true,		-- Automatically indent next line
   smartindent=true,		-- Helps auto indent readt to syntax
@@ -37,7 +38,7 @@ local options = {
   -- Matching
   showmatch=true,		-- Show matching bracket
   ignorecase=true,		-- Ignore case when searching
-  
+
   -- Decor
   wrap=true,			-- No wrap text
   number=true,			-- Show number
@@ -55,11 +56,17 @@ end
 --  vim.api.nvim_create_user_command("Make", "write | make! <args? | cwindow",{ nargs="*"})
 --  vim.api.nvim_create_user_command("Run", "!%:p",{})
 --  vim.api.nvim_create_user_command("Py", "!python %",{})
---  vim.api.nvim_create_user_command("Json", "%!python -m json.tool",{})
---  vim.api.nvim_create_user_command("Html","!xmllint -html %",{})
 --  vim.api.nvim_create_user_command("M", ":w | make",{})
---  vim.api.nvim_create_user_command("M", ":w | make",{})
---  
+
+vim.api.nvim_create_user_command("Format", function()
+  if vim.bo.filetype == "html" then
+    vim.cmd("%!xmllint -html %")
+  elseif vim.bo.filetype == "xml" then
+    vim.cmd("%!xmllint %")
+  elseif vim.bo.filetype == "json" then
+    vim.cmd("%!python -m json.tool %")
+  end
+ end,{})
 
 -- Status Line
 local statusline=""
@@ -89,21 +96,48 @@ vim.api.nvim_create_autocmd({"BufWritePost"}, {
     -- vim.api.nvim_exec("exec '!latexmk -xelatex %'",true) -- works with thai text
 	end
 })
-vim.api.nvim_create_autocmd({"BufRead,BufNewFile"}, {
+vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
 	pattern="nginx.conf",
 	callback = function()
 		vim.opt.ft = "nginx"
 	end
 })
-vim.api.nvim_create_autocmd({"BufRead,BufNewFile"}, {
+vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
 	pattern="sxhkdrc,*.sxhkdrc",
 	callback = function()
 		vim.opt.ft = "sxhkdrc"
 	end
 })
-vim.api.nvim_create_autocmd({"BufRead,BufNewFile"}, {
+vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
 	pattern=".gitignore",
 	callback = function()
 		vim.opt.ft = "gitignore"
 	end
 })
+
+
+-- Open Tree at startup
+local function open_nvim_tree(data)
+  -- buffer is a real file on the disk
+  local real_file = vim.fn.filereadable(data.file) == 1
+  -- buffer is a [No Name]
+  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+  if not real_file and not no_name then
+    return
+  end
+  -- open the tree, find the file but don't focus it
+  require("nvim-tree.api").tree.toggle({ focus = false, find_file = true, })
+end
+
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+
+-- Auto close when last window
+vim.api.nvim_create_autocmd("BufEnter", {
+  nested = true,
+  callback = function()
+    if #vim.api.nvim_list_wins() == 1 and require("nvim-tree.utils").is_nvim_tree_buf() then
+      vim.cmd "quit"
+    end
+  end
+})
+

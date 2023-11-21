@@ -9,8 +9,10 @@ vim.api.nvim_set_keymap("n","<C-x>",":q<CR>",{ noremap = true})
 vim.api.nvim_set_keymap("n","<leader>h",":G<CR><C-w>H<C-w>30<<C-l>",{ noremap = true})
 vim.api.nvim_set_keymap("n","<leader>d",":Gdiffsplit<CR>",{ noremap = true})
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+-- Open Tree with Alt-1
+
+-- Open Terminal with Alt-2
+-- > See toggleterm.lua
+
+-- Open Location List with Alt-3
+vim.keymap.set("n","<A-3>",function() require("qf").toggle('l') end,{ noremap = true, silent=true})

@@ -1,9 +1,17 @@
 lspconfig = require 'lspconfig'
 -- completion_callback = require'completion'.on_attach
 
-lspconfig.pyright.setup{}
-lspconfig.tsserver.setup{}
-lspconfig.bashls.setup{}
+-- Setup capabilities for cmp
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+lspconfig.pyright.setup{
+  capabilities = capabilities
+}
+lspconfig.tsserver.setup{
+  capabilities = capabilities
+}
+lspconfig.bashls.setup{
+  capabilities = capabilities
+}
 -- nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 -- nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 -- nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>

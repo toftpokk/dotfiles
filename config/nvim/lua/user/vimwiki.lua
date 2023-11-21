@@ -1,5 +1,5 @@
 vim.g.vimwiki_list = {{
-	path = "~/Personal/Information System/",
+	path = "~/Personal/Notes/",
 	syntax = "markdown",
 	ext = ".md"
 }}

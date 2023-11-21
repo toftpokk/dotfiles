@@ -32,7 +32,7 @@ sudo pacman -Syu --noconfirm --needed \
 'highlight' 'zsh' 'zsh-completion' 'rofi' 'playerctl' \
 'rsync' 'fzf' 'sshfs' 'udisks2' 'unzip' \
 'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
-'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion'
+'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep'
 
 echo "To Install manually"
 echo 'swww'
