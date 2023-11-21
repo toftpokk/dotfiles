@@ -15,7 +15,7 @@ set icons true
 # Custom Commands
 cmd open ${{
     case $(file --mime-type "$f" -Lb) in
-        text/*|application/json|inode/x-empty|application/csv) $EDITOR "$f";;
+        text/*|application/javascript|application/json|inode/x-empty|application/csv) $EDITOR "$f";;
 		image/*) nsxiv-rifle "$f";;
 		application/gzip|application/x-rar|application/x-tar|application/x-object);;
 		application/x-object|application/x-pie-executable);;
