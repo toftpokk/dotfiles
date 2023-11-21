@@ -1,5 +1,5 @@
 #!/bin/sh
 disks=$(lsblk -rpo 'mountpoint,size,name,type' | awk '/^\//{printf "%s (%s)\n",$3,$2}')
-umounting=$(echo "$disks" | dmenu -p "Disk to unmount: ") || exit 1
+umounting=$(echo "$disks" | wofi --dmenu -p "Disk to unmount: ") || exit 1
 udisksctl unmount -b $(echo $umounting | awk '{print $1}') && notify-send -i "drive-harddisk-symbolic.symbolic" "Unmount" "Unmounted Disk $umounting" || notify-send -i "dialog-warning-symbolic.symbolic" -u "critical" "Unmount" "Could not Unmount $umounting" && exit 1
 
