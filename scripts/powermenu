@@ -1,7 +1,7 @@
 #!/bin/sh
 
 menu="Poweroff\nSuspend\nLogout\nReboot"
-ans="$(echo -e $menu | dmenu -c -l 20 -p 'Power: ')"
+ans="$(printf "$menu" | wofi --dmenu -L 6 -p 'Power: ')"
 
 case $ans in
 	Logout)
