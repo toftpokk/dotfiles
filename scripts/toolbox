@@ -1,8 +1,0 @@
-#!/bin/sh
-
-command_file=~/.config/commands
-cmd=$(cat $command_file | dmenu -p "Choose a command:" -l 10); [ -z "$cmd" ] && exit 0
-
-# wtd=$(printf "Run\nCopy" | dmenu -p "What do you want to do?:" -l 10); [ -z "$wtd" ] && exit 0
-$cmd
-
