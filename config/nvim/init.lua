@@ -46,6 +46,8 @@ local options = {
   termguicolors=true,	-- set gui color
   clipboard="unnamedplus", -- Aways copy to clipboard
   scrolloff=5, -- top/bottom spacing when scrolling
+
+  delcombine=true
 }
 vim.syntax=true
 
