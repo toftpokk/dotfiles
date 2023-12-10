@@ -34,6 +34,8 @@ fi		# FILE
 *.el ﬦ
 *.md 
 
+*.go 
+
 # Documents
 *.zip 
 *.rar 
@@ -51,6 +53,7 @@ fi		# FILE
 *.svg 
 *.webp 
 *.bmp 
+*.psd 
 *.mp3 墳
 *.opus 墳
 *.m4a 墳
