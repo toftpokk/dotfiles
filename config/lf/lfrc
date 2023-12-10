@@ -62,8 +62,7 @@ cmd mkextract ${{
 }}
 
 cmd mkwall ${{
-	xwallpaper --zoom "$f"
-	echo "$f" > "$XDG_STATE_HOME/wallpaper"
+	wallpaper "$f"
 }}
 
 cmd mklock ${{
@@ -180,5 +179,6 @@ map gS cd ~/Screenshots
 map gu cd ~/uni
 map gP cd ~/Projects
 map gi cd ~/Personal
+map gn cd ~/Personal/Notes
 
 map gm goto_mount
