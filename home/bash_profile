@@ -30,6 +30,7 @@ export CARGO_HOME=$XDG_DATA_HOME/cargo
 	export PATH="$CARGO_HOME/bin:$PATH"
 export GEM_HOME="$(ruby -e 'puts Gem.user_dir' 2>/dev/null)"
 [ ! -z "$GEM_HOME" ] && export PATH="$GEM_HOME/bin:$PATH"
+export PATH="$XDG_DATA_HOME/yarn/global/node_modules/.bin:$PATH"
 export GOPATH="$XDG_CONFIG_HOME/go"
 	export PATH="$GOPATH/bin:$PATH"
 
