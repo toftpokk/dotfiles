@@ -1,0 +1,6 @@
+#!/bin/sh
+
+notes=~/Personal/Notes
+file="index.md"
+cd "$notes"
+nvim "$file"

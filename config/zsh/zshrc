@@ -28,6 +28,7 @@ alias v="nvim"
 alias vim="nvim"
 alias ..="cd .."
 alias bc="bc -l"
+alias n="notes"
 
 bindkey -M menuselect '^[[Z' reverse-menu-complete # Shift-tab reverse menu
 # Control Left/Right 
