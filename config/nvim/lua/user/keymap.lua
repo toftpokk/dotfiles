@@ -7,7 +7,8 @@ vim.api.nvim_set_keymap("n","<C-l>","<C-W>l",{ noremap = true})
 vim.api.nvim_set_keymap("n","S",":vsplit<CR>",{ noremap = true})
 vim.api.nvim_set_keymap("n","<C-x>",":q<CR>",{ noremap = true})
 vim.api.nvim_set_keymap("n","<leader>h",":G<CR><C-w>H<C-w>30<<C-l>",{ noremap = true})
-vim.api.nvim_set_keymap("n","<leader>d",":Gdiffsplit<CR>",{ noremap = true})
+vim.api.nvim_set_keymap("n","<leader>d",":VimwikiMakeDiaryNote<CR>",{ noremap = true})
+-- vim.api.nvim_set_keymap("n","<A-5>",":Gdiffsplit<CR>",{ noremap = true})
 
 -- Open Tree with Alt-1
 
@@ -16,3 +17,4 @@ vim.api.nvim_set_keymap("n","<leader>d",":Gdiffsplit<CR>",{ noremap = true})
 
 -- Open Location List with Alt-3
 vim.keymap.set("n","<A-3>",function() require("qf").toggle('l') end,{ noremap = true, silent=true})
+vim.keymap.set("n","<A-4>",function() require("qf").toggle('c') end,{ noremap = true, silent=true})

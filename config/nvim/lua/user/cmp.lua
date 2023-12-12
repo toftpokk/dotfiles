@@ -35,8 +35,7 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, {"i", "s"}),
-    ['<CR>'] = cmp.mapping.confirm({ select = true })
+		end, {"i", "s"})
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },

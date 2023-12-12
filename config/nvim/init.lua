@@ -40,7 +40,7 @@ local options = {
   ignorecase=true,		-- Ignore case when searching
 
   -- Decor
-  wrap=true,			-- No wrap text
+  wrap=false,			-- No wrap text
   number=true,			-- Show number
   showcmd=true,			-- Current command
   termguicolors=true,	-- set gui color
