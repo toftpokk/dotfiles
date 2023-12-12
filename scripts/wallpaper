@@ -1,31 +1,26 @@
 #!/bin/sh
+default_dir=~/Backgrounds/safe
+
 if [ "$1" = "-h" ]; then
   echo "Usage: $0 [Image or Directory]"
   exit 1
 fi
 
-arg=${1:-~/Backgrounds/safe_for_powerpoint}
+# if $@ does not exist, use default_dir
+file_list="$@"
+: ${file_list:=$default_dir}
 
-# Check if swww exists
-if ! swww -V &>/dev/null; then
-  echo "Error: swww not found" >&2
+image=$(find $file_list -type f | shuf -n 1)
+if [ -z "$image" ]; then
+	echo "Error: Argument '$arg' is not image or directory" >&2
   exit 1
 fi
+
 if ! swww query &>/dev/null; then
-  swww init
-fi
-
-
-if [ -d "$arg" ]; then
-	# Directory
-	image=$(ls "$arg" | shuf -n 1)
-	image="$arg/$image"
-elif [ -f "$arg" ]; then
-	# Image
-	image="$arg"
+  swww init --no-cache
+  # If not started, set image directly, no transition
+  swww img "$image"
 else
-	# Neither
-	echo "Error: Argument is not image or directory" >&2
-	exit 1
+  swww img "$image" --transition-type wipe
 fi
-swww img "$image" --transition-type wipe
+

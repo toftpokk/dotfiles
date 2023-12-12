@@ -14,11 +14,10 @@ fi
 
 case "$mode" in
   "home")
-    # Wallpaper
-    set-wall ~/Backgrounds/unsafe
+    wallpaper ~/Backgrounds/cultured ~/Backgrounds/unsafe
     ;;
   "work")
-    set-wall ~/Backgrounds/safe_for_powerpoint
+    wallpaper
     ;;
   "dark")
     sed -i "s/^colors: \*.*/colors: *dark/" $XDG_CONFIG_HOME/alacritty/colors.yml
