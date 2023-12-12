@@ -11,8 +11,8 @@ zstyle :compinstall filename '/home/toftpokk/.zshrc'
 zmodload zsh/complist
 
 HISTFILE="$XDG_STATE_HOME/zsh/history"
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 
 PROMPT='%B%F{green}[%f%F{red}toftpokk%f%F{green}@kpro%f %c%F{green}]%#%f%b '
 
