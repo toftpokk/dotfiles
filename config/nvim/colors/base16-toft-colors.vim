@@ -23,8 +23,8 @@ let s:gui02        = "383838"
 let g:base16_gui02 = "383838"
 let s:gui03        = "585858"
 let g:base16_gui03 = "585858"
-let s:gui04        = "b8b8b8"
-let g:base16_gui04 = "b8b8b8"
+let s:gui04        = "888888"
+let g:base16_gui04 = "888888"
 let s:gui05        = "d8d8d8"
 let g:base16_gui05 = "d8d8d8"
 let s:gui06        = "e8e8e8"
@@ -227,7 +227,7 @@ call <sid>hi("TabLineSel",    s:gui0B, s:gui01, s:cterm0B, s:cterm01, "none", ""
 " Standard syntax highlighting
 call <sid>hi("Boolean",      s:gui09, "", s:cterm09, "", "", "")
 call <sid>hi("Character",    s:gui08, "", s:cterm08, "", "", "")
-call <sid>hi("Comment",      s:gui03, "", s:cterm03, "", "", "")
+call <sid>hi("Comment",      s:gui04, "", s:cterm03, "", "", "")
 call <sid>hi("Conditional",  s:gui0E, "", s:cterm0E, "", "", "")
 call <sid>hi("Constant",     s:gui09, "", s:cterm09, "", "", "")
 call <sid>hi("Define",       s:gui0E, "", s:cterm0E, "", "none", "")
