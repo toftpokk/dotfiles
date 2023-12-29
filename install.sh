@@ -32,7 +32,8 @@ sudo pacman -Syu --noconfirm --needed \
 'highlight' 'zsh' 'zsh-completion' 'rofi' 'playerctl' \
 'rsync' 'fzf' 'sshfs' 'udisks2' 'unzip' \
 'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
-'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar'
+'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar' \
+'libsixel' 'chafa'
 
 echo "To Install manually"
 echo 'swww'
@@ -46,7 +47,7 @@ paru -S --needed --noconfirm \
 # Symlinks
 echo "Symlinking"
 [ ! -d "$CONFIG" ] && mkdir "$CONFIG"
-ln -sf $DOTS/config/alacritty $CONFIG/
+ln -sf $DOTS/config/foot $CONFIG/
 [ ! -d "$CONFIG/cmus" ] && mkdir "$CONFIG/cmus"
 ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
 ln -sf $DOTS/config/dunst $CONFIG/
