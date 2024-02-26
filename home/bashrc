@@ -29,6 +29,7 @@ alias bc="bc -l"
 HISTCONTROL=ignoreboth # ignore duplicate commands and those with prepended whitespace
 HISTSIZE= # number of commands while bash is running
 HISTFILESIZE= # number of commands in history file
+HISTFILE="${XDG_STATE_HOME}"/bash/history
 
 shopt -s checkwinsize	# Bash always checks window size
 shopt -s dirspell	# Bash auto checks name
