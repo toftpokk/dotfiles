@@ -15,6 +15,7 @@ require('user.gitsigns')
 require('user.telescope')
 require('user.qf')
 require('user.toggleterm')
+-- require('user.neovide')
 
 local options = {
   -- Tabs
