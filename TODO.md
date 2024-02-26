@@ -1,5 +1,5 @@
 ## Move to wayland
-rofi and dmenu -> wofi
+- move to eww
 
 ## Remote customization
 * vim
