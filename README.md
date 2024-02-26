@@ -15,6 +15,8 @@ This is my linux config files, updated as I go.
 4. Connected to network
 5. Cloned git repository to `~/dotfiles`
 
+Note: Config git in $XDG_CONFIG_HOME/git/config
+
 ## 1. Installing
 
 Go to dotfiles and run installation script
