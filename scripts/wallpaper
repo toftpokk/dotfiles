@@ -1,5 +1,5 @@
 #!/bin/sh
-default_dir=~/Backgrounds/safe
+default_dirs=`echo ~/Backgrounds/cultured ~/Backgrounds/unsafe`
 
 if [ "$1" = "-h" ]; then
   echo "Usage: $0 [Image or Directory]"
@@ -8,9 +8,15 @@ fi
 
 # if $@ does not exist, use default_dir
 file_list="$@"
-: ${file_list:=$default_dir}
+if [ -f "$1" ]; then
+  # if 1st argument is file, file mode
+  image="$1"
+else
+  # dir mode
+  : ${file_list:=$default_dirs}
+  image=$(find $file_list -type f | shuf -n 1)
+fi
 
-image=$(find $file_list -type f | shuf -n 1)
 if [ -z "$image" ]; then
 	echo "Error: Argument '$arg' is not image or directory" >&2
   exit 1
