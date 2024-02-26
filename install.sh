@@ -57,6 +57,7 @@ ln -sf $DOTS/config/fcitx5/config $CONFIG/fcitx5/config
 ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
 [ ! -d "$CONFIG/gtk-3.0" ] && mkdir "$CONFIG/gtk-3.0"
 ln -sf $DOTS/config/gtk-3.0/settings.ini $CONFIG/gtk-3.0/
+ln -sf $DOTS/config/gtk-2.0 $CONFIG/
 ln -sf $DOTS/config/highlight $CONFIG/
 ln -sf $DOTS/config/lf $CONFIG/
 ln -sf $DOTS/config/nvim $CONFIG/
@@ -76,7 +77,6 @@ ln -sf $DOTS/home/zshenv $HOME/.zshenv
 
 ln -sf $DOTS/home/bash_profile $HOME/.bash_profile
 ln -sf $DOTS/home/bashrc $HOME/.bashrc
-ln -sf $DOTS/home/gtkrc-2.0 $HOME/.gtkrc-2.0
 ln -sf $DOTS/home/inputrc $HOME/.inputrc
 ln -sf $DOTS/home/xinitrc $HOME/.xinitrc
 ln -sf $DOTS/home/Xresources $HOME/.Xresources
