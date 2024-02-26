@@ -99,7 +99,7 @@ cmd goto_mount %{{
 # cmd trash-put %trash-put "$fx"
 cmd trash-rem %{{
 	for i in $fx; do
-    t="$(basename "$i")"
+    t=$(basename "$i")
 		trash-rm "$t"
 	done
 }}
