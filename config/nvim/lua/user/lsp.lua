@@ -12,6 +12,9 @@ lspconfig.tsserver.setup{
 lspconfig.bashls.setup{
   capabilities = capabilities
 }
+lspconfig.rust_analyzer.setup{
+  capabilities = capabilities
+}
 -- nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 -- nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 -- nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
