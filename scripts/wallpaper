@@ -1,5 +1,6 @@
 #!/bin/sh
 default_dirs=`echo ~/Backgrounds/cultured ~/Backgrounds/unsafe`
+safe_dir=~/Backgrounds/safe
 
 if [ "$1" = "-h" ]; then
   echo "Usage: $0 [Image or Directory]"
@@ -8,7 +9,10 @@ fi
 
 # if $@ does not exist, use default_dir
 file_list="$@"
-if [ -f "$1" ]; then
+if [ "$1" = "safe" ]; then
+  # if 1st argument is file, file mode
+  image=$(find $safe_dir -type f | shuf -n 1)
+elif [ -f "$1" ]; then
   # if 1st argument is file, file mode
   image="$1"
 else
