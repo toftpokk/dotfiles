@@ -33,7 +33,7 @@ sudo pacman -Syu --noconfirm --needed \
 'rsync' 'fzf' 'sshfs' 'udisks2' 'unzip' \
 'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
 'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar' \
-'libsixel' 'chafa'
+'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer'
 
 echo "To Install manually"
 echo 'swww'
