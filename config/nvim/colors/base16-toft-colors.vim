@@ -272,15 +272,17 @@ call <sid>hi("cssClassName",   s:gui0E, "", s:cterm0E, "", "", "")
 call <sid>hi("cssColor",       s:gui0C, "", s:cterm0C, "", "", "")
 
 " Diff highlighting
-call <sid>hi("DiffAdd",      s:gui0B, s:gui01,  s:cterm0B, s:cterm01, "", "")
-call <sid>hi("DiffChange",   s:gui03, s:gui01,  s:cterm03, s:cterm01, "", "")
-call <sid>hi("DiffDelete",   s:gui08, s:gui01,  s:cterm08, s:cterm01, "", "")
-call <sid>hi("DiffText",     s:gui0D, s:gui01,  s:cterm0D, s:cterm01, "", "")
-call <sid>hi("DiffAdded",    s:gui0B, s:gui00,  s:cterm0B, s:cterm00, "", "")
-call <sid>hi("DiffFile",     s:gui08, s:gui00,  s:cterm08, s:cterm00, "", "")
-call <sid>hi("DiffNewFile",  s:gui0B, s:gui00,  s:cterm0B, s:cterm00, "", "")
-call <sid>hi("DiffLine",     s:gui0D, s:gui00,  s:cterm0D, s:cterm00, "", "")
-call <sid>hi("DiffRemoved",  s:gui08, s:gui00,  s:cterm08, s:cterm00, "", "")
+"" For vim -d
+call <sid>hi("DiffAdd",      s:gui0B, "NONE",  s:cterm0B, s:cterm01, "", "")
+call <sid>hi("DiffChange",   s:gui03, "NONE",  s:cterm03, s:cterm01, "", "")
+call <sid>hi("DiffDelete",   s:gui08, "NONE",  s:cterm08, s:cterm01, "", "")
+call <sid>hi("DiffText",     s:gui0D, "",  s:cterm0D, s:cterm01, "", "")
+"" For ```diff
+call <sid>hi("DiffAdded",    s:gui0B, "NONE",  s:cterm0B, s:cterm00, "", "")
+call <sid>hi("DiffFile",     s:gui08, "NONE",  s:cterm08, s:cterm00, "", "")
+call <sid>hi("DiffNewFile",  s:gui0B, "NONE",  s:cterm0B, s:cterm00, "", "")
+call <sid>hi("DiffLine",     s:gui0D, "NONE",  s:cterm0D, s:cterm00, "", "")
+call <sid>hi("DiffRemoved",  s:gui08, "NONE",  s:cterm08, s:cterm00, "", "")
 
 " Git highlighting
 call <sid>hi("gitcommitOverflow",       s:gui08, "", s:cterm08, "", "", "")
