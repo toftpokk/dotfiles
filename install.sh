@@ -29,7 +29,7 @@ sudo pacman -Syu --noconfirm --needed \
 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'noto-fonts' 'noto-fonts-cjk' \
 'firefox' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf' 'dunst' 'libnotify' \
 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'wget' 'pamixer' \
-'highlight' 'zsh' 'zsh-completion' 'rofi' 'playerctl' \
+'highlight' 'zsh' 'zsh-completions' 'rofi' 'playerctl' \
 'rsync' 'fzf' 'sshfs' 'udisks2' 'unzip' \
 'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
 'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar' \
