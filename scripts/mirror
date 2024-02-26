@@ -1,0 +1,23 @@
+#!/bin/sh
+
+monitors="$(hyprctl monitors | grep "^Monitor" | cut -f 2 -d" ")"
+dest="$(printf "$monitors" | wofi --dmenu -p 'Mirror Destination')"
+if [ -z "${dest}" ]; then
+  # canceled
+  exit
+fi
+source="$(printf "$monitors\nSTOP" | wofi --dmenu -p 'Mirror Source')"
+if [ -z "${source}" ]; then
+  # canceled
+  exit
+fi
+if [ "$source" = "STOP" ]; then
+  # hyprctl keyword monitor "${dest},preferred,auto,auto"
+  hyprctl reload
+  wallpaper safe
+  exit
+fi
+# Mirror
+hyprctl keyword monitor "${dest},preferred,auto,auto,mirror,${source}"
+wallpaper safe
+# Reverse
