@@ -9,6 +9,7 @@ local check_backspace = function()
 end
 
 cmp.setup({
+  preselect = "none", -- no preselection
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
