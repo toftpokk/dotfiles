@@ -20,6 +20,7 @@ cmd open ${{
 		image/*) nsxiv-rifle "$f";;
 		application/gzip|application/x-rar|application/x-tar|application/x-object);;
 		application/x-object|application/x-pie-executable);;
+    application/vnd.oasis.opendocument.*) libreoffice "$f" & ;;
 		application/octet-stream);;
         *) xdg-open "$f" ;;
     esac
