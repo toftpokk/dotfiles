@@ -25,7 +25,7 @@ popd
 # Dependencies
 echo "Installing dependencies"
 sudo pacman -Syu --noconfirm --needed \
-'neovim' 'alacritty' 'git' 'hyprland' 'lf' 'pipewire' \
+'neovim' 'foot' 'git' 'hyprland' 'lf' 'pipewire' \
 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'noto-fonts' 'noto-fonts-cjk' \
 'firefox' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf' 'dunst' 'libnotify' \
 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'wget' 'pamixer' \
