@@ -2,25 +2,25 @@
 -- Author: toftpokk
 -- Template by Bez Hermoso <bezalelhermoso@gmail.com>
 
-Description = "toft-colors"
+Description = "toft-colors-2"
 
-Default = { Colour = "#d8d8d8" }
-Canvas = { Colour="#181818" }
-Number = { Colour="#ee9e56" }
-Escape = { Colour="#e8e8e8" , Italic=true}
-String = { Colour="#6ab544" }
-BlockComment = { Colour="#585858" }
+Default = { Colour="#FFFFFF" } -- identifier
+Canvas = { Colour="#FF00FF" }
+Number = { Colour="#ee9e56" } -- number
+Escape = { Colour="#a16946" } -- \n
+String = { Colour="#6ab544" } -- strings
+BlockComment = { Colour="#888888" } -- Comment
 StringPreProc = String
 LineComment   = BlockComment
-Operator      = { Colour="#d8d8d8" }
-LineNum      = { Color="#585858" }
-PreProcessor      = { Colour="#a16946" }
-Interpolation  = Escape
+Operator      = { Colour="#a16946" } -- + - == ()
+LineNum = { Colour="#FF00FF" }
+PreProcessor = { Colour="#F7DE4F" } -- Preprocessing
+Interpolation = { Colour="#a16946" } -- %l
 
 Keywords = {
-  { Colour="#ee3632", Bold=true},
-  { Colour="#F7DE4F"},
-  { Colour="#5066C6"},
-  { Colour="#F7DE4F"},
-  { Colour="#F7DE4F" }
+  { Colour="#bf72ad" }, -- e.g keyword.return
+  { Colour="#F7DE4F" }, -- static/void
+  { Colour="#5066C6" }, -- c shell utilities e.g. rm
+  { Colour="#5066C6" }, -- function
+  { Colour="#5066C6" },
 }
