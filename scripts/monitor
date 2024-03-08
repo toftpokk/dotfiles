@@ -1,0 +1,58 @@
+#!/bin/sh
+read -r -d '' ACTIONS <<EOF
+Change Selection
+Disable
+Enable
+Mirror To ...
+Mirror From ...
+Stop Mirror
+EOF
+
+dmenu(){
+  wofi --dmenu "$@"
+}
+
+mirror(){
+  # $1 src, $2 dest
+  hyprctl keyword monitor "$2,preferred,auto,auto,mirror,$1"
+  # Restart stopped swww
+  sleep 0.1
+  swww-daemon &
+  wallpaper safe
+}
+
+## main
+
+monitors="$(hyprctl monitors all | grep "^Monitor" | cut -f 2 -d" ")"
+while true; do
+  monitor="$(printf "$monitors" | dmenu -p 'Select Monitor')"
+  [ "$monitor" = "" ] && exit
+
+  
+  action="$(printf "$ACTIONS" | dmenu -p "$monitor")"
+  case "$action" in
+    "Change Selection")
+      ;;
+    "Mirror To ...")
+      dest="$(printf "$monitors" | dmenu -p "$monitor Mirror To ...")"
+      [ "$dest" = "" ] && exit
+      mirror "$monitor" "$dest"
+      ;;
+    "Mirror From ...")
+      src="$(printf "$monitors" | dmenu -p "$monitor Mirror To ...")"
+      [ "$src" = "" ] && exit
+      mirror "$src" "$monitor"
+      ;;
+    "Stop Mirror")
+      hyprctl keyword monitor "$monitor,preferred,auto,1"
+      ;;
+    Disable)
+      hyprctl keyword monitor "$monitor, disable"
+      ;;
+    Enable)
+      hyprctl keyword monitor "$monitor,preferred,auto,1"
+      ;;
+    *)
+      exit
+  esac
+done
