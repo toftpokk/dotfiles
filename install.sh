@@ -33,7 +33,7 @@ sudo pacman -Syu --noconfirm --needed \
 'rsync' 'fzf' 'sshfs' 'udisks2' 'unzip' \
 'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
 'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar' \
-'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer'
+'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer' 'swayidle'
 
 echo "To Install manually"
 echo 'swww'
@@ -42,7 +42,7 @@ echo 'swww'
 # xdg-desktop-portal-hyprland https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
 
 paru -S --needed --noconfirm \
-'nsxiv' 'fonts-tlwg' 'eww'
+'nsxiv' 'fonts-tlwg' 'eww' 'swaylock'
 
 # Symlinks
 echo "Symlinking"
