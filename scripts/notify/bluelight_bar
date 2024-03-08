@@ -1,0 +1,8 @@
+#!/bin/bash
+
+value=$(busctl --user -- get-property rs.wl-gammarelay / rs.wl.gammarelay Temperature | cut -d' ' -f2)
+percent="$(( ( ( $value - 1000 ) * 100 ) / ( 10000 - 1000 ) ))"
+dunstify -a "bluelight" -u low -i display-brightness-symbolic.symbolic \
+	-h string:x-dunst-stack-tag:brightness \
+	-h int:value:$percent "Bluelight"
+canberra-gtk-play -i audio-volume-change -d "volume"
