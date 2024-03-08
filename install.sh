@@ -42,7 +42,7 @@ echo 'swww'
 # xdg-desktop-portal-hyprland https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
 
 paru -S --needed --noconfirm \
-'nsxiv' 'fonts-tlwg' 'eww' 'swaylock' 'wl-gammarelay'
+'nsxiv' 'fonts-tlwg' 'eww' 'swaylock-effects' 'wl-gammarelay'
 
 # Symlinks
 echo "Symlinking"
