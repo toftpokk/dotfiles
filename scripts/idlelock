@@ -1,0 +1,5 @@
+#!/bin/sh
+swayidle -w timeout 300 'lock' \
+timeout 305 'hyprctl dispatch dpms off' \
+resume 'hyprctl dispatch dpms on' \
+before-sleep 'lock'
