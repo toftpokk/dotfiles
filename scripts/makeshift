@@ -1,0 +1,102 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+# See: https://stackoverflow.com/questions/5693339/perl-print-function-does-not-work-properly-when-sleep-is-used
+$| = 1;
+
+sub secs_since_midnight {
+  my ($sec, $min, $hour) = localtime();
+  return($hour * 3600 + $min * 60 + $sec);
+}
+
+sub interpolate_alpha{
+  my $start = shift;
+  my $end = shift;
+  my $val = shift;
+  return(($val-$start)/($end-$start));
+}
+
+sub interpolate_percent{
+  my $start = shift;
+  my $end = shift;
+  my $percent = shift;
+  return(($end-$start)*$percent + $start);
+}
+
+sub setTemp{
+  my $val = shift;
+  qx*busctl --user -- set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q $val*;
+}
+
+sub setLight{
+  my $val = shift;
+  qx*xbacklight -set $val*;
+}
+
+# See graph: https://www.researchgate.net/figure/Color-temperature-variation-throughout-a-single-day_fig3_328726901
+# Note: graph no reliable numbers
+# default temp=6500
+my $tempday = 6500;
+my $tempnight = 2300;
+my $lightday = 30;
+my $lightnight = 0;
+
+# temperature changes at these times
+my $dawnStart = 6 *60*60 + 0 *60;
+my $dawnEnd = 7 *60*60 + 30 *60;
+my $duskStart = 18 *60*60 + 0 *60;
+my $duskEnd = 18 *60*60 + 30 *60;
+my $midnight = 24 *60*60;
+
+# Sleep time intevals
+my $sleepTransient = 5 *60;
+
+my $alpha = 1.0;
+my $secs = 6 *60*60 + 0*60;
+
+my $targetTemp = 0;
+my $targetLight = 0;
+my $sleepTime = $sleepTransient;
+
+while(1){
+  # $secs = secs_since_midnight;
+  $secs = secs_since_midnight();
+
+  if($secs <= $dawnEnd){
+    if($secs < $dawnStart){
+      # 0.00 to dawnStart
+      $alpha = 0.0;
+      $sleepTime = $dawnStart-$secs; # Sleep until dawnStart
+    }else{
+      # dawnStart to dawnEnd
+      $alpha = interpolate_alpha($dawnStart, $dawnEnd, $secs);
+      $sleepTime = $sleepTransient;
+    }
+  }
+  elsif($secs <= $duskEnd){
+    if($secs < $duskStart){
+      # dawnEnd to duskStart
+      $alpha = 1.0;
+      $sleepTime = $duskStart-$secs; # Sleep until duskStart
+    }else{
+      # duskStart to duskEnd
+      $alpha = interpolate_alpha($dawnStart, $dawnEnd, $secs);
+      $sleepTime = $sleepTransient;
+    }
+  }
+  else {
+    # duskEnd to 0.00
+    $alpha = 0.0;
+    $sleepTime = $midnight - $secs; # sleep until midnight
+  }
+  $targetTemp = int(interpolate_percent($tempnight,$tempday,$alpha));
+  $targetLight = int(interpolate_percent($lightnight,$lightday,$alpha));
+
+  setTemp($targetTemp);
+  setLight($targetLight);
+  print("Temp: ",$targetTemp, "k, Light: ", $targetLight,"%\n");
+  print("Sleeping until ~",($sleepTime +$secs)/3600,":00 \n");
+
+  sleep($sleepTime);
+}
