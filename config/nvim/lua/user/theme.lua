@@ -22,6 +22,7 @@ local highlights ={
 	["User4"]={ guifg="#f8f8f8", guibg="#383838", ctermfg="15", ctermbg="237"},
 	["User5"]={ guifg="#181818", guibg="#BF72AD", ctermfg="234", ctermbg="133"},
 	["User6"]={ guifg="#181818", guibg="#6ab544", ctermfg="234", ctermbg="71"},
+	["ColorColumn"]={ guifg="#787878",guibg="#383838", ctermfg="240", ctermbg="0"},
 }
 
 for a,b in pairs(highlights) do
