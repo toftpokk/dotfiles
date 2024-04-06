@@ -3,6 +3,8 @@ vim.call('plug#begin','~/.local/share/nvim')
 
 -- Git
 --  -- Plug('jreybert/vimagit')
+Plug('tpope/vim-fugitive')
+Plug 'sindrets/diffview.nvim'
 
 -- LSP
 Plug('neovim/nvim-lspconfig')
@@ -10,9 +12,6 @@ Plug('neovim/nvim-lspconfig')
 -- Highlights
 Plug('Fymyte/rasi.vim') -- Rofi
 Plug('elkowar/yuck.vim') -- Yuck
-
---  Git
-Plug('tpope/vim-fugitive')
 
 -- Nerdtree alt
 Plug('nvim-tree/nvim-tree.lua')

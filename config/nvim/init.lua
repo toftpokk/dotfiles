@@ -17,6 +17,7 @@ require('user.qf')
 require('user.toggleterm')
 -- require('user.neovide')
 
+-- :set vim.opt.option_name
 local options = {
   -- Tabs
   -- tabstop=4,			-- one tab = 4 colums
@@ -48,9 +49,16 @@ local options = {
   clipboard="unnamedplus", -- Aways copy to clipboard
   scrolloff=5, -- top/bottom spacing when scrolling
 
-  delcombine=true
+  delcombine=true,
+  colorcolumn="80", -- put a color column at col=80
 }
 vim.syntax=true
+
+-- Fold makes nvim *slow*
+-- vim.opt.foldmethod="indent"
+-- vim.opt.foldlevel = 99
+-- vim.g.vimwiki_folding = 'list'
+-- vim.g.markdown_folding = 1
 
 for k, v in pairs(options) do
   vim.opt[k] = v
