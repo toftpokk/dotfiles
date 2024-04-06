@@ -11,7 +11,7 @@ listfiles() {
 
 is_img() {
   case "${1##*.}" in
-    "jpg"|"jpeg"|"png"|"gif"|"webp"|"tiff"|"bmp"|"svg") return 0 ;;
+    "jpg"|"jpeg"|"JPG"|"JPEG"|"png"|"gif"|"webp"|"tiff"|"bmp"|"svg") return 0 ;;
     *) return 1 ;;
   esac
 }
