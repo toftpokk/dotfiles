@@ -94,7 +94,7 @@ while(1){
   $targetLight = int(interpolate_percent($lightnight,$lightday,$alpha));
 
   setTemp($targetTemp);
-  setLight($targetLight);
+  # setLight($targetLight);
   print("Temp: ",$targetTemp, "k, Light: ", $targetLight,"%\n");
   print("Sleeping until ~",($sleepTime +$secs)/3600,":00 \n");
 
