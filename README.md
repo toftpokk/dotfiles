@@ -14,6 +14,10 @@ This is my linux config files, updated as I go.
 3. Run with non-root user with wheel privileges
 4. Connected to network
 5. Cloned git repository to `~/dotfiles`
+6. User with groups: wheel, video
+  ```sh
+  usermod -aG wheel,video $USER
+  ```
 
 Note: Config git in $XDG_CONFIG_HOME/git/config
 
