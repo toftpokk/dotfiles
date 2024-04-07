@@ -6,7 +6,7 @@ compinit
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-zstyle :compinstall filename '/home/toftpokk/.zshrc'
+zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/.zshrc"
 
 zmodload zsh/complist
 
@@ -14,7 +14,7 @@ HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-PROMPT='%B%F{green}[%f%F{red}toftpokk%f%F{green}@kpro%f %c%F{green}]%#%f%b '
+PROMPT='%B%F{green}[%f%F{red}%n%f%F{green}@%m%f %c%F{green}]%#%f%b '
 
 # Aliases
 alias cp="cp -i"	# Confirm Copy
