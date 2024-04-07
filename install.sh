@@ -33,7 +33,8 @@ sudo pacman -Syu --noconfirm --needed \
 'rsync' 'fzf' 'sshfs' 'udisks2' 'unzip' \
 'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
 'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar' \
-'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer' 'swayidle'
+'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer' 'swayidle' 'nfs-utils' \
+'acpilight'
 
 echo "To Install manually"
 echo 'swww'
@@ -42,7 +43,7 @@ echo 'swww'
 # xdg-desktop-portal-hyprland https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
 
 paru -S --needed --noconfirm \
-'nsxiv' 'fonts-tlwg' 'eww' 'swaylock-effects' 'wl-gammarelay' 'safeeyes'
+'nsxiv' 'fonts-tlwg' 'eww' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git'
 
 # Symlinks
 echo "Symlinking"
@@ -67,6 +68,8 @@ ln -sf $DOTS/config/mimeapps.list $CONFIG/
 ln -sf $DOTS/config/stalonetrayrc $CONFIG/
 ln -sf $DOTS/config/python $CONFIG/
 ln -sf $DOTS/config/fontconfig $CONFIG/fontconfig
+ln -sf $DOTS/config/hypr $CONFIG/hypr
+ln -sf $DOTS/config/wofi $CONFIG/wofi
 
 # ZSH
 [ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
