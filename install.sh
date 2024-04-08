@@ -34,7 +34,7 @@ sudo pacman -Syu --noconfirm --needed \
 'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
 'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar' \
 'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer' 'swayidle' 'nfs-utils' \
-'acpilight'
+'acpilight' 'man-db' 'imagemagick' 'ghostscript'
 
 echo "To Install manually"
 echo 'swww'
