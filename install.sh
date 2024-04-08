@@ -48,29 +48,28 @@ paru -S --needed --noconfirm \
 # Symlinks
 echo "Symlinking"
 [ ! -d "$CONFIG" ] && mkdir "$CONFIG"
-ln -sf $DOTS/config/foot $CONFIG/
 [ ! -d "$CONFIG/cmus" ] && mkdir "$CONFIG/cmus"
 ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
-ln -sf $DOTS/config/dunst $CONFIG/
-ln -sf $DOTS/config/eww $CONFIG/
 [ ! -d "$CONFIG/fcitx5" ] && mkdir "$CONFIG/fcitx5"
 ln -sf $DOTS/config/fcitx5/config $CONFIG/fcitx5/config
 ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
 [ ! -d "$CONFIG/gtk-3.0" ] && mkdir "$CONFIG/gtk-3.0"
 ln -sf $DOTS/config/gtk-3.0/settings.ini $CONFIG/gtk-3.0/
 ln -sf $DOTS/config/gtk-2.0 $CONFIG/
+ln -sf $DOTS/config/dunst $CONFIG/
+ln -sf $DOTS/config/eww $CONFIG/
 ln -sf $DOTS/config/highlight $CONFIG/
 ln -sf $DOTS/config/lf $CONFIG/
 ln -sf $DOTS/config/nvim $CONFIG/
-ln -sf $DOTS/config/rofi $CONFIG/
 ln -sf $DOTS/config/zathura $CONFIG/
 ln -sf $DOTS/config/mimeapps.list $CONFIG/
 ln -sf $DOTS/config/stalonetrayrc $CONFIG/
 ln -sf $DOTS/config/python $CONFIG/
+ln -sf $DOTS/config/fontconfig $CONFIG/
+ln -sf $DOTS/config/hypr $CONFIG/
+ln -sf $DOTS/config/wofi $CONFIG/
 ln -sf $DOTS/config/mpv $CONFIG/
-ln -sf $DOTS/config/fontconfig $CONFIG/fontconfig
-ln -sf $DOTS/config/hypr $CONFIG/hypr
-ln -sf $DOTS/config/wofi $CONFIG/wofi
+ln -sf $DOTS/config/foot $CONFIG/
 
 # ZSH
 [ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
