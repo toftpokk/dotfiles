@@ -67,6 +67,7 @@ ln -sf $DOTS/config/zathura $CONFIG/
 ln -sf $DOTS/config/mimeapps.list $CONFIG/
 ln -sf $DOTS/config/stalonetrayrc $CONFIG/
 ln -sf $DOTS/config/python $CONFIG/
+ln -sf $DOTS/config/mpv $CONFIG/
 ln -sf $DOTS/config/fontconfig $CONFIG/fontconfig
 ln -sf $DOTS/config/hypr $CONFIG/hypr
 ln -sf $DOTS/config/wofi $CONFIG/wofi
