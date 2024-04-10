@@ -34,16 +34,17 @@ sudo pacman -Syu --noconfirm --needed \
 'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
 'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar' \
 'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer' 'swayidle' 'nfs-utils' \
-'acpilight' 'man-db' 'imagemagick' 'ghostscript'
+'acpilight' 'man-db' 'imagemagick' 'ghostscript' \
+'fuse2' 'xclip' 'deluge-gtk'
 
 echo "To Install manually"
-echo 'swww'
+echo 'wine'
 
 # for screenshare
 # xdg-desktop-portal-hyprland https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
 
 paru -S --needed --noconfirm \
-'nsxiv' 'fonts-tlwg' 'eww' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git'
+'nsxiv' 'fonts-tlwg' 'eww' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git' 'swww'
 
 # Symlinks
 echo "Symlinking"
