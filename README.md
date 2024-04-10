@@ -201,6 +201,10 @@ To install wine
 
 	pacman -S wine zenity winetricks
 
+Clipboard to wine
+
+  wl-paste -t text -w xclip -selection clipboard
+
 ### 2.13 Formatting
 
 For json processing
