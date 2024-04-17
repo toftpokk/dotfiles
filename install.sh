@@ -35,7 +35,8 @@ sudo pacman -Syu --noconfirm --needed \
 'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar' \
 'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer' 'swayidle' 'nfs-utils' \
 'acpilight' 'man-db' 'imagemagick' 'ghostscript' \
-'fuse2' 'xclip' 'deluge-gtk'
+'fuse2' 'xclip' 'deluge-gtk' \
+'ldns' 'python-virtualenv' 'bash-language-server' 'pyright'
 
 echo "To Install manually"
 echo 'wine'
@@ -82,7 +83,6 @@ ln -sf $DOTS/home/zshenv $HOME/.zshenv
 ln -sf $DOTS/home/bash_profile $HOME/.bash_profile
 ln -sf $DOTS/home/bashrc $HOME/.bashrc
 ln -sf $DOTS/home/inputrc $HOME/.inputrc
-ln -sf $DOTS/home/xinitrc $HOME/.xinitrc
 ln -sf $DOTS/home/Xresources $HOME/.Xresources
 
 [ ! -d "$LOCAL" ] && mkdir "$LOCAL"
