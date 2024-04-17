@@ -1,50 +1,69 @@
+#!/bin/sh
+# Based on chris@machine's config https://www.youtube.com/watch?v=bTLYiNvRIVI
+
+setopt autocd extendedglob nomatch menucomplete interactivecomments
+setopt hist_ignore_dups
+
+# disable ctrl-s to freeze terminal (note: ctrl-q to resume)
+stty stop undef
+
+zle_highlight=('paste:none') # disable paste highlight
+
+unsetopt BEEP # disable beep
+
+    # Reduce performance penalty https://wiki.archlinux.org/title/Color_output_in_console
+    # eval $(dircolors -p | perl -pe 's/^((CAP|S[ET]|O[TR]|M|E)\w+).*/$1 00/' | dircolors -)
+eval $(dircolors)
+
+#### COMPLETIONS ####
 autoload -Uz compinit
-autoload -U colors && colors
+
+# menu selection will start automatically
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu select
+zstyle ':completion:*' completer _complete _approximate _ignored
+
+# complist defines menuselect
+zmodload zsh/complist
+_comp_options+=(globdots) # include hidden files
 
 compinit
 
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
-zstyle ':completion:*' menu select
-zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-zstyle :compinstall filename "$XDG_CONFIG_HOME/zsh/.zshrc"
+autoload -Uz colors && colors
 
-zmodload zsh/complist
-
-HISTFILE="$XDG_STATE_HOME/zsh/history"
-HISTSIZE=1000000
-SAVEHIST=1000000
-
-PROMPT='%B%F{green}[%f%F{red}%n%f%F{green}@%m%f %c%F{green}]%#%f%b '
-
-# Aliases
-alias cp="cp -i"	# Confirm Copy
-alias df="df -h"	# Human Readable
-# alias free="free -m"	# Free in MBs
-alias ls="ls --color=auto"	# ls with color
-alias grep="grep --color=auto"	# ls with color
-alias more="less"	# more -> less
+#### ALASES ####
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias cp="cp -i" # Confirm copy
+alias df="df -h" # Human readable
+alias diff='diff --color=auto'
 
 alias v="nvim"
 alias vim="nvim"
 alias ..="cd .."
-alias bc="bc -l"
 alias n="notes"
 alias b="blog"
 
+#### Keybinds ####
 bindkey -M menuselect '^[[Z' reverse-menu-complete # Shift-tab reverse menu
-# Control Left/Right 
+
+# Control Left/Right
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+bindkey '^a' beginning-of-line #  go to beginning
+bindkey '^e' end-of-line # go to end
 
 bindkey "^[[3~" delete-char # delete char
 bindkey "^[[3;5~" kill-word # control delete word
 bindkey '^H' backward-kill-word # Delete word back
 bindkey '^r' history-incremental-search-backward # backward search
-bindkey '^a' beginning-of-line #  go to beginning
-bindkey '^e' end-of-line # go to end
 
 # exit zsh
 exit_zsh() { exit }
 zle -N exit_zsh
 bindkey '^D' exit_zsh
-# setopt extendedglob
+
+PROMPT='%B%F{red}%n%f%F{green}@%m%f %c%F{green} %#%f%b '
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=1000000
+SAVEHIST=1000000
