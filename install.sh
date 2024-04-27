@@ -78,7 +78,7 @@ cp $DOTS/config/mozilla/user.js $HOME/user.js
 # ZSH
 [ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
 ln -sf $DOTS/config/zsh/zshrc $CONFIG/zsh/.zshrc
-ln -sf $DOTS/config/zsh/zlogin $CONFIG/zsh/.zlogin
+ln -sf $DOTS/config/zsh/zprofile $CONFIG/zsh/.zprofile
 [ ! -d "$STATE/zsh" ] && mkdir "$STATE/zsh"
 ln -sf $DOTS/home/zshenv $HOME/.zshenv
 
