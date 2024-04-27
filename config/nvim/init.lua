@@ -53,6 +53,7 @@ local options = {
   colorcolumn="80", -- put a color column at col=80
 }
 vim.syntax=true
+vim.g.mapleader = ' '
 
 -- Fold makes nvim *slow*
 -- vim.opt.foldmethod="indent"
