@@ -46,7 +46,7 @@ echo 'wine'
 # xdg-desktop-portal-hyprland https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
 
 paru -S --needed --noconfirm \
-'nsxiv' 'fonts-tlwg' 'eww' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git' 'swww'
+'nsxiv' 'fonts-tlwg' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git' 'swww'
 
 # Symlinks
 echo "Symlinking"
@@ -60,7 +60,6 @@ ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
 ln -sf $DOTS/config/gtk-3.0/settings.ini $CONFIG/gtk-3.0/
 ln -sf $DOTS/config/gtk-2.0 $CONFIG/
 ln -sf $DOTS/config/dunst $CONFIG/
-ln -sf $DOTS/config/eww $CONFIG/
 ln -sf $DOTS/config/highlight $CONFIG/
 ln -sf $DOTS/config/lf $CONFIG/
 ln -sf $DOTS/config/nvim $CONFIG/
