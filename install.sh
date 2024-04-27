@@ -72,6 +72,8 @@ ln -sf $DOTS/config/hypr $CONFIG/
 ln -sf $DOTS/config/wofi $CONFIG/
 ln -sf $DOTS/config/mpv $CONFIG/
 ln -sf $DOTS/config/foot $CONFIG/
+ln -sf $DOTS/config/waybar $CONFIG/
+cp $DOTS/config/mozilla/user.js $HOME/user.js
 
 # ZSH
 [ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
