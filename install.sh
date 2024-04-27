@@ -36,7 +36,8 @@ sudo pacman -Syu --noconfirm --needed \
 'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer' 'swayidle' 'nfs-utils' \
 'acpilight' 'man-db' 'imagemagick' 'ghostscript' \
 'fuse2' 'xclip' 'deluge-gtk' \
-'ldns' 'python-virtualenv' 'bash-language-server' 'pyright'
+'ldns' 'python-virtualenv' 'bash-language-server' 'pyright' 'python-pip' \
+'docker' 'docker-compose' 'pavucontrol' 'typescript-language-server'
 
 echo "To Install manually"
 echo 'wine'
