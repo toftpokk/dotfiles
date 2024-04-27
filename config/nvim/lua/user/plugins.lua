@@ -17,6 +17,7 @@ Plug('elkowar/yuck.vim') -- Yuck
 Plug('nvim-tree/nvim-tree.lua')
 
 -- FZF
+Plug('junegunn/fzf.vim')
 Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.x' }) -- FZF Replacement
 Plug('nvim-lua/plenary.nvim') -- telescope dependency
 
