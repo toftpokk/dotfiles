@@ -63,7 +63,7 @@ exit_zsh() { exit }
 zle -N exit_zsh
 bindkey '^D' exit_zsh
 
-PROMPT='%B%F{red}%n%f%F{green}@%m%f %c%F{green} %#%f%b '
+PROMPT='%B%F{red}%n%f%F{green}@%m%f %c%F{green}%#%f%b '
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=1000000
 SAVEHIST=1000000
