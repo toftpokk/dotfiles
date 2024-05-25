@@ -74,7 +74,12 @@ ln -sf $DOTS/config/wofi $CONFIG/
 ln -sf $DOTS/config/mpv $CONFIG/
 ln -sf $DOTS/config/foot $CONFIG/
 ln -sf $DOTS/config/waybar $CONFIG/
-cp $DOTS/config/mozilla/user.js $HOME/user.js
+
+# Firefox
+ffconfig="$HOME/.mozilla/firefox"
+firefox -CreateProfile default
+profile="$(ls "$ffconfig" | grep "[^.]\+\.default")"
+cp "$DOTS/config/mozilla/user.js" "$ffconfig/$profile/user.js"
 
 # ZSH
 [ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
