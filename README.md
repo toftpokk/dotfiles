@@ -88,10 +88,6 @@ If cannot connect, this may help
 	- Multi-account Container
 3. Add user.js <!-- TODO: Open Source own user.js-->
 
-**Password**
-
-Files in `key4.db` and `logins.json` are password-related, to copy passwords, use these
-
 **UserChrome**
 
 1. Create directory at
@@ -125,18 +121,6 @@ For multilib, uncomment `[multilib]` and `Include` in line 94
 	cp other/30-touchpad.conf /etc/X11/xorg.conf.d/
 	cp other/40-libinput.conf /etc/X11/xorg.conf.d/
 	cp other/90-keymap.conf /etc/X11/xorg.conf.d/
-
-### 2.7 Window Swallowing
-
-Install bspswallow from https://github.com/JopStro/bspswallow, and put in `~/.local/bin`
-
-Then, edit line 41,
- 
-	noswallow,terminals
-
-Edit line 27,
-
-	=$(get_ppid $pid)
 
 ### 2.8 SSH
 
@@ -199,10 +183,6 @@ Then, get update-resolv-conf https://github.com/alfredopalhares/openvpn-update-r
 Then put into `/etc/openvpn`
 
 ### 2.12 Wine
-
-To install wine
-
-	pacman -S wine zenity winetricks
 
 Clipboard to wine
 
@@ -272,12 +252,6 @@ To install libreoffice
 
 Fo dark mode, install adwaita-qt6 and adwaita-qt5 <!-- TODO Needs more testing-->
 
-### 2.19 Image Editing
-
-To bulk-edit images, use imagemagick
-
-	pacman -S imagemagick
-
 ## 2.20 Network Control
 
 To control network access in applications, use opensnitch
@@ -292,13 +266,3 @@ Then enable
 To see running applications,
 
 	opensnitch-ui
-
-## 2.21 Wallpaper
-
-Install swww
-
-## 2.22 Ripdrag
-
-Install icon dragger
-
-	cargo install ripdrag
