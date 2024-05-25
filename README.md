@@ -158,7 +158,10 @@ To copy keys to host
 
 ### 2.9 Backlights
 
-If backlight does not work, i.e. `super+shift+plus`, add `./other/backlight.rules` to `/etc/udev/rules.d`, modifying `KERNEL` to backlight name in `/sys/class/backlight/NAME`
+If backlight does not work, i.e. `super+shift+plus`,
+add `./other/backlight.rules` to `/etc/udev/rules.d`, 
+modifying `KERNEL=="NAME"` to backlight from in path `/sys/class/backlight/NAME`
+and restart computer
 
 ### 2.10 Bluetooth
 
