@@ -40,7 +40,7 @@ sudo pacman -Syu --noconfirm --needed \
 'docker' 'docker-compose' 'pavucontrol' 'typescript-language-server' 'wofi'
 
 echo "To Install manually"
-echo 'wine'
+echo 'wine' 'winetricks'
 
 # for screenshare
 # xdg-desktop-portal-hyprland https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
