@@ -15,7 +15,6 @@ require('user.gitsigns')
 require('user.telescope')
 require('user.qf')
 require('user.toggleterm')
--- require('user.neovide')
 
 -- :set vim.opt.option_name
 local options = {
@@ -144,4 +143,15 @@ end
 
 -- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
+-- Return to last pos, See: https://www.reddit.com/r/neovim/comments/uri33x/autocommand_to_go_to_last_position_in_the_document/
+vim.api.nvim_create_autocmd({'BufReadPost'},{
+  pattern='*',
+  callback = function()
+    local test_pos = vim.api.nvim_buf_get_mark(0,'\"')
+    local last_line = vim.api.nvim_buf_line_count(0)
+    if test_pos[1] > 0 and test_pos[1] <= last_line then
+      vim.api.nvim_win_set_cursor(0,test_pos)
+    end
+  end
+})
 
