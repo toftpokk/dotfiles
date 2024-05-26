@@ -1,6 +1,13 @@
 #!/bin/sh
 # inspired by https://github.com/PoSayDone/.dotfiles_new
 set -euo pipefail
+
+# Initial checks
+if [ "$(whoami)" = "root" ]; then
+  echo "Please run script as user"
+  exit
+fi
+
 DOTS="$HOME/dotfiles"
 CONFIG="$HOME/.config"
 LOCAL="$HOME/.local"
