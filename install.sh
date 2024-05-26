@@ -95,6 +95,7 @@ profile="$(ls "$ffconfig" | grep "[^.]\+\.default")"
 cp "$DOTS/config/mozilla/user.js" "$ffconfig/$profile/user.js"
 
 # ZSH
+chsh -s /usr/bin/zsh
 [ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
 ln -sf $DOTS/config/zsh/zshrc $CONFIG/zsh/.zshrc
 ln -sf $DOTS/config/zsh/zprofile $CONFIG/zsh/.zprofile
