@@ -12,10 +12,6 @@ DOTS="$HOME/dotfiles"
 CONFIG="$HOME/.config"
 LOCAL="$HOME/.local"
 GIT_PROJECTS="$HOME/git-projects"
-DESKTOP="$HOME/Desktop"
-PERSONAL="$HOME/Personal"
-PROJECTS="$HOME/Projects"
-BACKGROUNDS="$HOME/Backgrounds"
 STATE="$HOME/.local/state"
 
 # Pacman
@@ -119,10 +115,14 @@ ln -sf $DOTS/fonts/* $LOCAL/share/fonts
 # Autostart is just a suggestion
 cp $DOTS/other/autostart $LOCAL/bin/autostart
 
-[ ! -d "$DESKTOP" ] && mkdir "$DESKTOP"
-[ ! -d "$PERSONAL" ] && mkdir "$PERSONAL"
-[ ! -d "$PROJECTS" ] && mkdir "$PROJECTS"
-[ ! -d "$BACKGROUNDS" ] && mkdir "$BACKGROUNDS"
 [ ! -d "$STATE" ] && mkdir -p "$STATE"
+[ ! -d "$HOME/Desktop" ] &&       mkdir "$HOME/Desktop"
+[ ! -d "$HOME/Personal" ] &&      mkdir "$HOME/Personal"
+[ ! -d "$HOME/Personal/Notes" ] && mkdir "$HOME/Personal/Notes"
+[ ! -d "$HOME/Projects" ] &&      mkdir "$HOME/Projects"
+[ ! -d "$HOME/Backgrounds" ] &&   mkdir "$HOME/Backgrounds"
+[ ! -d "$HOME/Entertainment" ] && mkdir "$HOME/Entertainment"
+[ ! -d "$HOME/test" ] &&          mkdir "$HOME/test"
+[ ! -d "$HOME/Mount" ] &&         mkdir "$HOME/Mount"
 
 echo "Done!"
