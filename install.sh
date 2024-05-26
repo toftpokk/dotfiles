@@ -60,7 +60,7 @@ sudo pacman -Syu --noconfirm --needed \
 
 paru -S --needed --noconfirm \
 'nsxiv' 'fonts-tlwg' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git' 'swww' \
-'hunspell-th'
+'hunspell-th' 'vscodium-bin'
 
 # Symlinks
 echo "Symlinking"
