@@ -24,6 +24,7 @@ sudo mv "/etc/pacman.conf" "/etc/pacman.conf.bak"
 sudo cp "$DOTS/other/pacman.conf" "pacman.conf"
 sudo chmod 644 "pacman.conf"
 sudo chown root:root "pacman.conf"
+sudo pacman -Syu
 
 # Paru
 echo "Installing paru"
