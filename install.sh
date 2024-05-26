@@ -11,6 +11,13 @@ PROJECTS="$HOME/Projects"
 BACKGROUNDS="$HOME/Backgrounds"
 STATE="$HOME/.local/state"
 
+# Pacman
+echo "Installing Pacman config"
+sudo mv "/etc/pacman.conf" "/etc/pacman.conf.bak"
+sudo cp "$DOTS/other/pacman.conf" "pacman.conf"
+sudo chmod 644 "pacman.conf"
+sudo chown root:root "pacman.conf"
+
 # Paru
 echo "Installing paru"
 [ ! -d "$GIT_PROJECTS" ] && mkdir "$GIT_PROJECTS"
