@@ -1,59 +1,75 @@
-local Plug = vim.fn['plug#']
-vim.call('plug#begin','~/.local/share/nvim')
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
 
--- Git
---  -- Plug('jreybert/vimagit')
-Plug('tpope/vim-fugitive')
-Plug 'sindrets/diffview.nvim'
+local packer_bootstrap = ensure_packer()
 
--- LSP
-Plug('neovim/nvim-lspconfig')
+return require('packer').startup(function(use)
+  -- Packer itself
+  use 'wbthomason/packer.nvim'
 
--- Highlights
-Plug('Fymyte/rasi.vim') -- Rofi
-Plug('elkowar/yuck.vim') -- Yuck
+  -- Git
+  use 'tpope/vim-fugitive'
+  use 'sindrets/diffview.nvim'
 
--- Nerdtree alt
-Plug('nvim-tree/nvim-tree.lua')
+  -- LSP
+  use 'neovim/nvim-lspconfig'
 
--- FZF
-Plug('junegunn/fzf.vim')
-Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.x' }) -- FZF Replacement
-Plug('nvim-lua/plenary.nvim') -- telescope dependency
+  -- Highlights
+  use 'Fymyte/rasi.vim'  -- Rofi
+  use 'elkowar/yuck.vim'  -- Yuck
 
--- Snippets
-Plug("L3MON4D3/LuaSnip",{['tag'] = 'v<CurrentMajor>.*'})
-Plug("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+  -- Nerdtree alt
+  use 'nvim-tree/nvim-tree.lua'
 
--- Tree-sitter syntax
-Plug('nvim-treesitter/nvim-treesitter',{['do'] = function() return vim.cmd(':TSUpdate') end})
+  -- FZF
+  use 'junegunn/fzf.vim'
+  use {'nvim-telescope/telescope.nvim', tag = '0.1.x'} -- FZF Replacement
+  use 'nvim-lua/plenary.nvim' -- telescope dependency
 
--- Comment
-Plug('tpope/vim-commentary')
+  -- Snippets
+  use {'L3MON4D3/LuaSnip', tag = 'v<CurrentMajor>.*'}
+  use 'rafamadriz/friendly-snippets' -- a bunch of snippets to use
 
--- Completions
-Plug("hrsh7th/nvim-cmp") -- The completion plugin
-Plug("hrsh7th/cmp-buffer") -- buffer completions
-Plug("hrsh7th/cmp-path") -- path completions
-Plug("saadparwaiz1/cmp_luasnip") -- snippet completions
-Plug("hrsh7th/cmp-nvim-lsp") -- nvim language servers
-Plug("hrsh7th/cmp-nvim-lua") -- lua api
-Plug("hrsh7th/cmp-cmdline") -- vim commandline
+  -- Tree-sitter syntax
+  use {'nvim-treesitter/nvim-treesitter'}
 
--- Formatting
-Plug("jose-elias-alvarez/null-ls.nvim")
+  -- Comment
+  use 'tpope/vim-commentary'
 
--- Wiki
-Plug("vimwiki/vimwiki")
+  -- Completions
+  use 'hrsh7th/nvim-cmp' -- The completion plugin
+  use 'hrsh7th/cmp-buffer' -- buffer completions
+  use 'hrsh7th/cmp-path' -- path completions
+  use 'saadparwaiz1/cmp_luasnip' -- snippet completions
+  use 'hrsh7th/cmp-nvim-lsp' -- nvim language servers
+  use 'hrsh7th/cmp-nvim-lua' -- lua api
+  use 'hrsh7th/cmp-cmdline' -- vim commandline
 
--- Indent Lines
-Plug("lukas-reineke/indent-blankline.nvim")
-Plug("lewis6991/gitsigns.nvim")
+  -- Formatting
+  use 'jose-elias-alvarez/null-ls.nvim'
 
--- Quick Fix/Location List 
-Plug('ten3roberts/qf.nvim')
+  -- Wiki
+  use 'vimwiki/vimwiki'
 
--- Terminal
-Plug('akinsho/toggleterm.nvim', {['tag'] = '*'})
+  -- Indent Lines
+  use "lukas-reineke/indent-blankline.nvim"
+  use 'lewis6991/gitsigns.nvim'
 
-vim.call('plug#end')
+  -- Quick Fix/Location List 
+  use 'ten3roberts/qf.nvim'
+
+  -- Terminal
+  use {'akinsho/toggleterm.nvim', tag = '*'}
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
