@@ -99,8 +99,7 @@ statusline=table.concat {
 }
 vim.cmd("set statusline="..statusline)
 
--- Augroup
-local filetype_tsv = vim.api.nvim_create_augroup('filetype_tsv',{clear=true})
+-- Auto format
 vim.api.nvim_create_autocmd({"BufWritePost"}, {
 	pattern="*.tex",
 	callback = function()
@@ -108,6 +107,8 @@ vim.api.nvim_create_autocmd({"BufWritePost"}, {
     -- vim.api.nvim_exec("exec '!latexmk -xelatex %'",true) -- works with thai text
 	end
 })
+
+-- Filetypes
 vim.api.nvim_create_autocmd({"BufRead","BufNewFile"}, {
 	pattern="nginx.conf",
 	callback = function()
