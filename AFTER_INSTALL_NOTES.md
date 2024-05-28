@@ -1,3 +1,17 @@
+## Mirrors
+
+Updating mirrors makes pacman a LOT faster
+
+Mirrors: https://wiki.archlinux.org/title/Mirrors
+```sh
+# /etc/pacman.d/mirrorlist
+# Thailand
+Server = https://mirror.cyberbits.asia/archlinux/$repo/os/$arch
+Server = http://mirror.kku.ac.th/archlinux/$repo/os/$arch
+Server = https://mirror.kku.ac.th/archlinux/$repo/os/$arch
+Server = http://mirror2.totbb.net/archlinux/$repo/os/$arch
+```
+
 ## Git
 
 Config git in `$XDG_CONFIG_HOME/git/config`
