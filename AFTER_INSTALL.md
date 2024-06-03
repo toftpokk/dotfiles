@@ -12,6 +12,8 @@ mv ~/Download/LocalSend* ~/.local/bin/
 4. Configure firefox
 - ublock origin
 - bitwarden
+- both incognito enabled (`about:addons`)
+- user-agent switcher
 - default browser duckduckgo
 
 6. Install ssh configs
@@ -79,3 +81,5 @@ sudo systemctl daemon-reload
 ```
 
 13. Put wallpapers in `~/Backgrounds`
+14. Install LINE
+https://line.me/en/
