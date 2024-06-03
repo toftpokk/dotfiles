@@ -1,24 +1,55 @@
 #!/bin/sh
-default_dirs=`echo ~/Backgrounds/cultured ~/Backgrounds/unsafe`
-safe_dir=~/Backgrounds/safe
+set -Eeuo pipefail
+usage(){
+  cat <<EOF
+Usage:
+  wallpaper [-d root] [wallpaper directory name]
+  wallpaper [-f local image or directory]
+EOF
+}
 
-if [ "$1" = "-h" ]; then
-  echo "Usage: $0 [Image or Directory]"
-  exit 1
-fi
+root="$HOME/Backgrounds"
+default="safe"
+local=""
 
-# if $@ does not exist, use default_dir
-file_list="$@"
-if [ "$1" = "safe" ]; then
-  # if 1st argument is file, file mode
-  image=$(find $safe_dir -type f | shuf -n 1)
-elif [ -f "$1" ]; then
-  # if 1st argument is file, file mode
-  image="$1"
+OPTIND=1
+while getopts ":hd:f:" arg; do
+  case $arg in
+  d) root="$OPTARG" ;;
+  f) local="$OPTARG" ;;
+  h) usage; exit 0 ;;
+  \?) echo "Invalid option: -$OPTARG"
+    usage; exit 1;;
+  :) echo "Option -$OPTARG requires an argument"
+    usage; exit 1;;
+  esac
+done
+
+# Shift to Required arguments
+shift $((OPTIND-1))
+
+if [ ! -z "$local" ]; then
+  # Local File
+  if [ -f "$local" ]; then
+    image="$local"
+  elif [ -d "$local" ]; then
+    image=$(find "$local" -type f | shuf -n 1)
+  else
+    echo "Argument '$local' is not a file or directory"
+    usage; exit 1
+  fi
 else
-  # dir mode
-  : ${file_list:=$default_dirs}
-  image=$(find $file_list -type f | shuf -n 1)
+  # Not local
+  if [ "$#" -lt 1 ] || [ -z "$1" ]; then
+    image="$(find "$root/$default" -type f | shuf -n 1)"
+  elif [ -f "$root/$1" ]; then
+    image="$1"
+  elif [ -d "$root/$1" ]; then
+    image="$(find "$root/$1" -type f | shuf -n 1)"
+  else
+    echo "Argument '$1' is not a file or directory in '$root'"
+    usage; exit 1
+  fi
 fi
 
 if [ -z "$image" ]; then
@@ -33,4 +64,3 @@ if ! swww query &>/dev/null; then
 else
   swww img "$image" --transition-type wipe
 fi
-
