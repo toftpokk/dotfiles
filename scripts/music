@@ -1,0 +1,38 @@
+#!/bin/sh
+# music [music type]
+# types: th, jp, en
+help(){
+printf "
+Usage:
+ music <option>
+
+Play music from nfs server.
+
+Options:
+(Local)
+ en       english songs
+ th       thai songs
+(Server)
+ jp       japanese songs
+ king     songs by King Bhumibol
+"
+}
+MUSIC_DIR="$HOME/Mount/Music"
+LOCAL_MUSIC_DIR="$HOME/Music"
+
+type=${1}
+if [ "$type" = "jp" ]; then
+  mount ~/Mount/Music && \
+  mpv --shuffle $MUSIC_DIR/jp.m3u --audio-display=no
+elif [ "$type" = "king" ]; then
+  mount ~/Mount/Music && \
+  mpv --shuffle $MUSIC_DIR/HM\ Songs --audio-display=no
+elif [ "$type" = "en" ]; then
+  mpv --shuffle $LOCAL_MUSIC_DIR/english --audio-display=no
+elif [ "$type" = "th" ]; then
+  mpv --shuffle $LOCAL_MUSIC_DIR/thai.m3u --audio-display=no
+else
+  echo "Warning: no song type selected"
+  help
+  # mpv --shuffle ~/Music --audio-display=no
+fi
