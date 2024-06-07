@@ -8,7 +8,7 @@
 # 4. `pair MAC_ADDRESS` to pair
 # 5. `connect MAC_ADDRESS` to connect
 prompt(){
-	dmenu -c -l 10 -p "$1"
+	wofi --dmenu -L 10 -p "$1"
 }
 
 notify_bad(){

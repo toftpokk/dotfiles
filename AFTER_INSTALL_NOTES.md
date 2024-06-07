@@ -83,13 +83,28 @@ If cannot connect, this may help
 ### 2.10 Bluetooth
 
 To install bluetooth
-
-	pacman -S bluez bluez-utils
+```sh
+pacman -S bluez bluez-utils
+```
 
 Then, enable the service
+```sh
+sudo systemctl start bluetooth.service
+# Optionally
+sudo systemctl enable bluetooth.service
+```
 
-	systemctl start bluetooth.service
-	systemctl enable bluetooth.service
+Find devices
+```sh-session
+$ bluetoothctl
+# scan on
+# devices
+# pair MAC:ADDRESS
+# connect MAC:ADDRESS
+```
+Note: devices need to have names, otherwise it's not supposed to be connected
+(Example: headphones which shows up on iphones have names next to mac addresses,
+router does not)
 
 ### 2.11 VPN
 
