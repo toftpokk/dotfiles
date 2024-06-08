@@ -1,11 +1,12 @@
 #!/bin/sh
-cmd="maim -u -o"
+set -euo pipefail
 
+select=0
 while getopts ":sa" opts
 do
 	case $opts in
 		s)
-			cmd="maim -u -s -o"
+      select=1
 			;;
 		*)
 			exit 1
@@ -13,27 +14,13 @@ do
 	esac
 done
 
-
-dir="$HOME/Screenshots"; [ -d "$dir" ] || mkdir "$dir" # Check if dir
-
-fileinc(){
-	# $1 dirname $2 filename
-	# Add filename increment
-	i=1
-	while [ -f "${1}/${2}-$i.png" ]
-	do
-		i=$((i+1))
-	done
-	#
-	echo "${2}-$i"
-}
-
+dir="$HOME/Screenshots"; [ -d "$dir" ] || mkdir "$dir"
 tmp_img="/tmp/screenshot.png"
-
-$cmd | tee "$tmp_img" | xclip -selection clipboard -t image/png
-
-filename=$(fileinc "$dir" "screenshot-$(date '+%Y-%m-%d')" | dmenu -p "Save Screenshot: ")
-[ -z "$filename" ] && exit 0
-path="$dir/$filename.png"
-
-mv "$tmp_img" "$path" && notify-send -i "$path" "Screenshot" "$path"
+if [ "$select" = 1 ]; then
+  grim -g "$(slurp 2>/dev/null)" - 2>/dev/null | tee "$tmp_img" | wl-copy
+else
+  grim - | tee "$tmp_img" | wl-copy
+fi
+path="$dir/$(date +'screenshot-%s.png')"
+mv "$tmp_img" "$path"
+notify-send -i "$path" "Screenshot" "$path"
