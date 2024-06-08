@@ -36,26 +36,43 @@ makepkg -si
 popd
 
 # Dependencies
+pacinstall(){
+  sudo pacman -Syu --noconfirm --needed "$@"
+}
 echo "Installing dependencies"
-sudo pacman -Syu --noconfirm --needed \
-'neovim' 'foot' 'git' 'hyprland' 'lf' 'pipewire' \
-'pipewire-jack' 'pipewire-pulse' 'wireplumber'\
-'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-liberation' \
-'firefox' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf' 'dunst' 'libnotify' \
-'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'wget' 'pamixer' \
-'highlight' 'zsh' 'zsh-completions' 'rofi' 'playerctl' \
-'rsync' 'fzf' 'sshfs' 'udisks2' 'unzip' \
-'cmus' 'openvpn' 'htop' 'trash-cli' 'mpv' \
-'libcanberra' 'ncdu' 'usbutils' 'zip' 'p7zip' 'grim' 'slurp' 'cliphist' 'unrar' 'bash-completion' 'ripgrep' 'waybar' \
-'libsixel' 'chafa' 'hunspell-en_us' 'rust-analyzer' 'swayidle' 'nfs-utils' \
-'acpilight' 'man-db' 'imagemagick' 'ghostscript' \
-'fuse2' 'xclip' 'deluge-gtk' \
-'ldns' 'python-virtualenv' 'bash-language-server' 'pyright' 'python-pip' \
-'docker' 'docker-compose' 'pavucontrol' 'typescript-language-server' 'wofi' \
-'wine' 'libreoffice-fresh' 'xdg-desktop-portal-hyprland'
-
-# for screenshare
-# xdg-desktop-portal-hyprland https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
+# Fonts
+pacinstall 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-liberation'
+## Meta
+pacinstall 'man-db'
+## Compression
+pacinstall 'zip' 'unzip' 'p7zip' 'unrar'
+## Documents
+pacinstall 'libreoffice-fresh' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf'
+## Development
+pacinstall 'docker' 'docker-compose' 'python-virtualenv' 'neovim' 'git' 'python-pip' \
+  'bash-language-server' 'pyright' 'rust-analyzer' 'typescript-language-server'
+## Image Capture & Editing
+pacinstall 'imagemagick' 'ghostscript' 'grim' 'slurp'
+## File Sharing & Access
+pacinstall 'openvpn' 'sshfs' 'udisks2' 'nfs-utils' 'fuse2' 'deluge-gtk' 'rsync'
+## Web & Network
+pacinstall 'wget' 'firefox' 'ldns'
+## Directory & Search
+pacinstall 'lf' 'highlight' 'fzf' 'ncdu' 'ripgrep'
+## Terminal
+pacinstall 'zsh' 'zsh-completions' 'bash-completion' 'foot'
+## Desktop Linux Utilities
+pacinstall 'hyprland' 'xdg-desktop-portal-hyprland' 'swayidle' 'xclip' 'cliphist' \
+   'htop' 'trash-cli' 'libsixel' 'chafa' \
+   'waybar' 'dunst' 'libnotify' 'playerctl' 'libcanberra' 'wofi'
+## System Utilities
+pacinstall 'usbutils' 'acpilight'
+## Audio/Visual
+pacinstall 'pipewire' 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'pavucontrol' 'pamixer' 'mpv'
+## Language
+pacinstall 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'hunspell-en_us'
+## Wine
+pacinstall 'wine'
 
 paru -S --needed --noconfirm \
 'nsxiv' 'fonts-tlwg' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git' 'swww' \
