@@ -53,8 +53,6 @@ git clone git@github.com:toftpokk/dotfiles.git
 ```sh
 sudo cp ./other/backlight.rules /etc/udev/rules.d
 sudo chmod 644 /etc/udev/rules.d/backlight.rules
-blname="$(ls /sys/class/backlight/)"
-sudo sed -i "s/amdgpu_bl0/$blname/g" /etc/udev/rules.d/backlight.rules
 ```
 
 10. Install Thai Fonts
