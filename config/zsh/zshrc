@@ -48,6 +48,8 @@ alias b="blog"
 bindkey -M menuselect '^[[Z' reverse-menu-complete # Shift-tab reverse menu
 
 # Control Left/Right
+bindkey -e # disable vim mode
+
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 bindkey '^a' beginning-of-line #  go to beginning
