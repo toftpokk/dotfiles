@@ -1,38 +1,46 @@
 #!/bin/sh
-# music [music type]
-# types: th, jp, en
+
 help(){
 printf "
 Usage:
- music <option>
+ music <list>
 
 Play music from nfs server.
 
-Options:
-(Local)
- en       english songs
- th       thai songs
-(Server)
- jp       japanese songs
- king     songs by King Bhumibol
+Sample Config file:
+
+  #!/bin/sh
+  playlist=('jp')
+
+  PLAYLIST_jp(){
+    mount ~/Music && mpv --shuffle /path/to/music --audio-display=no
+  }
+
 "
 }
-MUSIC_DIR="$HOME/Mount/Music"
-LOCAL_MUSIC_DIR="$HOME/Music"
 
-type=${1}
-if [ "$type" = "jp" ]; then
-  mount ~/Mount/Music && \
-  mpv --shuffle $MUSIC_DIR/jp.m3u --audio-display=no
-elif [ "$type" = "king" ]; then
-  mount ~/Mount/Music && \
-  mpv --shuffle $MUSIC_DIR/HM\ Songs --audio-display=no
-elif [ "$type" = "en" ]; then
-  mpv --shuffle $LOCAL_MUSIC_DIR/english --audio-display=no
-elif [ "$type" = "th" ]; then
-  mpv --shuffle $LOCAL_MUSIC_DIR/thai.m3u --audio-display=no
+: ${XDG_CONFIG_HOME:=$HOME/.config}
+
+if [ -f "${XDG_CONFIG_HOME}/music/config.conf" ]; then
+  source "${XDG_CONFIG_HOME}/music/config.conf"
 else
-  echo "Warning: no song type selected"
+  echo "Error: Config file not found"
+  exit 1
+fi
+
+lists="${playlist[@]}"
+
+found=0
+for list in "${playlist[@]}"; do
+  if [ "$1" = "$list" ]; then
+    eval "PLAYLIST_$1"
+  fi
+done
+
+if [ "$found" -eq 0 ]; then
+  echo "Error: List not found"
   help
-  # mpv --shuffle ~/Music --audio-display=no
+  echo "Available lists:
+  ${lists}
+"
 fi
