@@ -31,5 +31,8 @@ set completion-highlight-bg     "#5066C6"
 set recolor-lightcolor          "#181818"
 set recolor-darkcolor           "#e8e8e8"
 
+# Clears message
+set database "sqlite"
+
 set font	"Hack Nerd Font normal 15"
 set selection-clipboard clipboard
