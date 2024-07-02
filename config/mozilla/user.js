@@ -11,3 +11,7 @@ user_pref("extensions.pocket.enabled", false);
 // Data collection
 user_pref("browser.discovery.enabled", false);
 user_pref("datareporting.healthreport.uploadEnabled", false);
+// Userchrome
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets",true);
+// Transparency
+user_pref("gfx.webrender.all",true);
