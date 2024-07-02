@@ -1,0 +1,39 @@
+/*
+Based on u/leo_sk5 's config
+https://www.reddit.com/r/FirefoxCSS/comments/gk93p2/help_in_creating_a_transparent_userchromecss/
+ */
+
+/* Upper tabbar transparency */
+window, #main-window, #toolbar-menubar, #TabsToolbar, #PersonalToolbar, #navigator-toolbox,#sidebar-box{
+  background-color: rgba(41,47,52,0.3) !important;
+}
+
+/* Lower navbar transparency */
+window, #nav-bar{
+  background-color: rgba(33,37,41,0.0) !important;
+}
+
+/* Active tab transparency */
+.tab-background[selected=""] {
+  background: rgba(33,37,41,0.5) !important;
+} 
+
+/*
+ Note: this depends on windowmanager
+ https://www.reddit.com/r/FirefoxCSS/comments/1cqzze7/change_the_body_colour_of_the_context_menu/
+ */
+
+/* Popup menu transparency */
+menupopup {
+  --panel-background: rgba(33,37,41,0.12) !important;
+}
+
+/* Does not work */
+/*
+ * https://github.com/rkcpn/simple-transparent-firefox/blob/main/userChrome.css
+ * https://www.reddit.com/r/FirefoxCSS/comments/vxgqlo/how_to_make_url_bar_background_blurred/
+ */
+/* #urlbar-background { */
+/* 	background: transparent !important; */
+/*   backdrop-filter: blur(15px) !important; */
+/* } */
