@@ -15,7 +15,7 @@ window, #nav-bar{
 
 /* Active tab transparency */
 .tab-background[selected=""] {
-  background: rgba(33,37,41,0.5) !important;
+  background: rgba(100,100,100,0.4) !important;
 } 
 
 /*
@@ -23,10 +23,13 @@ window, #nav-bar{
  https://www.reddit.com/r/FirefoxCSS/comments/1cqzze7/change_the_body_colour_of_the_context_menu/
  */
 
-/* Popup menu transparency */
-menupopup {
-  --panel-background: rgba(33,37,41,0.12) !important;
-}
+/*
+  Popup menu transparency
+  Note: Too bright for bright pages, too dark for dark ones
+ */
+/* menupopup { */
+/*   --panel-background: rgba(33,37,41,0.3) !important; */
+/* } */
 
 /* Does not work */
 /*
