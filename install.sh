@@ -135,7 +135,12 @@ ln -sf $DOTS/scripts $LOCAL/
 [ ! -d "$LOCAL/share" ] && mkdir "$LOCAL/share"
 [ ! -d "$LOCAL/share/fonts" ] && mkdir "$LOCAL/share/fonts"
 ln -sf $DOTS/fonts/* $LOCAL/share/fonts
-
+# Systemd files
+[ ! -d "$LOCAL/share/systemd" ] && mkdir "$LOCAL/share/systemd"
+[ ! -d "$LOCAL/share/systemd/user" ] && mkdir "$LOCAL/share/systemd/user"
+ln -sf "$DOTS/systemd/automount.service" "$LOCAL/share/systemd/user/automount.service"
+systemctl start --user automount.service
+systemctl enable --user automount.service
 
 [ ! -d "$LOCAL/bin" ] && mkdir "$LOCAL/bin"
 # Autostart is just a suggestion
