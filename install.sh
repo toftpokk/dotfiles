@@ -87,6 +87,7 @@ ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
 [ ! -d "$CONFIG/fcitx5" ] && mkdir "$CONFIG/fcitx5"
 ln -sf $DOTS/config/fcitx5/config $CONFIG/fcitx5/config
 ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
+# TODO theme, classicui
 
 ## GTK
 ln -sf $DOTS/config/gtk-2.0 $CONFIG/
