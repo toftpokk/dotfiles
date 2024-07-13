@@ -87,7 +87,10 @@ ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
 [ ! -d "$CONFIG/fcitx5" ] && mkdir "$CONFIG/fcitx5"
 ln -sf $DOTS/config/fcitx5/config $CONFIG/fcitx5/config
 ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
-# TODO theme, classicui
+[ ! -d "$CONFIG/fcitx5/conf" ] && mkdir "$CONFIG/fcitx5/conf"
+ln -sf $DOTS/config/fcitx5/classicui.conf $CONFIG/fcitx5/conf/classicui.conf
+[ ! -d "$LOCAL/share/fcitx5/themes" ] && mkdir "$LOCAL/share/fcitx5/themes"
+ln -sf $DOTS/config/fcitx5/thaumura $LOCAL/share/fcitx5/themes/thaumura
 
 ## GTK
 ln -sf $DOTS/config/gtk-2.0 $CONFIG/
