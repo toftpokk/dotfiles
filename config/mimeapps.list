@@ -29,7 +29,7 @@ x-scheme-handler/ftp=firefox.desktop;
 x-scheme-handler/chrome=firefox.desktop;
 inode/directory=lf.desktop
 x-scheme-handler/file=nvim.desktop
-text-plain=nvim.desktop
+text/plain=nvim.desktop
 application/javascript=nvim.desktop
 message/rfc822=nvim.desktop
 
