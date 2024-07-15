@@ -14,7 +14,7 @@ return {
   'nvim-tree/nvim-tree.lua',
 
   -- FZF
-  {'nvim-telescope/telescope.nvim', tag = '0.1.x'}, -- FZF Replacement
+  {'nvim-telescope/telescope.nvim', tag = '0.1.8'}, -- FZF Replacement
   'nvim-lua/plenary.nvim',
 
   -- Snippets
