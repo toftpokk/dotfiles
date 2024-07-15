@@ -1,6 +1,10 @@
 -- Toftpokk's Vim Config
 
+-- Lazy.nvim needs leader first
+vim.g.mapleader = ' '
+
 ---- Plugins
+require('user.bootstrap')
 require('user.plugins')
 require('user.cmp')
 require('user.keymap')
@@ -52,7 +56,6 @@ local options = {
   colorcolumn="80", -- put a color column at col=80
 }
 vim.syntax=true
-vim.g.mapleader = ' '
 
 -- Fold makes nvim *slow*
 -- vim.opt.foldmethod="indent"
