@@ -53,7 +53,7 @@ local options = {
   scrolloff=5, -- top/bottom spacing when scrolling
 
   delcombine=true,
-  colorcolumn="80", -- put a color column at col=80
+  -- colorcolumn="80", -- put a color column at col=80
 }
 vim.syntax=true
 
