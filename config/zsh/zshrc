@@ -11,15 +11,11 @@ zle_highlight=('paste:none') # disable paste highlight
 
 unsetopt BEEP # disable beep
 
-    # Reduce performance penalty https://wiki.archlinux.org/title/Color_output_in_console
-    # eval $(dircolors -p | perl -pe 's/^((CAP|S[ET]|O[TR]|M|E)\w+).*/$1 00/' | dircolors -)
-eval $(dircolors)
-
 #### COMPLETIONS ####
 autoload -Uz compinit
 
 # menu selection will start automatically
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors "di=01;34"
 zstyle ':completion:*' menu select
 zstyle ':completion:*' completer _complete _approximate _ignored
 
