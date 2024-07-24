@@ -293,53 +293,53 @@ Vagrantfile             
 # image formats (extensions from dircolors defaults)
 *.jpg   
 *.jpeg  
-*.mjpg  
-*.mjpeg 
+# *.mjpg  
+# *.mjpeg 
 *.gif   
 *.bmp   
-*.pbm   
-*.pgm   
-*.ppm   
-*.tga   
-*.xbm   
-*.xpm   
-*.tif   
-*.tiff  
+# *.pbm   
+# *.pgm   
+# *.ppm   
+# *.tga   
+# *.xbm   
+# *.xpm   
+# *.tif   
+# *.tiff  
 *.png   
 *.svg   
-*.svgz  
-*.mng   
-*.pcx   
-*.mov   
-*.mpg   
-*.mpeg  
-*.m2v   
-*.mkv   
-*.webm  
-*.ogm   
-*.mp4   
-*.m4v   
-*.mp4v  
-*.vob   
-*.qt    
-*.nuv   
-*.wmv   
-*.asf   
-*.rm    
-*.rmvb  
-*.flc   
-*.avi   
-*.fli   
-*.flv   
-*.gl    
-*.dl    
+# *.svgz  
+# *.mng   
+# *.pcx   
+# *.mov   
+# *.mpg   
+# *.mpeg  
+# *.m2v   
+# *.mkv   V
+# *.webm  V
+# *.ogm   
+# *.mp4   V
+# *.m4v   
+# *.mp4v  
+# *.vob   
+# *.qt    
+# *.nuv   
+# *.wmv   
+# *.asf   
+# *.rm    
+# *.rmvb  
+# *.flc   
+# *.avi   
+# *.fli   
+# *.flv   V
+# *.gl    
+# *.dl    
 *.xcf   
-*.xwd   
-*.yuv   
-*.cgm   
-*.emf   
-*.ogv   
-*.ogx   
+# *.xwd   
+# *.yuv   
+# *.cgm   
+# *.emf   
+# *.ogv   
+# *.ogx   
 
 # audio formats (extensions from dircolors defaults)
 *.aac   墳
@@ -401,3 +401,13 @@ Vagrantfile             
 *.bak 
 
 *.torrent 
+
+# Videos
+*.mkv   
+*.webm  
+*.mp4   
+*.flv   
+
+# Images
+*.ico   
+*.webp   
