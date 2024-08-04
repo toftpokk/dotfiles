@@ -7,7 +7,7 @@ case "$(file --mime-type -L -b -- "$1" )" in
     chafa -f sixel -s "$2x$3" --animate off --polite on "$1"
     exit 1
     ;;
-	audio/*|video/*) audinfo "$1";;
+	audio/*|video/*) ~/.config/lf/scripts/audinfo "$1";;
 	application/pdf) pdftotext -l 10 -nopgbrk -q -- "$1" -;;
 	application/gzip|application/x-tar|application/zip|application/x-rar) printf "\e[0;30;44m Archived File List \e[0m\n" && bsdtar --list --file "$1" ;;
 	inode/x-empty) printf "\e[0;30;43m Empty \e[0m\n" ;;

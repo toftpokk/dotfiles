@@ -8,7 +8,7 @@ set period 10
 
 # Basic Settings
 set preview true
-set previewer preview
+set previewer ~/.config/lf/scripts/preview
 set sixel true
 # set hidden on
 set icons true
