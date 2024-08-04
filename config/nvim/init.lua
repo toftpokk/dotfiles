@@ -23,13 +23,6 @@ require('user.toggleterm')
 -- :set vim.opt.option_name
 local options = {
   -- Tabs
-  -- tabstop=4,			-- one tab = 4 colums
-  -- softtabstop=4,		-- All tabs equal to 4
-  -- shiftwidth=4,			-- >> and << move width
-  -- expandtab=false,		-- Use tabs when presses tab
-  -- smarttab=true,		-- Tabs are only used for indentation
-
-  -- ***eslint
   expandtab=true,		-- Use tabs when presses tab
   tabstop=2,			-- one tab = 4 colums
   softtabstop=2,		-- All tabs equal to 4
