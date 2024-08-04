@@ -58,7 +58,7 @@ pacinstall 'openvpn' 'sshfs' 'udisks2' 'nfs-utils' 'fuse2' 'deluge-gtk' 'rsync'
 ## Web & Network
 pacinstall 'wget' 'firefox' 'ldns'
 ## Directory & Search
-pacinstall 'lf' 'highlight' 'fzf' 'ncdu' 'ripgrep'
+pacinstall 'lf' 'highlight' 'fzf' 'ncdu' 'ripgrep' 'borg'
 ## Terminal
 pacinstall 'zsh' 'zsh-completions' 'bash-completion' 'foot'
 ## Desktop Linux Utilities
