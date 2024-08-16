@@ -81,3 +81,9 @@ sudo systemctl daemon-reload
 13. Put wallpapers in `~/Backgrounds`
 14. Install LINE
 https://line.me/en/
+
+15. Add private environmental variables
+```sh
+cp private_env.example ~/.config/private_env
+vim ~/.config/private_env
+```

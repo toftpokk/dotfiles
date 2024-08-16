@@ -1,7 +1,8 @@
 #!/bin/sh
+# https://borgbackup.readthedocs.io/en/latest/quickstart.html#automating-backups
 
 # Setting this, so the repo does not need to be given on the commandline:
-export BORG_REPO=$HOME/Backups
+export BORG_REPO=${BORG_REPO:-$HOME/Backups}
 
 # some helpers and error handling:
 info() { printf "\n%s %s\n\n" "$( date )" "$*" >&2; }

@@ -65,3 +65,5 @@ PROMPT='%B%F{red}%n%f%F{green}@%m%f %c%F{green}%#%f%b '
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=1000000
 SAVEHIST=1000000
+
+[ -f "$XDG_CONFIG_HOME/private_env" ] && source "$XDG_CONFIG_HOME/private_env"
