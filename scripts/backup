@@ -26,7 +26,6 @@ borg create                         \
     ::'{hostname}-{now}'            \
     $HOME/Backgrounds \
     $HOME/Documents \
-    $HOME/Entertainment \
     $HOME/Personal \
     $HOME/Screenshots \
     $HOME/.wine/drive_c/users/${USER}/Documents
