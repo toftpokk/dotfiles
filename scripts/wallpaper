@@ -9,7 +9,7 @@ EOF
 }
 
 root="$HOME/Backgrounds"
-default="safe"
+default=""
 local=""
 
 OPTIND=1
