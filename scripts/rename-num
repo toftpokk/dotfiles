@@ -16,3 +16,12 @@ mv 6.jpg 06.jpg
 mv 7.jpg 07.jpg
 mv 8.jpg 08.jpg
 mv 9.jpg 09.jpg
+mv 1.webp 01.webp
+mv 2.webp 02.webp
+mv 3.webp 03.webp
+mv 4.webp 04.webp
+mv 5.webp 05.webp
+mv 6.webp 06.webp
+mv 7.webp 07.webp
+mv 8.webp 08.webp
+mv 9.webp 09.webp
