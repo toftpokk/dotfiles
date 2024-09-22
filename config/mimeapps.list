@@ -15,6 +15,7 @@ audio/x-hx-aac-adts=mpv.desktop;
 audio/mpeg=mpv.desktop;
 video/x-matroska=mpv.desktop;
 video/mp4=mpv.desktop;
+video/webm=mpv.desktop;
 application/vnd.oasis.opendocument.text=libreoffice.desktop;
 application/vnd.oasis.opendocument.spreadsheet=libreoffice.desktop;
 application/vnd.oasis.opendocument.presentation=libreoffice.desktop;
