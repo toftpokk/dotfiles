@@ -1,6 +1,7 @@
 #!/bin/sh
 read -r -d '' ACTIONS <<EOF
 Change Selection
+Set Resolution
 Disable
 Enable
 Mirror To ...
@@ -32,6 +33,17 @@ while true; do
   action="$(printf "$ACTIONS" | dmenu -p "$monitor")"
   case "$action" in
     "Change Selection")
+      ;;
+    "Set Resolution")
+      resolution="$(hyprctl monitors all -j | jq -r ".[] | select(.name==\"${monitor}\") | .availableModes | join(\"\n\")" | dmenu -p "$monitor Resolution To ...")"
+      [ "$resolution" = "" ] && exit
+      scale="$(printf "auto\n0.5\n0.75\n0.8\n0.9\n1\n2" | dmenu -p "$monitor Set Scale ...")"
+      if [ "$scale" = "auto" ]; then
+        scale="auto"
+      elif [ "$scale" = "" ]; then
+        exit
+      fi
+      hyprctl keyword monitor "$monitor,$resolution,auto,$scale"
       ;;
     "Mirror To ...")
       dest="$(printf "$monitors" | dmenu -p "$monitor Mirror To ...")"
