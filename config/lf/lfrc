@@ -18,7 +18,7 @@ cmd open ${{
     case $(file --mime-type "$f" -Lb) in
         text/*|application/javascript|application/json|inode/x-empty|application/csv) $EDITOR "$f";;
 		image/*) nsxiv-rifle "$f";;
-		application/gzip|application/x-rar|application/x-tar|application/x-object);;
+		application/gzip|application/x-rar|application/x-tar|application/x-object|application/zip);;
 		application/x-object|application/x-pie-executable);;
     application/vnd.oasis.opendocument.*) libreoffice "$f" & ;;
 		application/octet-stream);;
