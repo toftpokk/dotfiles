@@ -9,6 +9,7 @@ EOF
 }
 
 root="$HOME/Backgrounds"
+root_exclude="$root/other/*"
 default=""
 local=""
 
@@ -41,11 +42,11 @@ if [ ! -z "$local" ]; then
 else
   # Not local
   if [ "$#" -lt 1 ] || [ -z "$1" ]; then
-    image="$(find "$root/$default" -type f | shuf -n 1)"
+    image="$(find "$root/$default" -type f -not -path "$root_exclude" | shuf -n 1)"
   elif [ -f "$root/$1" ]; then
     image="$1"
   elif [ -d "$root/$1" ]; then
-    image="$(find "$root/$1" -type f | shuf -n 1)"
+    image="$(find "$root/$1" -type f -not -path "$root_exclude" | shuf -n 1)"
   else
     echo "Argument '$1' is not a file or directory in '$root'"
     usage; exit 1
