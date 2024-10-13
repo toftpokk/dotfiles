@@ -15,6 +15,24 @@ lspconfig.bashls.setup{
 lspconfig.rust_analyzer.setup{
   capabilities = capabilities
 }
+lspconfig.gopls.setup{
+  cmd = {'gopls'},
+  -- on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    gopls = {
+      experimentalPostfixCompletions = true,
+      analyses = {
+        unusedparams = true,
+        shadow = true,
+      },
+      staticcheck = true,
+    },
+  },
+  init_options = {
+    usePlaceholders = true,
+  }
+}
 -- nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 -- nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 -- nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
