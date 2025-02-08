@@ -4,6 +4,10 @@
 sudo systemctl reboot
 ```
 
+2. copy secrets
+
+./copy-secrets DESTINATION
+
 3. Install localsend https://localsend.org/download
 ```sh
 mv ~/Download/LocalSend* ~/.local/bin/
