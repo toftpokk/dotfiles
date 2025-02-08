@@ -47,10 +47,11 @@ git config --global user.name "USERNAME"
 git config --global user.email "EMAIL"
 ```
 
-7. Re-download dotfiles
+7. Set remote
 ```sh
 mv dotfiles _dotfiles
-git clone git@github.com:toftpokk/dotfiles.git
+git remote rm origin
+git remote add origin git@github.com:toftpokk/dotfiles.git
 ```
 
 9. Fix backlight
@@ -85,6 +86,7 @@ sudo systemctl daemon-reload
 13. Put wallpapers in `~/Backgrounds`
 14. Install LINE
 https://line.me/en/
+https://desktop.line-scdn.net/win/new/LineInst.exe
 
 15. Add private environmental variables
 ```sh
