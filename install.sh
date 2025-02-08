@@ -17,23 +17,15 @@ STATE="$HOME/.local/state"
 GOPATH="$CONFIG/go"
 
 # Pacman
-echo "Installing Pacman config"
-sudo mv "/etc/pacman.conf" "/etc/pacman.conf.bak"
-sudo cp "$DOTS/other/pacman.conf" "pacman.conf"
-sudo chmod 644 "pacman.conf"
-sudo chown root:root "pacman.conf"
-sudo pacman -Syu
-
-# Paru
-echo "Installing paru"
-[ ! -d "$GIT_PROJECTS" ] && mkdir "$GIT_PROJECTS"
-sudo pacman -S --noconfirm --needed 'rustup' 'base-devel'
-rustup default stable
-pushd "$GIT_PROJECTS"
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-popd
+if cmp -s "/etc/pacman.conf" "$DOTS/other/pacman.conf"; then
+	echo "Pacman config up to date"
+else
+	echo "Installing Pacman config"
+	sudo mv "/etc/pacman.conf" "/etc/pacman.conf.bak"
+	sudo cp "$DOTS/other/pacman.conf" "/etc/pacman.conf"
+	sudo chmod 644 "/etc/pacman.conf"
+	sudo chown root:root "/etc/pacman.conf"
+fi
 
 # Dependencies
 pacinstall(){
@@ -48,11 +40,12 @@ pacinstall 'man-db'
 pacinstall 'zip' 'unzip' 'p7zip' 'unrar'
 ## Documents
 pacinstall 'libreoffice-fresh' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf'
-## Development
-pacinstall 'docker' 'docker-compose' 'python-virtualenv' 'neovim' 'git' 'python-pip' \
-  'bash-language-server' 'pyright' 'rust-analyzer' 'typescript-language-server'
+## Audio/Visual
+pacinstall 'pipewire' 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'pavucontrol' 'pamixer' 'mpv'
+## System Utilities
+pacinstall 'usbutils' 'acpilight'
 ## Image Capture & Editing
-pacinstall 'imagemagick' 'ghostscript' 'grim' 'slurp'
+pacinstall 'imagemagick' 'ghostscript' 'grim' 'slurp' 'nsxiv'
 ## File Sharing & Access
 pacinstall 'openvpn' 'sshfs' 'udisks2' 'nfs-utils' 'fuse2' 'deluge-gtk' 'rsync'
 ## Web & Network
@@ -64,19 +57,14 @@ pacinstall 'zsh' 'zsh-completions' 'bash-completion' 'foot'
 ## Desktop Linux Utilities
 pacinstall 'hyprland' 'xdg-desktop-portal-hyprland' 'swayidle' 'xclip' 'cliphist' \
    'htop' 'trash-cli' 'libsixel' 'chafa' \
-   'waybar' 'dunst' 'libnotify' 'playerctl' 'libcanberra' 'wofi'
-## System Utilities
-pacinstall 'usbutils' 'acpilight'
-## Audio/Visual
-pacinstall 'pipewire' 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'pavucontrol' 'pamixer' 'mpv'
+   'waybar' 'dunst' 'libnotify' 'playerctl' 'libcanberra' 'wofi' 'swww'
 ## Language
 pacinstall 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'hunspell-en_us'
 ## Wine
 pacinstall 'wine'
-
-paru -S --needed --noconfirm \
-'nsxiv' 'fonts-tlwg' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git' 'swww' \
-'hunspell-th' 'vscodium-bin'
+## Development
+pacinstall 'docker' 'docker-compose' 'python-virtualenv' 'neovim' 'git' 'python-pip' \
+  'bash-language-server' 'pyright' 'rust-analyzer' 'typescript-language-server'
 
 # Symlinks
 echo "Symlinking"
@@ -89,6 +77,7 @@ ln -sf $DOTS/config/fcitx5/config $CONFIG/fcitx5/config
 ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
 [ ! -d "$CONFIG/fcitx5/conf" ] && mkdir "$CONFIG/fcitx5/conf"
 ln -sf $DOTS/config/fcitx5/classicui.conf $CONFIG/fcitx5/conf/classicui.conf
+[ ! -d "$LOCAL/share/fcitx5" ] && mkdir "$LOCAL/share/fcitx5"
 [ ! -d "$LOCAL/share/fcitx5/themes" ] && mkdir "$LOCAL/share/fcitx5/themes"
 ln -sf $DOTS/config/fcitx5/thaumura $LOCAL/share/fcitx5/themes/thaumura
 
@@ -102,7 +91,6 @@ ln -sf $DOTS/config/gtk-4.0/settings.ini $CONFIG/gtk-4.0/
 ln -sf $DOTS/config/dunst $CONFIG/
 ln -sf $DOTS/config/highlight $CONFIG/
 ln -sf $DOTS/config/lf $CONFIG/
-ln -sf $DOTS/config/nvim $CONFIG/
 ln -sf $DOTS/config/zathura $CONFIG/
 ln -sf $DOTS/config/mimeapps.list $CONFIG/
 ln -sf $DOTS/config/stalonetrayrc $CONFIG/
@@ -115,12 +103,14 @@ ln -sf $DOTS/config/foot $CONFIG/
 ln -sf $DOTS/config/waybar $CONFIG/
 
 # Firefox
+echo "Symlinking Firefox"
 ffconfig="$HOME/.mozilla/firefox"
-firefox -CreateProfile default
+firefox --headless -CreateProfile default
 profile="$(ls "$ffconfig" | grep "[^.]\+\.default")"
 cp "$DOTS/config/mozilla/user.js" "$ffconfig/$profile/user.js"
 
 # ZSH
+echo "Symlinking ZSH"
 chsh -s /usr/bin/zsh
 [ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
 ln -sf $DOTS/config/zsh/zshrc $CONFIG/zsh/.zshrc
@@ -161,3 +151,9 @@ cp $DOTS/other/autostart $LOCAL/bin/autostart
 [ ! -d "$HOME/Mount" ] &&         mkdir "$HOME/Mount"
 
 echo "Done!"
+
+# TODO AUR only packages
+# 'fonts-tlwg' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git' \
+# 'hunspell-th' 'vscodium-bin'
+
+# TODO install Neovim
