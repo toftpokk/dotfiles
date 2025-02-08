@@ -368,9 +368,6 @@ Vagrantfile             
 *.xml 
 *.o	
 
-# Media
-*.JPG 
-
 # Font
 *.ttf 
 *.woff 
@@ -407,7 +404,9 @@ Vagrantfile             
 *.webm  
 *.mp4   
 *.flv   
+*.mpg   
 
 # Images
 *.ico   
 *.webp   
+*.JPG 
