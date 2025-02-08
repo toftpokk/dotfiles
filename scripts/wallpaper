@@ -59,7 +59,7 @@ if [ -z "$image" ]; then
 fi
 
 if ! swww query &>/dev/null; then
-  swww init --no-cache
+  swww-daemon
   # If not started, set image directly, no transition
   swww img "$image"
 else
