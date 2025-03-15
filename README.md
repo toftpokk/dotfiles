@@ -20,6 +20,7 @@ This is my linux config files, updated as I go.
 	```sh
 	usermod -aG wheel,audio,video,optical,storage $USER
 	```
+  Optionally, add a docker group
 ## Installation
 ```sh
 # As normal user

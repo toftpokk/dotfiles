@@ -4,6 +4,10 @@
 sudo systemctl reboot
 ```
 
+Make sure systemd-homed is running, enabled
+
+  sudo systemctl status systemd-homed
+
 2. copy secrets
 
 ./copy-secrets DESTINATION
