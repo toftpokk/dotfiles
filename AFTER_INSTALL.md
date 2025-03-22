@@ -97,3 +97,5 @@ https://desktop.line-scdn.net/win/new/LineInst.exe
 cp private_env.example ~/.config/private_env
 vim ~/.config/private_env
 ```
+
+16. For mounting ntfs systems, use `ntfs-3g`
