@@ -2,6 +2,7 @@
 # Inspired by neofetch
 board_name=$(cat /sys/devices/virtual/dmi/id/board_name)
 board_vendor=$(cat /sys/devices/virtual/dmi/id/board_vendor)
+product_name=$(cat /sys/devices/virtual/dmi/id/product_name)
 cpu_file="/proc/cpuinfo"
 cpu=$(awk -F '\\s*: | @' \
                             '/model name|Hardware|Processor|^cpu model|chip type|^cpu type/ {
@@ -24,13 +25,22 @@ mem_total="$(cat /proc/meminfo | grep MemTotal | sed -e 's/MemTotal:\s*\([0-9]*\
 
 mem_used="$(((mem_total - mem_available) / 1024))"
 mem_total="$((mem_total / 1024))"
+mem_perc="$(((mem_used*100)/mem_total))"
 
-disk="$(df -h --output=file,source,used,avail / | tail -n 1)"
+disk="$(df -h --output=file,source,used,size / | tail -n 1 | awk '{ print $1,  $2,  $3 "/" $4 " (" int($3*100/$4) "%)" }')"
+
+install_date="$(cat /var/log/pacman.log |
+  head -n 1 |
+  sed -e 's/^\[\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}T[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}[+-][0-9]\{2\}[0-9]\{2\}\).*/\1/g' )"
+
+days_since="$(( ($(date +%s) - $(date +%s -ud ${install_date})) / 3600 / 24 ))"
 
 echo "\
 CPU: $cpu ($cpu_cores)
 Mainboard: $board_name $board_vendor
+Product: $product_name
 GPU:$gpus
-Memory: ${mem_used}MiB/${mem_total}
-Disk: ${disk} \
+Memory: ${mem_used}/${mem_total} MiB (${mem_perc}%)
+Disk: ${disk}
+Installed At: ${install_date} (${days_since} days ago)\
 "
