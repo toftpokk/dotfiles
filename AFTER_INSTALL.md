@@ -99,3 +99,8 @@ vim ~/.config/private_env
 ```
 
 16. For mounting ntfs systems, use `ntfs-3g`
+
+17. Note: some xdg features won't work:
+  Have to use a portal with support: https://wiki.archlinux.org/title/XDG_Desktop_Portal
+  i.e. xdg portal is like LSP, some implementations support some features
+
