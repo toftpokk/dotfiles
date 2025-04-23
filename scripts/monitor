@@ -9,62 +9,61 @@ Mirror From ...
 Stop Mirror
 EOF
 
-dmenu(){
-  wofi --dmenu "$@"
+dmenu() {
+	wofi --dmenu "$@"
 }
 
-mirror(){
-  # $1 src, $2 dest
-  hyprctl keyword monitor "$2,preferred,auto,auto,mirror,$1"
-  # Restart stopped swww
-  sleep 0.1
-  swww-daemon &
-  wallpaper safe
+mirror() {
+	# $1 src, $2 dest
+	hyprctl keyword monitor "$2,preferred,auto,auto,mirror,$1"
+	# Restart stopped swww
+	sleep 0.1
+	swww-daemon &
+	wallpaper safe
 }
 
 ## main
 
 monitors="$(hyprctl monitors all | grep "^Monitor" | cut -f 2 -d" ")"
 while true; do
-  monitor="$(printf "$monitors" | dmenu -p 'Select Monitor')"
-  [ "$monitor" = "" ] && exit
+	monitor="$(printf "$monitors" | dmenu -p 'Select Monitor')"
+	[ "$monitor" = "" ] && exit
 
-  
-  action="$(printf "$ACTIONS" | dmenu -p "$monitor")"
-  case "$action" in
-    "Change Selection")
-      ;;
-    "Set Resolution")
-      resolution="$(hyprctl monitors all -j | jq -r ".[] | select(.name==\"${monitor}\") | .availableModes | join(\"\n\")" | dmenu -p "$monitor Resolution To ...")"
-      [ "$resolution" = "" ] && exit
-      scale="$(printf "auto\n0.5\n0.75\n0.8\n0.9\n1\n2" | dmenu -p "$monitor Set Scale ...")"
-      if [ "$scale" = "auto" ]; then
-        scale="auto"
-      elif [ "$scale" = "" ]; then
-        exit
-      fi
-      hyprctl keyword monitor "$monitor,$resolution,auto,$scale"
-      ;;
-    "Mirror To ...")
-      dest="$(printf "$monitors" | dmenu -p "$monitor Mirror To ...")"
-      [ "$dest" = "" ] && exit
-      mirror "$monitor" "$dest"
-      ;;
-    "Mirror From ...")
-      src="$(printf "$monitors" | dmenu -p "$monitor Mirror To ...")"
-      [ "$src" = "" ] && exit
-      mirror "$src" "$monitor"
-      ;;
-    "Stop Mirror")
-      hyprctl keyword monitor "$monitor,preferred,auto,1"
-      ;;
-    Disable)
-      hyprctl keyword monitor "$monitor, disable"
-      ;;
-    Enable)
-      hyprctl keyword monitor "$monitor,preferred,auto,1"
-      ;;
-    *)
-      exit
-  esac
+	action="$(printf "$ACTIONS" | dmenu -p "$monitor")"
+	case "$action" in
+	"Change Selection") ;;
+	"Set Resolution")
+		resolution="$(hyprctl monitors all -j | jq -r ".[] | select(.name==\"${monitor}\") | .availableModes | join(\"\n\")" | dmenu -p "$monitor Resolution To ...")"
+		[ "$resolution" = "" ] && exit
+		scale="$(printf "auto\n0.5\n0.75\n0.8\n0.9\n1\n2" | dmenu -p "$monitor Set Scale ...")"
+		if [ "$scale" = "auto" ]; then
+			scale="auto"
+		elif [ "$scale" = "" ]; then
+			exit
+		fi
+		hyprctl keyword monitor "$monitor,$resolution,auto,$scale"
+		;;
+	"Mirror To ...")
+		dest="$(printf "$monitors" | dmenu -p "$monitor Mirror To ...")"
+		[ "$dest" = "" ] && exit
+		mirror "$monitor" "$dest"
+		;;
+	"Mirror From ...")
+		src="$(printf "$monitors" | dmenu -p "$monitor Mirror To ...")"
+		[ "$src" = "" ] && exit
+		mirror "$src" "$monitor"
+		;;
+	"Stop Mirror")
+		hyprctl keyword monitor "$monitor,preferred,auto,1"
+		;;
+	Disable)
+		hyprctl keyword monitor "$monitor, disable"
+		;;
+	Enable)
+		hyprctl keyword monitor "$monitor,preferred,auto,1"
+		;;
+	*)
+		exit
+		;;
+	esac
 done

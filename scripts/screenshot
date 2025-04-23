@@ -2,24 +2,24 @@
 set -euo pipefail
 
 select=0
-while getopts ":sa" opts
-do
+while getopts ":sa" opts; do
 	case $opts in
-		s)
-      select=1
-			;;
-		*)
-			exit 1
-			;;
+	s)
+		select=1
+		;;
+	*)
+		exit 1
+		;;
 	esac
 done
 
-dir="$HOME/Screenshots"; [ -d "$dir" ] || mkdir "$dir"
+dir="$HOME/Screenshots"
+[ -d "$dir" ] || mkdir "$dir"
 tmp_img="/tmp/screenshot.png"
 if [ "$select" = 1 ]; then
-  grim -g "$(slurp 2>/dev/null)" - 2>/dev/null | tee "$tmp_img" | wl-copy
+	grim -g "$(slurp 2>/dev/null)" - 2>/dev/null | tee "$tmp_img" | wl-copy
 else
-  grim - | tee "$tmp_img" | wl-copy
+	grim - | tee "$tmp_img" | wl-copy
 fi
 path="$dir/$(date +'screenshot-%s.png')"
 mv "$tmp_img" "$path"

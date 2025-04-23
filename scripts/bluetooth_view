@@ -7,11 +7,11 @@
 # 3. `devices`, get mac address of devices
 # 4. `pair MAC_ADDRESS` to pair
 # 5. `connect MAC_ADDRESS` to connect
-prompt(){
+prompt() {
 	wofi --dmenu -L 10 -p "$1"
 }
 
-notify_bad(){
+notify_bad() {
 	notify-send -i "bluetooth-symbolic.symbolic" "Bluetooth" "$1" -u "critical"
 	exit 1
 }
@@ -29,29 +29,30 @@ cmd=$(printf "Scan\nConnect\nDisconnect" | prompt "Bluetooth")
 [ -z "$cmd" ] && exit
 
 case "$cmd" in
-	Scan)
-		bluetoothctl scan on &
-		sleep 2
-		killall -SIGINT bluetoothctl
-		device=$(\bluetoothctl devices | grep "^Device" | prompt "Devices")
-		[ -z "$device" ] && exit
-		echo "$device" | awk '{printf $2}'
-		;;
-	Connect)
-		conn=$(bluetoothctl devices | prompt "Connect")
-		[ -z "$conn" ] && exit
-		if bluetoothctl connect "$(echo "$conn" | awk '{printf $2}')"; then
-			notify-send -i "bluetooth-symbolic.symbolic" "Bluetooth" "Connected"
-		else
-			notify_bad "Could not connect"
-		fi
-		;;
-	Disconnect)
-		conn=$(bluetoothctl devices | prompt "Connect")
-		[ -z "$conn" ] && exit
-		if bluetoothctl disconnect "$(bluetoothctl info | grep "^Device" -B 8 | awk '{printf $2}')"; then
-			notify-send -i "bluetooth-symbolic.symbolic" "Bluetooth" "Disconnected"
-		else
-			notify_bad "Could not disconnect"
-		fi
+Scan)
+	bluetoothctl scan on &
+	sleep 2
+	killall -SIGINT bluetoothctl
+	device=$(\bluetoothctl devices | grep "^Device" | prompt "Devices")
+	[ -z "$device" ] && exit
+	echo "$device" | awk '{printf $2}'
+	;;
+Connect)
+	conn=$(bluetoothctl devices | prompt "Connect")
+	[ -z "$conn" ] && exit
+	if bluetoothctl connect "$(echo "$conn" | awk '{printf $2}')"; then
+		notify-send -i "bluetooth-symbolic.symbolic" "Bluetooth" "Connected"
+	else
+		notify_bad "Could not connect"
+	fi
+	;;
+Disconnect)
+	conn=$(bluetoothctl devices | prompt "Connect")
+	[ -z "$conn" ] && exit
+	if bluetoothctl disconnect "$(bluetoothctl info | grep "^Device" -B 8 | awk '{printf $2}')"; then
+		notify-send -i "bluetooth-symbolic.symbolic" "Bluetooth" "Disconnected"
+	else
+		notify_bad "Could not disconnect"
+	fi
+	;;
 esac

@@ -4,26 +4,26 @@ menu="Poweroff\nSuspend\nLogout\nReboot"
 ans="$(printf "$menu" | wofi --dmenu -L 6 -p 'Power: ')"
 
 case $ans in
-	Logout)
-		killall lf
-    hyprctl dispatch exit
-		;;
-	Suspend)
-		systemctl suspend
-		;;
-	Reboot)
-		sudo -A reboot
-		;;
-	Poweroff)
-		if pgrep openvpn; then
-			notify-send -u "critical" "Powermenu" "OpenVPN is still up"
-			exit;
-		else
-			killall lf
-			shutdown -h now
-		fi
-		;;
-	*)
+Logout)
+	killall lf
+	hyprctl dispatch exit
+	;;
+Suspend)
+	systemctl suspend
+	;;
+Reboot)
+	sudo -A reboot
+	;;
+Poweroff)
+	if pgrep openvpn; then
+		notify-send -u "critical" "Powermenu" "OpenVPN is still up"
 		exit
-		;;
+	else
+		killall lf
+		shutdown -h now
+	fi
+	;;
+*)
+	exit
+	;;
 esac

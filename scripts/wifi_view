@@ -1,17 +1,17 @@
 #!/bin/sh
 
-prompt(){
+prompt() {
 	wofi --dmenu -L 10 -p "$1"
 }
-error_exit(){
+error_exit() {
 	echo "$1" >&2
 	exit 1
 }
-notify_ok(){
+notify_ok() {
 	notify-send -i "network-wireless-signal-excellent-symbolic.symbolic" "Wifi Connection" "$1"
 }
 
-notify_bad(){
+notify_bad() {
 	notify-send -i "network-wireless-signal-excellent-symbolic.symbolic" -u "critical" "Wifi Connection" "$1"
 	error_exit "$1"
 }
@@ -27,33 +27,33 @@ fi
 command=$(printf "$prompt" | prompt "Connection: ")
 
 case "$command" in
-	Connect)
-		ssid=$(nmcli -f BARS,SSID dev wifi list | sed '1d' | prompt "Connect: " | sed -e 's/ \+/ /' -e 's/ *$//'| cut -f 2- -d " ")
-		[ -z "$ssid" ] && error_exit "No SSID provided"
-		memory=$(nmcli -f NAME con show | grep "$ssid" | head -1 | sed -e 's/ \+/ /' -e 's/ *$//')
-		if [ "${memory}" = "${ssid}" ]; then
-			if nmcli dev wifi connect "${ssid}"; then
-				notify_ok "Connected to $ssid"
-			else
-					notify_bad "Could not connect to $ssid"
-			fi
+Connect)
+	ssid=$(nmcli -f BARS,SSID dev wifi list | sed '1d' | prompt "Connect: " | sed -e 's/ \+/ /' -e 's/ *$//' | cut -f 2- -d " ")
+	[ -z "$ssid" ] && error_exit "No SSID provided"
+	memory=$(nmcli -f NAME con show | grep "$ssid" | head -1 | sed -e 's/ \+/ /' -e 's/ *$//')
+	if [ "${memory}" = "${ssid}" ]; then
+		if nmcli dev wifi connect "${ssid}"; then
+			notify_ok "Connected to $ssid"
 		else
-			pass="$(ask_password)"
-			if nmcli dev wifi connect "${ssid}" password "${pass}"; then
-				notify_ok "Connected to $ssid"
-			else
-				notify_bad "Could not connect to $ssid"
-			fi
+			notify_bad "Could not connect to $ssid"
 		fi
-		;;
-	Disconnect)
-		if nmcli dev disconnect "$dev_name"; then
-			notify_ok "Disconnected $dev_name"
+	else
+		pass="$(ask_password)"
+		if nmcli dev wifi connect "${ssid}" password "${pass}"; then
+			notify_ok "Connected to $ssid"
 		else
-			notify_bad "Could not disconnect $dev_name"
+			notify_bad "Could not connect to $ssid"
 		fi
-		;;
-  "Wifi Password")
-    notify-send "$(nmcli dev wifi show-password)"
-    ;;
+	fi
+	;;
+Disconnect)
+	if nmcli dev disconnect "$dev_name"; then
+		notify_ok "Disconnected $dev_name"
+	else
+		notify_bad "Could not disconnect $dev_name"
+	fi
+	;;
+"Wifi Password")
+	notify-send "$(nmcli dev wifi show-password)"
+	;;
 esac

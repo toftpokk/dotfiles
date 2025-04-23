@@ -4,8 +4,8 @@ set -euo pipefail
 
 # Initial checks
 if [ "$(whoami)" = "root" ]; then
-  echo "Please run script as user"
-  exit
+	echo "Please run script as user"
+	exit
 fi
 
 DOTS="$HOME/dotfiles"
@@ -18,158 +18,157 @@ GOPATH="$CONFIG/go"
 
 ##### Helpers #####
 
-log(){
-  FRED='\033[0;31m'
-  FBLU='\033[0;34m'
-  FNON='\033[0m' # No Color
-  echo -e "$FRED>>>>>> [$1]$FNON $2"
+log() {
+	FRED='\033[0;31m'
+	FBLU='\033[0;34m'
+	FNON='\033[0m' # No Color
+	echo -e "$FRED>>>>>> [$1]$FNON $2"
 }
-pacinstall(){
-  sudo pacman -Syu --noconfirm --needed "$@"
+pacinstall() {
+	sudo pacman -Syu --noconfirm --needed "$@"
 }
 
 ##### Functions #####
 
 # Localdir
-localdir(){
-  log Localdir "Started"
-  mkdir -p "$STATE"
-  mkdir -p "$HOME/Desktop"
-  mkdir -p "$HOME/Personal"
-  mkdir -p "$HOME/Personal/Notes"
-  mkdir -p "$HOME/Projects"
-  mkdir -p "$HOME/Backgrounds"
-  mkdir -p "$HOME/Entertainment"
-  mkdir -p "$HOME/test"
-  mkdir -p "$HOME/Mount"
+localdir() {
+	log Localdir "Started"
+	mkdir -p "$STATE"
+	mkdir -p "$HOME/Desktop"
+	mkdir -p "$HOME/Personal"
+	mkdir -p "$HOME/Personal/Notes"
+	mkdir -p "$HOME/Projects"
+	mkdir -p "$HOME/Backgrounds"
+	mkdir -p "$HOME/Entertainment"
+	mkdir -p "$HOME/test"
+	mkdir -p "$HOME/Mount"
 }
 
 # Pacman
-pacman(){
-  if cmp -s "/etc/pacman.conf" "$DOTS/other/pacman.conf"; then
-    log Pacman "Config up to date"
-    return
-  fi
-  log Pacman "Installing Config"
-  sudo mv "/etc/pacman.conf" "/etc/pacman.conf.bak"
-  sudo cp "$DOTS/other/pacman.conf" "/etc/pacman.conf"
-  sudo chmod 644 "/etc/pacman.conf"
-  sudo chown root:root "/etc/pacman.conf"
+pacman() {
+	if cmp -s "/etc/pacman.conf" "$DOTS/other/pacman.conf"; then
+		log Pacman "Config up to date"
+		return
+	fi
+	log Pacman "Installing Config"
+	sudo mv "/etc/pacman.conf" "/etc/pacman.conf.bak"
+	sudo cp "$DOTS/other/pacman.conf" "/etc/pacman.conf"
+	sudo chmod 644 "/etc/pacman.conf"
+	sudo chown root:root "/etc/pacman.conf"
 }
 
-
 # Dependencies
-dependencies(){
-  log Pacinstall "Installing dependencies"
-  # Fonts
-  pacinstall 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-liberation'
-  ## Meta
-  pacinstall 'man-db'
-  ## Compression
-  pacinstall 'zip' 'unzip' 'p7zip' 'unrar'
-  ## Documents
-  pacinstall 'libreoffice-fresh' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf'
-  ## Audio/Visual
-  pacinstall 'pipewire' 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'pavucontrol' 'pamixer' 'mpv'
-  ## System Utilities
-  pacinstall 'usbutils' 'acpilight'
-  ## Image Capture & Editing
-  pacinstall 'imagemagick' 'ghostscript' 'grim' 'slurp' 'nsxiv'
-  ## File Sharing & Access
-  pacinstall 'openvpn' 'sshfs' 'udisks2' 'nfs-utils' 'fuse2' 'deluge-gtk' 'rsync'
-  ## Web & Network
-  pacinstall 'wget' 'firefox' 'ldns'
-  ## Directory & Search
-  pacinstall 'lf' 'highlight' 'fzf' 'ncdu' 'ripgrep' 'borg'
-  ## Terminal
-  pacinstall 'zsh' 'zsh-completions' 'bash-completion' 'foot'
-  ## Desktop Linux Utilities
-  pacinstall 'hyprland' 'xdg-desktop-portal-hyprland' 'swayidle' 'xclip' 'cliphist' \
-     'htop' 'trash-cli' 'libsixel' 'chafa' \
-     'waybar' 'dunst' 'libnotify' 'playerctl' 'libcanberra' 'wofi' 'swww'
-  ## Language
-  pacinstall 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'hunspell-en_us'
-  ## Wine
-  pacinstall 'wine'
-  ## Development
-  pacinstall 'docker' 'docker-compose' 'python-virtualenv' 'neovim' 'git' 'python-pip' \
-    'bash-language-server' 'pyright' 'rust-analyzer' 'typescript-language-server'
+dependencies() {
+	log Pacinstall "Installing dependencies"
+	# Fonts
+	pacinstall 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-liberation'
+	## Meta
+	pacinstall 'man-db'
+	## Compression
+	pacinstall 'zip' 'unzip' 'p7zip' 'unrar'
+	## Documents
+	pacinstall 'libreoffice-fresh' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf'
+	## Audio/Visual
+	pacinstall 'pipewire' 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'pavucontrol' 'pamixer' 'mpv'
+	## System Utilities
+	pacinstall 'usbutils' 'acpilight'
+	## Image Capture & Editing
+	pacinstall 'imagemagick' 'ghostscript' 'grim' 'slurp' 'nsxiv'
+	## File Sharing & Access
+	pacinstall 'openvpn' 'sshfs' 'udisks2' 'nfs-utils' 'fuse2' 'deluge-gtk' 'rsync'
+	## Web & Network
+	pacinstall 'wget' 'firefox' 'ldns'
+	## Directory & Search
+	pacinstall 'lf' 'highlight' 'fzf' 'ncdu' 'ripgrep' 'borg'
+	## Terminal
+	pacinstall 'zsh' 'zsh-completions' 'bash-completion' 'foot'
+	## Desktop Linux Utilities
+	pacinstall 'hyprland' 'xdg-desktop-portal-hyprland' 'swayidle' 'xclip' 'cliphist' \
+		'htop' 'trash-cli' 'libsixel' 'chafa' \
+		'waybar' 'dunst' 'libnotify' 'playerctl' 'libcanberra' 'wofi' 'swww'
+	## Language
+	pacinstall 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'hunspell-en_us'
+	## Wine
+	pacinstall 'wine'
+	## Development
+	pacinstall 'docker' 'docker-compose' 'python-virtualenv' 'neovim' 'git' 'python-pip' \
+		'bash-language-server' 'pyright' 'rust-analyzer' 'typescript-language-server'
 }
 
 # Symlinks
-symlink(){
-  log Symlink "Started"
-  [ ! -d "$CONFIG" ] && mkdir "$CONFIG"
-  [ ! -d "$CONFIG/cmus" ] && mkdir "$CONFIG/cmus"
-  ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
-  ## Fcitx
-  [ ! -d "$CONFIG/fcitx5" ] && mkdir "$CONFIG/fcitx5"
-  ln -sf $DOTS/config/fcitx5/config $CONFIG/fcitx5/config
-  ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
-  [ ! -d "$CONFIG/fcitx5/conf" ] && mkdir "$CONFIG/fcitx5/conf"
-  ln -sf $DOTS/config/fcitx5/classicui.conf $CONFIG/fcitx5/conf/classicui.conf
-  [ ! -d "$LOCAL/share/fcitx5" ] && mkdir "$LOCAL/share/fcitx5"
-  [ ! -d "$LOCAL/share/fcitx5/themes" ] && mkdir "$LOCAL/share/fcitx5/themes"
-  ln -sf $DOTS/config/fcitx5/thaumura $LOCAL/share/fcitx5/themes/thaumura
+symlink() {
+	log Symlink "Started"
+	[ ! -d "$CONFIG" ] && mkdir "$CONFIG"
+	[ ! -d "$CONFIG/cmus" ] && mkdir "$CONFIG/cmus"
+	ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
+	## Fcitx
+	[ ! -d "$CONFIG/fcitx5" ] && mkdir "$CONFIG/fcitx5"
+	ln -sf $DOTS/config/fcitx5/config $CONFIG/fcitx5/config
+	ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
+	[ ! -d "$CONFIG/fcitx5/conf" ] && mkdir "$CONFIG/fcitx5/conf"
+	ln -sf $DOTS/config/fcitx5/classicui.conf $CONFIG/fcitx5/conf/classicui.conf
+	[ ! -d "$LOCAL/share/fcitx5" ] && mkdir "$LOCAL/share/fcitx5"
+	[ ! -d "$LOCAL/share/fcitx5/themes" ] && mkdir "$LOCAL/share/fcitx5/themes"
+	ln -sf $DOTS/config/fcitx5/thaumura $LOCAL/share/fcitx5/themes/thaumura
 
-  ## GTK
-  ln -sf $DOTS/config/gtk-2.0 $CONFIG/
-  [ ! -d "$CONFIG/gtk-3.0" ] && mkdir "$CONFIG/gtk-3.0"
-  ln -sf $DOTS/config/gtk-3.0/settings.ini $CONFIG/gtk-3.0/
-  [ ! -d "$CONFIG/gtk-4.0" ] && mkdir "$CONFIG/gtk-4.0"
-  ln -sf $DOTS/config/gtk-4.0/settings.ini $CONFIG/gtk-4.0/
+	## GTK
+	ln -sf $DOTS/config/gtk-2.0 $CONFIG/
+	[ ! -d "$CONFIG/gtk-3.0" ] && mkdir "$CONFIG/gtk-3.0"
+	ln -sf $DOTS/config/gtk-3.0/settings.ini $CONFIG/gtk-3.0/
+	[ ! -d "$CONFIG/gtk-4.0" ] && mkdir "$CONFIG/gtk-4.0"
+	ln -sf $DOTS/config/gtk-4.0/settings.ini $CONFIG/gtk-4.0/
 
-  ln -sf $DOTS/config/dunst $CONFIG/
-  ln -sf $DOTS/config/highlight $CONFIG/
-  ln -sf $DOTS/config/lf $CONFIG/
-  ln -sf $DOTS/config/zathura $CONFIG/
-  ln -sf $DOTS/config/mimeapps.list $CONFIG/
-  ln -sf $DOTS/config/stalonetrayrc $CONFIG/
-  ln -sf $DOTS/config/python $CONFIG/
-  ln -sf $DOTS/config/fontconfig $CONFIG/
-  ln -sf $DOTS/config/hypr $CONFIG/
-  ln -sf $DOTS/config/wofi $CONFIG/
-  ln -sf $DOTS/config/mpv $CONFIG/
-  ln -sf $DOTS/config/foot $CONFIG/
-  ln -sf $DOTS/config/waybar $CONFIG/
+	ln -sf $DOTS/config/dunst $CONFIG/
+	ln -sf $DOTS/config/highlight $CONFIG/
+	ln -sf $DOTS/config/lf $CONFIG/
+	ln -sf $DOTS/config/zathura $CONFIG/
+	ln -sf $DOTS/config/mimeapps.list $CONFIG/
+	ln -sf $DOTS/config/stalonetrayrc $CONFIG/
+	ln -sf $DOTS/config/python $CONFIG/
+	ln -sf $DOTS/config/fontconfig $CONFIG/
+	ln -sf $DOTS/config/hypr $CONFIG/
+	ln -sf $DOTS/config/wofi $CONFIG/
+	ln -sf $DOTS/config/mpv $CONFIG/
+	ln -sf $DOTS/config/foot $CONFIG/
+	ln -sf $DOTS/config/waybar $CONFIG/
 
-  # Firefox
-  log Symlink "Firefox"
-  ffconfig="$HOME/.mozilla/firefox"
-  firefox --headless -CreateProfile default
-  profile="$(ls "$ffconfig" | grep "[^.]\+\.default")"
-  cp "$DOTS/config/mozilla/user.js" "$ffconfig/$profile/user.js"
+	# Firefox
+	log Symlink "Firefox"
+	ffconfig="$HOME/.mozilla/firefox"
+	firefox --headless -CreateProfile default
+	profile="$(ls "$ffconfig" | grep "[^.]\+\.default")"
+	cp "$DOTS/config/mozilla/user.js" "$ffconfig/$profile/user.js"
 
-  # ZSH
-  log Symlink "ZSH"
-  chsh -s /usr/bin/zsh
-  [ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
-  ln -sf $DOTS/config/zsh/zshrc $CONFIG/zsh/.zshrc
-  ln -sf $DOTS/config/zsh/zprofile $CONFIG/zsh/.zprofile
-  [ ! -d "$STATE/zsh" ] && mkdir "$STATE/zsh"
-  ln -sf $DOTS/home/zshenv $HOME/.zshenv
+	# ZSH
+	log Symlink "ZSH"
+	chsh -s /usr/bin/zsh
+	[ ! -d "$CONFIG/zsh" ] && mkdir "$CONFIG/zsh"
+	ln -sf $DOTS/config/zsh/zshrc $CONFIG/zsh/.zshrc
+	ln -sf $DOTS/config/zsh/zprofile $CONFIG/zsh/.zprofile
+	[ ! -d "$STATE/zsh" ] && mkdir "$STATE/zsh"
+	ln -sf $DOTS/home/zshenv $HOME/.zshenv
 
-  ln -sf $DOTS/home/bash_profile $HOME/.bash_profile
-  ln -sf $DOTS/home/bashrc $HOME/.bashrc
-  ln -sf $DOTS/home/inputrc $HOME/.inputrc
-  ln -sf $DOTS/home/Xresources $HOME/.Xresources
+	ln -sf $DOTS/home/bash_profile $HOME/.bash_profile
+	ln -sf $DOTS/home/bashrc $HOME/.bashrc
+	ln -sf $DOTS/home/inputrc $HOME/.inputrc
+	ln -sf $DOTS/home/Xresources $HOME/.Xresources
 
-  [ ! -d "$LOCAL" ] && mkdir "$LOCAL"
-  ln -sf $DOTS/scripts $LOCAL/
+	[ ! -d "$LOCAL" ] && mkdir "$LOCAL"
+	ln -sf $DOTS/scripts $LOCAL/
 
-  [ ! -d "$LOCAL/share" ] && mkdir "$LOCAL/share"
-  [ ! -d "$LOCAL/share/fonts" ] && mkdir "$LOCAL/share/fonts"
-  ln -sf $DOTS/fonts/* $LOCAL/share/fonts
-  # Systemd files
-  [ ! -d "$LOCAL/share/systemd" ] && mkdir "$LOCAL/share/systemd"
-  [ ! -d "$LOCAL/share/systemd/user" ] && mkdir "$LOCAL/share/systemd/user"
-  ln -sf "$DOTS/systemd/automount.service" "$LOCAL/share/systemd/user/automount.service"
-  systemctl start --user automount.service
-  systemctl enable --user automount.service
+	[ ! -d "$LOCAL/share" ] && mkdir "$LOCAL/share"
+	[ ! -d "$LOCAL/share/fonts" ] && mkdir "$LOCAL/share/fonts"
+	ln -sf $DOTS/fonts/* $LOCAL/share/fonts
+	# Systemd files
+	[ ! -d "$LOCAL/share/systemd" ] && mkdir "$LOCAL/share/systemd"
+	[ ! -d "$LOCAL/share/systemd/user" ] && mkdir "$LOCAL/share/systemd/user"
+	ln -sf "$DOTS/systemd/automount.service" "$LOCAL/share/systemd/user/automount.service"
+	systemctl start --user automount.service
+	systemctl enable --user automount.service
 
-  [ ! -d "$LOCAL/bin" ] && mkdir "$LOCAL/bin"
-  # Autostart is just a suggestion
-  cp $DOTS/other/autostart $LOCAL/bin/autostart
+	[ ! -d "$LOCAL/bin" ] && mkdir "$LOCAL/bin"
+	# Autostart is just a suggestion
+	cp $DOTS/other/autostart $LOCAL/bin/autostart
 }
 
 ##### Main ######

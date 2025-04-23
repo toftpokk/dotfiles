@@ -14,7 +14,7 @@ cnt=0
 while read line; do
 	[ "$sel" = "$line" ] && continue
 	newstore="${newstore}\n${line}"
-	cnt=$((cnt+1))
+	cnt=$((cnt + 1))
 	[ $cnt -gt 5 ] && break
-done < $cache
-echo -e "$newstore" > "$cache"
+done <$cache
+echo -e "$newstore" >"$cache"

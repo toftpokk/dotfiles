@@ -1,5 +1,5 @@
 #!/bin/sh
-error_exit(){
+error_exit() {
 	echo "$1" >&2
 	exit
 }
@@ -19,7 +19,7 @@ cd "$prefix" || exit 1
 #== vpn_1.txt ==#
 # username
 # password
-select_vpn(){
+select_vpn() {
 	vpn_folder=$(find . -mindepth 1 -type d -printf "%f\n" | dmenu -c -l 20 -p "VPN: ")
 	if [ -z "$vpn_folder" ]; then
 		exit 1
@@ -28,7 +28,7 @@ select_vpn(){
 	fi
 }
 
-get_cmd(){
+get_cmd() {
 	cd "${prefix}/$1" || exit 1
 	vpn_command="sudo openvpn --config $1.ovpn "
 	# vpn_command="$TERMINAL -c openvpn -e sudo openvpn --config ${prefix}/${vpn_folder}/${vpn_folder}.ovpn "
@@ -38,7 +38,7 @@ get_cmd(){
 	echo "$vpn_command"
 }
 
-dunsty(){
+dunsty() {
 	dunstify -t 0 -i network-vpn-symbolic.symbolic -u low \
 		--action="stop,Stop" \
 		"VPN" "Running VPN ${vpn_folder}"
@@ -56,14 +56,14 @@ while true; do
 	ACTION=""
 	ACTION=$(dunsty)
 	case "$ACTION" in
-		"stop")
-			if sudo -A pkill -15 openvpn; then
-				dunstify -i network-vpn-symbolic.symbolic "VPN" "Disconnected VPN ${vpn_folder}"
-			else
-				dunstify -i network-vpn-symbolic.symbolic -u "critical" "VPN" "Could not connect to VPN"
-			fi
-			exit
-			;;
+	"stop")
+		if sudo -A pkill -15 openvpn; then
+			dunstify -i network-vpn-symbolic.symbolic "VPN" "Disconnected VPN ${vpn_folder}"
+		else
+			dunstify -i network-vpn-symbolic.symbolic -u "critical" "VPN" "Could not connect to VPN"
+		fi
+		exit
+		;;
 	esac
 
 done

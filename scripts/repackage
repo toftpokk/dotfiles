@@ -4,28 +4,27 @@
 [ ! -d "old" ] && mkdir "old"
 for i in "$@"; do
 	case "$i" in
-		*.epub)
-			exfolder="${i}.d"
-			mkdir "$exfolder"
-			unzip "$i" -d "$exfolder"
-			mv "$i" "${i}.old"
-			cd "$exfolder"
-			zip -X0 "../$i" "mimetype"
-			zip -Xr "../$i" $(\ls  | grep -v "mimetype" | xargs )
-			mv "../${i}.old" "../old"
-			cd ".."
+	*.epub)
+		exfolder="${i}.d"
+		mkdir "$exfolder"
+		unzip "$i" -d "$exfolder"
+		mv "$i" "${i}.old"
+		cd "$exfolder"
+		zip -X0 "../$i" "mimetype"
+		zip -Xr "../$i" $(\ls | grep -v "mimetype" | xargs)
+		mv "../${i}.old" "../old"
+		cd ".."
 		;;
-		*.epub.d)
-			cd "$i"
-			zip -X0 "../$i.new.epub" "mimetype"
-			zip -Xr "../$i.new.epub" $(\ls  | grep -v "mimetype" | xargs )
-			cd ".."
+	*.epub.d)
+		cd "$i"
+		zip -X0 "../$i.new.epub" "mimetype"
+		zip -Xr "../$i.new.epub" $(\ls | grep -v "mimetype" | xargs)
+		cd ".."
 		;;
-		*.zip.d)
-			cd "$i"
-			zip -r "../$i.new.zip" *
-			cd ".."
+	*.zip.d)
+		cd "$i"
+		zip -r "../$i.new.zip" *
+		cd ".."
 		;;
 	esac
 done
-
