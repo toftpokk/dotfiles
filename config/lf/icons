@@ -400,11 +400,11 @@ Vagrantfile             
 *.torrent 
 
 # Videos
-*.mkv   
-*.webm  
-*.mp4   
-*.flv   
-*.mpg   
+*.mkv   
+*.webm  
+*.mp4   
+*.flv   
+*.mpg   
 
 # Images
 *.ico   

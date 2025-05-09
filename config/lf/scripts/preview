@@ -11,6 +11,7 @@ case "$(file --mime-type -L -b -- "$1" )" in
 	application/pdf) pdftotext -l 10 -nopgbrk -q -- "$1" -;;
 	application/gzip|application/x-tar|application/zip|application/x-rar) printf "\e[0;30;44m Archived File List \e[0m\n" && bsdtar --list --file "$1" ;;
 	inode/x-empty) printf "\e[0;30;43m Empty \e[0m\n" ;;
+  application/vnd.ms-opentype) fc-scan -b "$1";;
 	application/x-executable) printf "\e[0;30;43m Executable \e[0m\n" ;;
 	application/x-pie-executable) printf "\e[0;30;43m Pie Executable \e[0m\n" ;;
 	*) printf "\e[0;33;40m $(file --dereference --brief -- "$1") \e[0m\n";;

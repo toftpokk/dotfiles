@@ -71,7 +71,7 @@ dependencies() {
 	## Audio/Visual
 	pacinstall 'pipewire' 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'pavucontrol' 'pamixer' 'mpv'
 	## System Utilities
-	pacinstall 'usbutils' 'acpilight'
+	pacinstall 'usbutils' 'acpilight' 'fontconfig'
 	## Image Capture & Editing
 	pacinstall 'imagemagick' 'ghostscript' 'grim' 'slurp' 'nsxiv'
 	## File Sharing & Access
@@ -92,7 +92,7 @@ dependencies() {
 	pacinstall 'wine'
 	## Development
 	pacinstall 'docker' 'docker-compose' 'python-virtualenv' 'neovim' 'git' 'python-pip' \
-		'bash-language-server' 'pyright' 'rust-analyzer' 'typescript-language-server'
+		'bash-language-server' 'pyright' 'rust-analyzer' 'typescript-language-server' 'shfmt'
 }
 
 # Symlinks
