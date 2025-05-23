@@ -63,7 +63,7 @@ dependencies() {
 	# Fonts
 	pacinstall 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-liberation'
 	## Meta
-	pacinstall 'man-db'
+	pacinstall 'man-db' 'pacman-contrib'
 	## Compression
 	pacinstall 'zip' 'unzip' 'p7zip' 'unrar'
 	## Documents

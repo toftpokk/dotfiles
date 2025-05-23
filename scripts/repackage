@@ -1,30 +1,133 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# $1 is file
-[ ! -d "old" ] && mkdir "old"
-for i in "$@"; do
-	case "$i" in
-	*.epub)
-		exfolder="${i}.d"
-		mkdir "$exfolder"
-		unzip "$i" -d "$exfolder"
-		mv "$i" "${i}.old"
-		cd "$exfolder"
-		zip -X0 "../$i" "mimetype"
-		zip -Xr "../$i" $(\ls | grep -v "mimetype" | xargs)
-		mv "../${i}.old" "../old"
-		cd ".."
-		;;
-	*.epub.d)
-		cd "$i"
-		zip -X0 "../$i.new.epub" "mimetype"
-		zip -Xr "../$i.new.epub" $(\ls | grep -v "mimetype" | xargs)
-		cd ".."
-		;;
-	*.zip.d)
-		cd "$i"
-		zip -r "../$i.new.zip" *
-		cd ".."
-		;;
-	esac
+set -euo pipefail
+
+usage() {
+  cat <<EOF
+Usage: repackage <zip_file>
+
+Repackage a zip file.
+
+Supports:
+  .epub: fix epub errors
+  .zip: reorder pages
+  .cbz: reorder pages
+
+Available options:
+
+-h, --help     Print this help and exit
+EOF
+  exit
+}
+
+setup_colors() {
+  if [[ -t 2 ]] && [[ -z "${NO_COLOR-}" ]] && [[ "${TERM-}" != "dumb" ]]; then
+    NOFORMAT='\033[0m' RED='\033[0;31m' GREEN='\033[0;32m' ORANGE='\033[0;33m' BLUE='\033[0;34m' PURPLE='\033[0;35m' CYAN='\033[0;36m' YELLOW='\033[1;33m'
+  else
+    NOFORMAT='' RED='' GREEN='' ORANGE='' BLUE='' PURPLE='' CYAN='' YELLOW=''
+  fi
+}
+
+msg() {
+  echo >&2 -e "${1-}"
+}
+
+die() {
+  local msg=$1
+  local code=${2-1} # default exit status 1
+  msg "$msg"
+  exit "$code"
+}
+
+parse_params() {
+  # default values of variables set from params
+  flag=0
+  param=''
+
+  while :; do
+    case "${1-}" in
+    -h | --help) usage ;;
+    -?*) die "Unknown option: $1" ;;
+    *) break ;;
+    esac
+    shift
+  done
+
+  args=("$@")
+
+  # check required params and arguments
+  [[ ${#args[@]} -eq 0 ]] && die "Missing arguments"
+
+  return 0
+}
+
+yes_or_no () {
+    while true; do
+        read -p "$* [y/n]: " yn
+        case $yn in
+            [Yy]*) return 0  ;;  
+            [Nn]*) echo "Aborted" ; return  1 ;;
+        esac
+    done
+}
+
+parse_params "$@"
+setup_colors
+
+REPACKAGE_HOME=
+if [ -z ${XDG_CACHE_HOME+x} ]; then
+  # unset
+  REPACKAGE_HOME="$HOME/.cache/repackage"
+else
+  # set
+  REPACKAGE_HOME="$XDG_CACHE_HOME/repackage"
+fi
+
+[ ! -d "$REPACKAGE_HOME" ] && mkdir "$REPACKAGE_HOME"
+current_dir_slug="$( echo "$PWD" | sed -E 's/[/ ]/_/g' )"
+for file in "${args[@]}"; do
+  filename="$(basename "$file")"
+  current_file_slug="$( echo "$file" | sed -E 's/[/ ]/_/g' )"
+  extract_dir="$REPACKAGE_HOME/${current_dir_slug}_${current_file_slug}"
+  original_dir="$extract_dir/original"
+  contents_dir="$extract_dir/contents"
+  if [ ! -f "$file" ]; then
+    die "${RED}Error${NOFORMAT}: $file is not a file\n"
+  fi
+
+  if [ -d "$extract_dir" ]; then
+    yes_or_no "Cached directory exists for $file. Delete?" && rm -rf "$extract_dir" || exit 0
+  fi
+
+
+  printf "Extracting $file:\n"
+  case "$file" in
+    *.epub)
+      mkdir -p "$contents_dir" || die "${RED}Error${NOFORMAT} Could not create directory $contents_dir"
+      mkdir -p "$original_dir" || die "${RED}Error${NOFORMAT} Could not create directory $original_dir"
+
+      unzip "$file" -d "$contents_dir"
+      mv "$file" "$original_dir/$file"
+      pushd "$contents_dir"
+      # re-zip with no extra fields
+      zip -X0 "../$filename" "mimetype"
+      zip -Xr "../$filename" $(\ls | grep -v "mimetype" | xargs)
+      popd
+      mv "$extract_dir/$filename" "$PWD"
+      ;;
+    *.zip|*.cbz)
+      mkdir -p "$contents_dir" || die "${RED}Error${NOFORMAT} Could not create directory $contents_dir"
+      mkdir -p "$original_dir" || die "${RED}Error${NOFORMAT} Could not create directory $original_dir"
+
+      unzip "$file" -d "$contents_dir"
+      mv "$file" "$original_dir/$file"
+      pushd "$contents_dir"
+
+      find . -print | sort -n | zip "../$filename" -@
+      popd
+      mv "$extract_dir/$filename" "$PWD"
+      ;;
+    *)
+      die "${RED}Error${NOFORMAT}: $file unknown extension"
+  esac
 done

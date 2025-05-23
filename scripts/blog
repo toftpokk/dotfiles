@@ -1,6 +1,6 @@
 #!/bin/sh
 
-content=~/Projects/pandan/src/content
+content=~/Projects/pandan/data
 blog=$content/blog
 cd "$blog"
 latest="$(ls | tail -n1)"
