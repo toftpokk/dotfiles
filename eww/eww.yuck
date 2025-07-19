@@ -1,0 +1,20 @@
+(include "./variables.yuck")
+
+(include "./widgets/disk-pop.yuck")
+
+(include "./windows/bar.yuck")
+(include "./windows/network.yuck")
+(include "./windows/audio.yuck")
+
+; Bar
+
+
+(defwindow disk-pop
+  :stacking "fg"
+  :focusable "false"
+  :geometry (geometry
+    :x -10
+    :y 50
+    :width 500
+    :anchor "top right")
+  (disk-widget))

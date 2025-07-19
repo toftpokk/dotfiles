@@ -1,0 +1,38 @@
+(defwindow network
+  :stacking "fg"
+  :focusable "false"
+  :monitor 0
+  :geometry (geometry
+    :x -10
+    :y 50
+    :width 500
+    :anchor "top right")
+  (network-widget))
+
+(defwidget network-widget []
+  (eventbox
+    :onhoverlost "eww close network"
+    (box :orientation "v"
+      :class "network-pop"
+      :space-evenly false
+      (box :orientation "h"
+        (button :class "rescan"
+                :onclick {
+            nw-rescan ? "eww update nw-rescan=false" : "eww update nw-rescan=true"}
+          {nw-rescan ? "Scanning..." : "Scan"})
+        ; (button :class "icon" "SCAN")
+        )
+      (scroll :vscroll true
+        :height 300
+        (literal :content nw)))))
+
+(defwidget network [ssid ?conn ?bars]
+  (button :class {"network"+ (conn == "" ? '' : ' connected')}
+    :onclick {"eww update nw-rescan=true; " + (conn == "" ? "./scripts/getNetwork connect '${ssid}'": "./scripts/getNetwork disconnect")}
+    (centerbox :orientation "h"
+      ; :space-evenly false
+      (label :class "icon" :text "直" :xalign 0)
+      (label :text ssid :xalign 0)
+      (label :text bars :xalign 1)
+    )))
+

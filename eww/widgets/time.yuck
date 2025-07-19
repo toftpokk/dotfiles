@@ -1,0 +1,6 @@
+(defwidget activity []
+  (box
+    :halign "center"
+    :orientation "h"
+    time))
+
