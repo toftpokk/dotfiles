@@ -1,5 +1,6 @@
-(defwidget activity []
+(defwidget widgets.time []
   (box
+    :class "widget-time"
     :halign "center"
     :orientation "h"
     time))

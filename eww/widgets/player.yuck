@@ -1,0 +1,12 @@
+(defwidget widget.player []
+  (button 
+    :class "widget-player"
+    :onclick "playerctl play-pause" 
+    (label 
+      :limit-width 40
+      :text { 
+        (is-playing == "Playing"
+                    ? ` ${music-title}` 
+                    : " -" )
+      }))
+  )

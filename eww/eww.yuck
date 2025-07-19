@@ -1,7 +1,5 @@
 (include "./variables.yuck")
 
-(include "./widgets/disk-pop.yuck")
-
 (include "./windows/bar.yuck")
 (include "./windows/network.yuck")
 (include "./windows/audio.yuck")
@@ -9,12 +7,28 @@
 ; Bar
 
 
-(defwindow disk-pop
+(defwindow disks
+  :monitor 0
   :stacking "fg"
   :focusable "false"
   :geometry (geometry
-    :x -10
-    :y 50
-    :width 500
-    :anchor "top right")
-  (disk-widget))
+              :x 0
+              :y 0
+              :width 500
+              :anchor "top right")
+  (eventbox
+    :onhoverlost "eww close disks"
+    (box 
+      :orientation "v"
+      :class "disk-pop"
+      :space-evenly false
+      :hexpand true
+      (literal :content disks)))
+  )
+
+(defwidget disk [mountpoint dev]
+  (button 
+    :class "disk" 
+    :onclick "./scripts/getDisks unmount ${dev}"
+    '${mountpoint}'
+    ))

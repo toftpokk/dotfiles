@@ -1,48 +1,22 @@
 .bar {
-  font-family: 'Hack Nerd Font';
 	background-color: rgb(24,24,24,0.8);
 	.stat{
-		background: none;
-		border: none;
-		margin: 2px 2px;
-		padding: 10px 10px;
-		border-radius: 5px;
-		color: $stat-fg;
-		text-shadow: none;
+		// background: none;
+		// border: none;
+		// margin: 2px 2px;
+		// padding: 10px 10px;
+		// border-radius: 5px;
+		color: $white;
+		// text-shadow: none;
 	}
 	.stat:hover{
 		color: $stat-fg-hover;
-		text-shadow: none;
+	// 	text-shadow: none;
 	}
-	.stat:active{
-		color: $stat-fg-active;
-	}
+	// .stat:active{
+	// 	color: $stat-fg-active;
+	// }
 
-	.ram{
-		background-color: $ram-fg;
-	}
-
-	.music{
-		background-color: $music-fg;
-	}
-
-	.audio{
-		background-color: $audio-fg;
-	}
-	.network{
-		background-color: $network-fg;
-	}
-	.time{
-		background-color: $time-fg;
-	}
-	.battery{
-		padding-left: 10px;
-		padding-right: 5px;
-		background-color: $battery-fg;
-	}
-	.disk{
-		background-color: $disk-fg;
-	}
 	.workspace{
 		margin: 2px 2px;
 		// border-radius: 10px;

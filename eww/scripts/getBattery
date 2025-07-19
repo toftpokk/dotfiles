@@ -28,11 +28,11 @@ icon() {
 		icon=""
 	fi
 	status=$(cat "$bat/status")
-	[ "$status" = "Charging" ] && icon+="" || icon+=" "
+	[ "$status" = "Charging" ] && icon+=""
 	if [ "$per" -lt "20" ] && [ ! "$status" = "Charging" ]; then
 		dunstify -i "battery-symbolic.symbolic" -u "critical" -r 90212 "Battery Low" "Connect Charger"
 	fi
-	echo "$per%$icon"
+	echo "${icon} $per%"
 }
 
 percent() {

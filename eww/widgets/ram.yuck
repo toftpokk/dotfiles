@@ -1,0 +1,7 @@
+(defwidget widget.ram []
+  (box
+    :class "widget-ram"
+    :halign "center"
+    :orientation "h"
+    " ${round(EWW_RAM.used_mem_perc, 0)}%"))
+

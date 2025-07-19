@@ -3,77 +3,95 @@
   :stacking "fg"
   :focusable "false"
   :geometry (geometry
-    :x -10
-    :y 50
-    :width 500
-    :anchor "top right")
-  (audio))
-
-(defwidget audio []
+              :x 0
+              :y 0
+              :width 500
+              :anchor "top right")
   (eventbox
-    :onhoverlost "eww close audio-pop"
-  (box :class "audio-pop"
-       :orientation "v"
-       :space-evenly false
-    (box :space-evenly false :orientation "h"
-      :class "volume-bar"
-      (button :class "icon"
-        :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-        {is-muted == "no" ? "" : ""}
+    :onhoverlost "eww close audio"
+    (box 
+      :class "audio-pop"
+      :orientation "v"
+      :space-evenly false
+      (box 
+        :space-evenly false 
+        :orientation "h"
+        :class "volume-bar"
+        (button 
+          :class "icon"
+          :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+          {is-muted == "no" ? "" : ""}
+          )
+        (scale 
+          :orientation "h"
+          :width 430
+          :min 0
+          :max 100
+          :value volume
+          :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+          )
+        (label 
+          :class "percent"
+          :text {volume + "%"}
+          )
         )
-      (scale :orientation "h"
-        :width 430
-        :min 0
-        :max 100
-        :value volume
-        :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+      (box 
+        :space-evenly false 
+        :orientation "h"
+        :class "volume-bar"
+        (button 
+          :class "icon"
+          :onclick "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+          {mic-is-muted == "no" ? "" : ""}
+          )
+        (scale 
+          :orientation "h"
+          :width 430
+          :min 0
+          :max 100
+          :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
+          :value mic-volume)
+        (label 
+          :class "percent"
+          :text {mic-volume+"%"}
+          )
         )
-      (label :class "percent"
-        :text {volume + "%"}
+      (box 
+        :class "music-pop"
+        (box
+          :class "cover-art"
+          :space-evenly false
+          :height 200
+          :width 200
+          :style 'background-image: url("file:///home/toftpokk/Downloads/1645636526597.png");'
+          "")
+        (centerbox 
+          :class "info"
+          :orientation "v" 
+          :halign "center"
+          :width 250
+          :hexpand false
+          (label
+            :text music-title
+            :class "title"
+            :limit-width 25
+            :wrap true)
+          (label 
+            :text music-artist 
+            :class "artist" 
+            :limit-width 30)
+          (box
+            :class "music-control"
+            :space-evenly true
+            (button
+              :onclick "playerctl previous" 
+              :class "left" "")
+            (button 
+              :onclick "playerctl play-pause" 
+              :class "center" { is-playing == "Playing" ? "" : ""})
+            (button
+              :onclick "playerctl next" 
+              :class "right" ""))
+          )
         )
-      )
-    (box :space-evenly false :orientation "h"
-         :class "volume-bar"
-      (button :class "icon"
-        :onclick "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
-        {mic-is-muted == "no" ? "" : ""}
-        )
-      (scale :orientation "h"
-        :width 430
-        :min 0
-        :max 100
-        :onchange "pactl set-source-volume @DEFAULT_SOURCE@ {}%"
-        :value mic-volume)
-      (label :class "percent"
-      :text {mic-volume+"%"}
-        )
-      )
-    (box :class "music-pop"
-      (box :class "cover-art"
-        :space-evenly false
-        :height 200
-        :width 200
-        :style 'background-image: url("file:///home/toftpokk/Downloads/1645636526597.png");'
-        "")
-      (centerbox :class "info" :orientation "v" :halign "center"
-        :width 250
-        :hexpand false
-        (label :text music-title
-               :class "title"
-               :limit-width 25
-               :wrap true)
-        (label :text music-artist :class "artist" :limit-width 30)
-        (box :class "music-control"
-          :space-evenly true
-          (button
-            :onclick "playerctl previous" 
-            :class "left" "")
-          (button 
-            :onclick "playerctl play-pause" 
-            :class "center" { is-playing == "Playing" ? "" : ""})
-          (button
-            :onclick "playerctl next" 
-            :class "right" ""))
-      )
-      )
-    )))
+      )))

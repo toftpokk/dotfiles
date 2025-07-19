@@ -1,0 +1,5 @@
+(defwidget widget.battery []
+  (button
+    :class "widget-battery"
+    battery)
+  )

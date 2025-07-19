@@ -1,0 +1,6 @@
+(defwidget widget.tray []
+    (systray
+      :orientation "h"
+      :class "widget-tray"
+    )
+  )

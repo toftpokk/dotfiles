@@ -1,12 +1,19 @@
-(include "widgets/stats.yuck")
 (include "widgets/time.yuck")
+(include "widgets/battery.yuck")
+(include "widgets/network.yuck")
+(include "widgets/audio.yuck")
+(include "widgets/player.yuck")
+(include "widgets/disks.yuck")
+(include "widgets/ram.yuck")
+(include "widgets/tray.yuck")
 
 (defwindow bar
   :monitor 0
-  :geometry (geometry :x "0"
-                      :y "0"
-                      :width "100%"
-                      :anchor "top center")
+  :geometry (geometry 
+              :x "0"
+              :y "0"
+              :width "100%"
+              :anchor "top center")
   :exclusive true
   :stacking "fg"
   :windowtype "dock"
@@ -18,7 +25,23 @@
 (defwidget bar []
   (centerbox 
     :orientation "h"
+    ; left
     ""
-    (activity)
-    (stats)))
+
+    ; center
+    (widgets.time)
+
+    ; right
+    (box
+      :halign "end"
+      :orientation "h"
+      :space-evenly false
+      (widget.ram)
+      (widget.disks)
+      (widget.player)
+      (widget.audio)
+      (widget.network)
+      (widget.tray)
+      (widget.battery)
+      )))
 
