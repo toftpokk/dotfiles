@@ -1,0 +1,44 @@
+.audio-pop {
+	background-color: $gray-2; // outside
+	// background-color: rgb(50,50,50,0.8);
+    // background-image: linear-gradient(to bottom, rgb(50,50,50,1) 0%, rgb(50,50,50,1) 50%, rgb(50,50,50,0.5) 100%);
+	padding: 10px 20px;
+	border-radius: 10px;
+	.volume-bar{
+		margin-bottom: 1em;
+		margin-top: 1em;
+		.icon {
+			font-size: 1.5em;
+			padding: 4px 10px;
+			margin-right: 8px;
+			border-radius: 10px;
+			background-color: $gray-3;
+		}
+		.icon:hover{
+			background-color: $gray-4;
+		}
+	}
+	trough {
+		background-color: $gray-1;
+		border-radius: 100px;
+		slider{
+			background: $yellow;
+			border-radius: 100%;
+			box-shadow: 3px 2px 5px 5px rgb(0,0,0,0.05);
+			margin: -10px;
+			min-width: 20px;
+			min-height: 20px;
+		}
+
+		highlight {
+			border: 4px solid $yellow;
+			border-radius: 100px;
+		}
+	}
+	.icon {
+		font-size: 1.5em;
+	}
+	.percent {
+		margin-left: 20px;
+	}
+}

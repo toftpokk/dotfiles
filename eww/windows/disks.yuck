@@ -1,0 +1,26 @@
+(defwindow disks
+  :monitor 0
+  :stacking "fg"
+  :focusable "false"
+  :geometry (geometry
+              :x 0
+              :y 0
+              :width 500
+              :anchor "top right")
+  (eventbox
+    :onhoverlost "eww close disks"
+    (box 
+      :orientation "v"
+      :class "disk-pop"
+      :space-evenly false
+      :hexpand true
+      (literal :content disks)))
+  )
+
+(defwidget disk [mountpoint dev]
+  (button 
+    :class "disk" 
+    :onclick "./scripts/getDisks unmount ${dev}"
+    '${mountpoint}'
+    ))
+

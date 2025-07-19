@@ -4,5 +4,11 @@
 }
 
 @import "colors.scss";
+
 @import "windows/bar.scss";
+@import "windows/network.scss";
+@import "windows/calendar.scss";
+@import "windows/disks.scss";
+@import "windows/audio.scss";
+
 @import "widgets/widgets.scss";

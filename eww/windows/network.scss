@@ -1,0 +1,41 @@
+.network-pop{
+	background-color: $gray-2; // outside
+	padding: 10px;
+	border-radius: 10px;
+	padding-top: 10px;
+	.icon {
+		font-size: 2em;
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+	.rescan{
+		padding: 10px;
+		margin: 5px;
+		background-color: $gray-4;
+		border-radius: 10px;
+	}
+	.rescan:hover{
+		background-color: $gray-5;
+	}
+	.rescan:active{
+		background-color: $white;
+	}
+	
+	.network {
+		background-color: $gray-4; // outside
+		margin: 5px;
+		color: $black;
+		background-color: $white;
+		border-radius: 10px;
+	}
+	.network:hover {
+		background-color: $gray-4;
+	}
+	.network:active {
+		background-color: $white;
+	}
+	.connected{
+		color: $white;
+		background-color: $blue;
+	}
+}

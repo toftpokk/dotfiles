@@ -1,10 +1,10 @@
 (defwindow network
+  :monitor 0
   :stacking "fg"
   :focusable "false"
-  :monitor 0
   :geometry (geometry
-              :x -10
-              :y 50
+              :x 0
+              :y 0
               :width 500
               :anchor "top right")
   (eventbox

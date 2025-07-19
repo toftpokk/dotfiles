@@ -1,0 +1,16 @@
+(defwindow calendar
+  :monitor 0
+  :stacking "fg"
+  :focusable "false"
+  :geometry (geometry
+              :x 0
+              :y 0
+              :width 500
+              :anchor "top center")
+  (eventbox
+    :onhoverlost "eww close calendar"
+    (calendar
+      :class "calendar"
+      )
+    )
+ )

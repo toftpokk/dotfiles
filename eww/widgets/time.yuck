@@ -1,7 +1,8 @@
 (defwidget widgets.time []
-  (box
+  (button 
+    :onclick "eww open --toggle calendar"
     :class "widget-time"
-    :halign "center"
-    :orientation "h"
-    time))
+    time
+    )
+  )
 
