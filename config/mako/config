@@ -1,0 +1,40 @@
+# Global
+layer=overlay
+
+font=Hack Nerd Font 11
+width=300
+padding=7
+sort=+time
+border-size=1
+border-radius=5
+anchor=top-right
+# For some reason only searches 16x16 and not symbolic or scalable folders
+# Ref: https://github.com/emersion/mako/issues/383
+icon-path=/usr/share/icons/Adwaita:/usr/share/icons/AdwaitaLegacy
+
+[urgency=low]
+default-timeout=2500
+background-color=#000000
+border-color=#2D2D2D
+text-color=#ffffff
+
+[urgency=normal]
+default-timeout=8000
+background-color=#161616
+border-color=#565656
+text-color=#ffffff
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
+
+[urgency=critical]
+default-timeout=0
+background-color=#C20618
+border-color=#D70015
+text-color=#ffffff
+on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
+
+[app-name=udiskie]
+default-timeout=2500
+
+## body
+[body=""]
+format=%s\n%b
