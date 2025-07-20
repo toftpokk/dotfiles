@@ -5,40 +5,32 @@
 
 .widget-disks {
   @include widget-style;
-  background-color: $red;
 }
 
 .widget-audio {
   @include widget-style;
-  background-color: $blue;
 }
 
 .widget-player {
   @include widget-style;
-  background-color: $green;
 }
 
 .widget-network {
   @include widget-style;
-  background-color: $purple;
 }
 
 .widget-battery {
   @include widget-style;
-  background-color: $orange;
 }
 
 .widget-time {
   @include widget-style;
-  background-color: $cyan;
 }
 
 .widget-ram {
   @include widget-style;
-  background-color: $brown;
 }
 
 .widget-tray {
   @include widget-style;
-  background-color: $brown;
 }

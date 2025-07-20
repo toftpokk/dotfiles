@@ -200,3 +200,16 @@ To see running applications,
 ```sh
 usermod -aG docker $USER
 ```
+
+# New things
+- yazi is weird coming from lf:
+    - wrapping top & bottom
+    - filter vs find
+- ghostty
+    - is too slow to spawn
+    - top bars is annoying for tiling window managers
+
+## Lenovo laptops
+https://wiki.archlinux.org/title/Laptop/Lenovo
+- install ideapad_laptop
+- 
