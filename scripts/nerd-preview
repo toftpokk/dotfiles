@@ -14,7 +14,7 @@ icon_range(){
 
 allfonts=
 # Language parts 0-57344
-allfonts+=$(icon_range 57344 59333)
-allfonts+=$(icon_range 59333 64838)
+icon_range 57344 59333
+icon_range 59333 64838
 # Language parts 64838-65600 END
 printf "$allfonts"
