@@ -56,42 +56,45 @@
           :text {mic-volume+"%"}
           )
         )
-      (box 
-        :class "music-pop"
-        (box
-          :class "cover-art"
-          :space-evenly false
-          :height 200
-          :width 200
-          :style 'background-image: url("file:///home/toftpokk/Downloads/1645636526597.png");'
-          "")
-        (centerbox 
-          :class "info"
-          :orientation "v" 
-          :halign "center"
-          :width 250
-          :hexpand false
-          (label
-            :text music-title
-            :class "title"
-            :limit-width 25
-            :wrap true)
-          (label 
-            :text music-artist 
-            :class "artist" 
-            :limit-width 30)
-          (box
-            :class "music-control"
-            :space-evenly true
-            (button
-              :onclick "playerctl previous" 
-              :class "left" "")
-            (button 
-              :onclick "playerctl play-pause" 
-              :class "center" { is-playing == "Playing" ? "" : ""})
-            (button
-              :onclick "playerctl next" 
-              :class "right" ""))
-          )
-        )
+        (literal :content player)
       )))
+(defwidget player [status artist title art]
+    (box 
+      :class "music-pop"
+      (box
+        :class "cover-art"
+        :space-evenly false
+        :height 200
+        :width 200
+        :style { "background-image: url(\"" + art + "\");" }
+        "")
+      (centerbox 
+        :class "info"
+        :orientation "v" 
+        :halign "center"
+        :width 250
+        :hexpand false
+        (label
+          :text title
+          :class "title"
+          :limit-width 25
+          :wrap true)
+        (label 
+          :text artist 
+          :class "artist" 
+          :limit-width 30)
+        (box
+          :class "music-control"
+          :space-evenly true
+          (button
+            :onclick "playerctl previous" 
+            :class "left" "")
+          (button 
+            :onclick "playerctl play-pause" 
+            :class "center" { status == "Playing" ? "" : ""})
+          (button
+            :onclick "playerctl next" 
+            :class "right" ""))
+        )
+      )
+  )

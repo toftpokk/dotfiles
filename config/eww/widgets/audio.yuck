@@ -3,8 +3,8 @@
     :class "widget-audio"
     :onclick "eww open --toggle audio" 
     {(
-            is-muted == "yes" 
-            ? "󰖁 -" 
-            : "󰕾 " + volume+"%"
-            )})
+        is-muted == "yes" 
+        ? "󰖁 -" 
+        : "󰕾 " + volume+"%"
+      )})
   )
