@@ -182,7 +182,7 @@ map gM cd ~/Music
 map gp cd ~/git-projects
 map gt cd ~/test
 map gT cd ~/.local/share/Trash
-map gS cd ~/Screenshots
+map gS cd ~/Pictures
 map gu cd ~/uni
 map gP cd ~/Projects
 map gi cd ~/Personal
