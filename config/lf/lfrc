@@ -15,13 +15,13 @@ set icons true
 
 # Custom Commands
 cmd open ${{
-
     case $(file --mime-type "$f" -Lb) in
     text/*|application/javascript|application/json|inode/x-empty|application/csv) $EDITOR "$f";;
 		image/*) nsxiv-rifle "$f";;
 		application/gzip|application/x-rar|application/x-tar|application/x-object|application/zip)
       case "$f" in
       *.cbz) zathura "$f";;
+      *.epub) zathura "$f";;
       esac
     ;;
 		application/x-object|application/x-pie-executable);;
@@ -35,7 +35,7 @@ cmd img_view ${{
 	path=$(dirname "${f}")
 	# nsxiv -at "${path}"
 	for i in $(nsxiv -ato "${path}"); do
-		lf -remote "send $id glob-select \"${i##*/}\""
+		lf -remote "send $id glob-select -- \"${i##*/}\""
 	done
 }}
 

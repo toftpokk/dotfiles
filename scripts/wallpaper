@@ -9,7 +9,7 @@ EOF
 }
 
 root="$HOME/Backgrounds"
-root_exclude="$root/other/*"
+root_exclude="$root/_meta/*"
 default=""
 local=""
 

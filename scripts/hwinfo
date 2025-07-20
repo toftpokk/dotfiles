@@ -1,4 +1,22 @@
-#!/bin/sh
+#!/bin/bash
+
+find_ntsc_perc(){
+  edid="$1"
+  colors="$(echo "$edid" |  grep "Color Characteristics" -A 4 | head -n 4 | tail -n 3)"
+  redx="$(echo "$colors" | awk '/Red/ {print substr($3, 1, length($3)-1)}')"
+  redy="$(echo "$colors" | awk '/Red/ {print $4}')"
+  bluex="$(echo "$colors" | awk '/Blue/ {print substr($3, 1, length($3)-1)}')"
+  bluey="$(echo "$colors" | awk '/Blue/ {print $4}')"
+  # note: green has no space between key and value
+  greenx="$(echo "$colors" | awk '/Green/ {print substr($2, 1, length($3)-1)}')"
+  greeny="$(echo "$colors" | awk '/Green/ {print $3}')"
+  # echo $redx , $redy
+  # echo $bluex , $bluey
+  # echo $greenx , $greeny
+  ntsc_area="0.1581936030502012"
+  echo "print(int(abs(0.5*($redx*($greeny-$bluey)+$greenx*($bluey-$redy)+$bluex*($redy-$greeny)))/$ntsc_area *100))" | python3
+}
+
 # Inspired by neofetch
 board_name=$(cat /sys/devices/virtual/dmi/id/board_name)
 board_vendor=$(cat /sys/devices/virtual/dmi/id/board_vendor)
@@ -34,12 +52,17 @@ install_date="$(cat /var/log/pacman.log |
   sed -e 's/^\[\([0-9]\{4\}-[0-9]\{2\}-[0-9]\{2\}T[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}[+-][0-9]\{2\}[0-9]\{2\}\).*/\1/g' )"
 
 days_since="$(( ($(date +%s) - $(date +%s -ud ${install_date})) / 3600 / 24 ))"
+primary_monitor="$(xrandr | awk '/ connected / {print $1}' | head -n 1)"
+primary_monitor_info="$(cat /sys/class/drm/card1-${primary_monitor}/edid | edid-decode )"
+size_and_freq="$(echo "$primary_monitor_info" | awk '/DTD/{print $3 " @" $4 $5}')"
+ntsc_perc=$(find_ntsc_perc "$primary_monitor_info")
 
 echo "\
 CPU: $cpu ($cpu_cores)
 Mainboard: $board_name $board_vendor
 Product: $product_name
 GPU:$gpus
+Monitor: ${primary_monitor} ${size_and_freq} NTSC${ntsc_perc}%
 Memory: ${mem_used}/${mem_total} MiB (${mem_perc}%)
 Disk: ${disk}
 Installed At: ${install_date} (${days_since} days ago)\
