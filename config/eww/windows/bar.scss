@@ -55,50 +55,6 @@
 	}
 }
 
-.music-pop{
-	.info{
-		background-color: $gray-1;
-		border-radius: 20px;
-		.title{
-			font-size: 1.2em;
-		}
-		.artist{
-			font-size: 1em;
-		}
-		.music-control{
-			border-radius: 20px;
-			.left{
-				border-radius: 0 0 0 20px;
-			}
-			.right{
-				border-radius: 0 0 20px 0;
-			}
-			margin-top: 20px;
-			// .center{
-			// 	min-width: 70px;
-			// }
-		}
-		button{
-			font-size: 3em;
-			background-color: $gray-1;
-			color: $red;
-		}
-		button:hover{
-			background-color: $gray-4;
-		}
-		button:active{
-			background-color: $gray-5;
-		}
-	}
-}
-
-.cover-art{
-	background-repeat: no-repeat;
-	background-size: cover;
-    box-shadow: 2px 2px 2px 2px #06060b;
-	margin: 20px;
-	border-radius: 20px;
-}
 
 // .audio-pop scale trough highlight {
 // 	all: unset;

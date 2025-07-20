@@ -5,8 +5,9 @@
 	padding-top: 10px;
 	.icon {
 		font-size: 2em;
-		margin-right: 10px;
+		margin-right: 12px;
 		margin-left: 10px;
+		padding-bottom: 7px;
 	}
 	.rescan{
 		padding: 10px;
@@ -38,4 +39,7 @@
 		color: $white;
 		background-color: $blue;
 	}
+  .bars {
+    margin-right: 10px;
+  }
 }

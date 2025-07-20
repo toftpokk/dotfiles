@@ -2,47 +2,61 @@
 usage(){
 printf "Usage:	$0 rescan
 	$0 networks
+	$0 show
 	$0 connect <SSID>
 "
 }
-networks(){
-	nmcli -t --fields IN-USE,SSID,SECURITY,BARS device wifi list ifname "wlp194s0" --rescan no
+
+die (){
+  >&2 echo "Error: $1"
+  exit 1
 }
 
+networks(){
+  # remove networks with hidden ssid and duplicate ssid
+  nmcli -t --fields IN-USE,SSID,SECURITY,BARS device wifi list ifname "wlp194s0" --rescan no \
+    | awk -F: '$2 != "" {
+      if (!seen[$2] || $1 == "*") {
+        best[$2] = $0
+        seen[$2] = ($1 == "*" ? 2 : 1)
+      }
+  }
+  END {
+    for (s in best) print best[s]
+  }' | sort -t: -k1,1r -k4,4r
+}
+# Mark priority: 2 if "*", 1 otherwise
 rescan(){
 	nmcli --fields IN-USE,SSID,SECURITY,BARS device wifi list ifname "wlp194s0" --rescan yes >/dev/null &
 }
 
-try_store(){
-	if [ $(nmcli dev wifi con "$1" | grep -c "successfully activated") -eq 1 ]; then
-		notify-send "Connection Established"
-		exit 0
-	else
-		notify-send "Connection Error: Unable to use stored credentials"
-		exit 1
-	fi
-}
-try_connect(){
-	[ -z "$1" ] && exit
-	if [ $(nmcli dev wifi con "$1" password "$2" | grep -c "successfully activated") -eq 1 ]; then
-		notify-send "Connection Established"
-		exit 0
-	else
-		notify-send "B Connection Error: Could not connect using password"
-		exit 1
-	fi
-}
 connect(){
-	[ ! -z "$2" ] && [ ! -z "$1" ] && try_connect "$1" "$2" || try_store "$1"
+	[ -z "$1" ] && die "no ssid"
+  if [ -z "$2" ]; then
+    command="nmcli dev wifi con '${1//\'/\\\'}'"
+  else
+    command="nmcli dev wifi con '${1//\'/\\\'}' password '${2//\'/\\\'}'"
+  fi
+  message="$(sh -c "$command")"
+  case "$message" in
+    *"successfully activated"* )
+      notify-send --urgency low "Network" "Connected to $1"
+      ;;
+    * )
+      notify-send --urgency critical "Network" "Could not connect to ${1}\n$message"
+  esac
 }
 
 disconnect(){
 	dev=$(nmcli -fields TYPE,DEVICE d | grep "wifi " | awk '{print $2}')
-	if nmcli dev disconnect "$dev" >/dev/null; then
-		notify-send "Disconnected"
-	else
-		notify-send "Error"
-	fi
+  message="$(nmcli dev disconnect "$dev")"
+  case "$message" in
+    *"successfully disconnected"* )
+      notify-send --urgency low "Network" "Disconnected wifi"
+      ;;
+    * )
+      notify-send --urgency critical "Network" "Could not disconnect wifi ${1}\n$message"
+  esac
 }
 
 connect_gui(){
@@ -55,7 +69,7 @@ connect_gui(){
 	fi
 }
 show(){
-  nmcli -t -f name connection show --active | xargs
+  nmcli -t -f name connection show --active | head -n 1
 }
 
 networks_gui(){

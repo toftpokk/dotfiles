@@ -28,13 +28,20 @@
 
 (defwidget network [ssid ?conn ?bars]
   (button 
-    :class {"network"+ (conn == "" ? '' : ' connected')}
+    :class {conn == "" ? 'network' : 'network connected'}
     :onclick {"eww update nw-rescan=true; " + (conn == "" ? "./scripts/getNetwork connect '${ssid}'": "./scripts/getNetwork disconnect")}
     (centerbox 
       :orientation "h"
-      ; :space-evenly false
-      (label :class "icon" :text "直" :xalign 0)
-      (label :text ssid :xalign 0)
-      (label :text bars :xalign 1)
+      (box 
+        :space-evenly false
+        (label
+          :xalign 0
+          :class "icon" 
+          :text "󰑩"
+        )
+        (label :text ssid)
+      )
+      ""
+      (label :class "bars" :text bars :xalign 1)
       )))
 

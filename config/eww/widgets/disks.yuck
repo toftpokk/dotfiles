@@ -2,6 +2,6 @@
   (button 
     :onclick "eww open --toggle disks"
     :class "widget-disks"
-    " ${round(EWW_DISK["/"].used_perc, 0)}%"
+    "󰋊 ${round(EWW_DISK["/"].used_perc, 0)}%"
     )
   )

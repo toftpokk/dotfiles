@@ -2,9 +2,9 @@
   (button 
     :class "widget-audio"
     :onclick "eww open --toggle audio" 
-    {" "+ (
+    {(
             is-muted == "yes" 
-            ? "Muted" 
-            : volume+"%"
+            ? "󰖁 -" 
+            : "󰕾 " + volume+"%"
             )})
   )

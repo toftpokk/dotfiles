@@ -1,5 +1,5 @@
 (defwidget widget.network []
   (button :class "widget-network"
           :onclick "eww open --toggle network" 
-          {"直 "+ wifi})
+          {"󰖩 "+ wifi})
   )
