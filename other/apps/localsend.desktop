@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=LocalSend
+Type=Application
+Exec=localsend
+Icon=localsend
+Terminal=false
