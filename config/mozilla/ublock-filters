@@ -2,9 +2,6 @@
 www.glassdoor.com##.py-xl.hardsell
 www.glassdoor.com##.hardsellContainer
 www.glassdoor.com##.hardsellOverlay
-||reddit.com
-||twitter.com
-||amway.co.th
 
 ! May 31, 2025 https://softwareengineering.stackexchange.com
 ||accounts.google.com/gsi/iframe$subdocument
@@ -15,3 +12,11 @@ opuree.com##[aria-label="juad888"]
 opuree.com##[aria-label="ufazeed"]
 opuree.com##[aria-label="slotgame66"]
 opuree.com##[aria-label="adsok"]
+
+! https://www.reddit.com/r/firefox/comments/1digcp4/comment/l93oijg/
+$3p,to=facebook.*,from=~facebook.*|~instagram.com|~messenger.com|~meta.*|~threads.*
+
+!||reddit.com
+!||twitter.com
+||amway.co.th
+

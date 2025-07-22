@@ -16,3 +16,21 @@ user_pref("dom.private-attribution.submission.enabled", false);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets",true);
 // Transparency
 user_pref("gfx.webrender.all",true);
+
+// sidebar
+user_pref("sidebar.revamp", true);
+// sidebar visibility
+user_pref("sidebar.visibility", "always-show");
+// sidebar tools
+user_pref("sidebar.main.tools", "history");
+// vertical tabs
+user_pref("sidebar.verticalTabs", true);
+
+// alt to show top menu
+user_pref("ui.key.menuAccessKeyFocuses", false);
+
+// disable gestures
+user_pref("browser.gesture.swipe.left", "");
+user_pref("browser.gesture.swipe.right", "");
+// opening newtab lets you choose containers
+user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
