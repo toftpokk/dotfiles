@@ -2,6 +2,9 @@
 # inspired by https://github.com/PoSayDone/.dotfiles_new
 set -euo pipefail
 
+echo 'Install script in its current form is untested'
+exit 1
+
 # Initial checks
 if [ "$(whoami)" = "root" ]; then
 	echo "Please run script as user"
@@ -46,13 +49,14 @@ localdir() {
 
 # Pacman
 pacman() {
-	if cmp -s "/etc/pacman.conf" "$DOTS/other/pacman.conf"; then
+    newpacman="$DOTS/root/etc/pacman.conf"
+    if cmp -s "/etc/pacman.conf" "$newpacman"; then
 		log Pacman "Config up to date"
 		return
 	fi
 	log Pacman "Installing Config"
 	sudo mv "/etc/pacman.conf" "/etc/pacman.conf.bak"
-	sudo cp "$DOTS/other/pacman.conf" "/etc/pacman.conf"
+	sudo cp "$newpacman" "/etc/pacman.conf"
 	sudo chmod 644 "/etc/pacman.conf"
 	sudo chown root:root "/etc/pacman.conf"
 }
@@ -60,36 +64,49 @@ pacman() {
 # Dependencies
 dependencies() {
 	log Pacinstall "Installing dependencies"
+	## Desktop Agnostic
+	pacinstall "xdg-utils"
+
+	# for makepkg
+	pacinstall "debugedit"
+
 	# Fonts
-	pacinstall 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-liberation'
+	pacinstall 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-liberation' 'ttf-hack-nerd'
 	## Meta
 	pacinstall 'man-db' 'pacman-contrib'
 	## Compression
 	pacinstall 'zip' 'unzip' 'p7zip' 'unrar'
 	## Documents
-	pacinstall 'libreoffice-fresh' 'zathura' 'zathura-cb' 'zathura-pdf-mupdf'
+	pacinstall 'libreoffice-fresh' 'zathura' 'zathura-cb' 'tesseract-data-eng' 'zathura-pdf-mupdf'
 	## Audio/Visual
 	pacinstall 'pipewire' 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'pavucontrol' 'pamixer' 'mpv'
 	## System Utilities
 	pacinstall 'usbutils' 'acpilight' 'fontconfig'
 	## Image Capture & Editing
-	pacinstall 'imagemagick' 'ghostscript' 'grim' 'slurp' 'nsxiv'
+	pacinstall 'imagemagick' 'ghostscript' 'nsxiv'
 	## File Sharing & Access
-	pacinstall 'openvpn' 'sshfs' 'udisks2' 'nfs-utils' 'fuse2' 'deluge-gtk' 'rsync'
+	pacinstall 'udisks2' 'nfs-utils' 'fuse2' 'deluge-gtk' 'rsync'
 	## Web & Network
-	pacinstall 'wget' 'firefox' 'ldns'
+	pacinstall 'wget' 'firefox'
 	## Directory & Search
-	pacinstall 'lf' 'highlight' 'fzf' 'ncdu' 'ripgrep' 'borg'
+	pacinstall 'lf' 'highlight' 'fzf' 'dua-cli' 'ripgrep' 'borg'
 	## Terminal
-	pacinstall 'zsh' 'zsh-completions' 'bash-completion' 'foot'
+	pacinstall 'fish'
 	## Desktop Linux Utilities
-	pacinstall 'hyprland' 'xdg-desktop-portal-hyprland' 'swayidle' 'xclip' 'cliphist' \
+	pacinstall 'niri' 'swayidle' 'wl-clipboard' \
 		'htop' 'trash-cli' 'libsixel' 'chafa' \
-		'waybar' 'dunst' 'libnotify' 'playerctl' 'libcanberra' 'wofi' 'swww'
+		'waybar' 'mako' 'libnotify' 'playerctl' 'libcanberra' 'fuzzel' 'swww'
 	## Language
-	pacinstall 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk' 'hunspell-en_us'
+
+	# Dictionary
+	pacinstall 'hunspell-en_us'
 	## Wine
 	pacinstall 'wine'
+	## Powermanagement
+	pacinstall 'tlp'
+	# also do systemctl enable tlp
+    # also mask rfkill: systemctl mask systemd-rfkill.service
+    # ref: https://wiki.archlinux.org/title/TLP
 	## Development
 	pacinstall 'docker' 'docker-compose' 'python-virtualenv' 'neovim' 'git' 'python-pip' \
 		'bash-language-server' 'pyright' 'rust-analyzer' 'typescript-language-server' 'shfmt'

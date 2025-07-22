@@ -72,25 +72,6 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
 }
 
-// Open the Firefox picture-in-picture player as floating by default.
-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-window-rule {
-    geometry-corner-radius 5
-    clip-to-geometry true
-}
-
-window-rule {
-    match app-id=r#"\.exe$"#
-    open-floating true
-}
-
 binds {
     // when running as a winit window.
     Mod+Shift+Slash { show-hotkey-overlay; }
@@ -291,4 +272,38 @@ hotkey-overlay {
 
 environment {
     DISPLAY ":0"
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    geometry-corner-radius 5
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#"\.exe$"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"Zotero$"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"Xdg-desktop-portal-gtk$"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"obsidian$"#
+    open-floating false
 }
