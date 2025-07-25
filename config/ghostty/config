@@ -34,7 +34,7 @@
 # # part of the value. For example, this will have a value of "#123abc":
 
 # black
-palette = 0=181818
+palette = 0=686868
 # red
 palette = 1=ee3632
 # green
@@ -50,7 +50,7 @@ palette = 6=#70CCAD
 # white
 palette = 7=#f8f8f8
 
-palette = 8=181818
+palette = 8=686868
 # red
 palette = 9=ee3632
 # green
@@ -72,9 +72,12 @@ cursor-text = #f8f8f8
 selection-background = #f8f8f8
 selection-foreground = #a8a8a8
 
-background = 181818
-background-opacity = 0.8
-background-blur-radius = 40
+background = 181828
+# Niri awaiting blur support https://www.reddit.com/r/hyprland/comments/1jmxq2t/niri/
+# https://github.com/YaLTeR/niri/pull/1634
+# background-opacity = 0.8
+# background-blur = 20
+# background-blur-radius = 40
 
 resize-overlay = never
 

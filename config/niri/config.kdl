@@ -90,6 +90,8 @@ binds {
     XF86MonBrightnessDown     allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
     XF86MonBrightnessUp       allow-when-locked=true { spawn "brightnessctl" "set" "+5%"; }
 
+    MouseMiddle { spawn; } // disable middle click
+
     Mod+Shift+Q { close-window; }
 
     Mod+Left  { focus-column-left; }
@@ -261,10 +263,10 @@ gestures {
   }
 }
 
-// disable middle click paste
-clipboard {
-    disable-primary
-}
+// disable middle click, does not work
+// clipboard {
+//     disable-primary
+// }
 
 hotkey-overlay {
     skip-at-startup

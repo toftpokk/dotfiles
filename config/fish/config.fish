@@ -3,6 +3,7 @@ set -gx TERMINAL ghostty
 set -gx PAGER less
 set -gx READER zathura
 set -gx BROWSER firefox
+set -gx LESS FRX # jj does not work well with default less
 set -gx XDG_CONFIG_HOME "$HOME/.config"	# XDG_CONFIG_HOME
 set -gx XDG_CACHE_HOME "$HOME/.cache"
 set -gx XDG_STATE_HOME "$HOME/.local/state"
@@ -24,6 +25,6 @@ set fish_greeting
 
 if status --is-login
     if test (tty) = /dev/tty1
-        exec niri
+        exec dbus-run-session niri --session
     end
 end
