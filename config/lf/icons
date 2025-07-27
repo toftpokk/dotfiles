@@ -29,13 +29,13 @@ ow             # OTHER_WRITABLE
 st      t       # STICKY
 di             # DIR
 pi      p       # FIFO
-so      s       # SOCK
+so      󱄉       # SOCK
 bd      b       # BLK
 cd      c       # CHR
 su      u       # SETUID
 sg      g       # SETGID
 ex             # EXEC
-fi             # FILE
+fi             # FILE
 
 # file extensions (vim-devicons)
 *.styl          
@@ -342,25 +342,26 @@ Vagrantfile             
 # *.ogx   
 
 # audio formats (extensions from dircolors defaults)
-*.aac   墳
-*.au    墳
-*.flac  墳
-*.m4a   墳
-*.mid   墳
-*.midi  墳
-*.mka   墳
-*.mp3   墳
-*.mpc   墳
-*.ogg   墳
-*.ra    墳
-*.wav   墳
-*.oga   墳
-*.opus  墳
-*.spx   墳
-*.xspf  墳
+*.aac   
+*.au    
+*.flac  
+*.m4a   
+*.mid   
+*.midi  
+*.mka   
+*.mp3   
+*.mpc   
+*.ogg   
+*.ra    
+*.wav   
+*.oga   
+*.opus  
+*.spx   
+*.xspf  
 
 # other formats
-*.pdf   
+*.pdf   
+*.ipynb 
 
 # 2. CUSTOM ICONS
 # Programming
@@ -376,16 +377,16 @@ Vagrantfile             
 *.otf 
 
 # Document
-*.odt 	# Docs
-*.odp 	# Slides
-*.ods 	# Sheets
-*.docx 	# Docs
-*.pptx 	# Slides
-*.xlsx 	# Sheets
+*.odt 	# Docs
+*.odp 	# Slides
+*.ods 	# Sheets
+*.docx   	# Docs
+*.pptx   	# Slides
+*.xlsx   	# Sheets
 
 # Books
-*.epub 
-*.cbz 
+*.epub 󰂺
+*.cbz 󰂺
 
 # Windows
 *.dll 
@@ -393,18 +394,18 @@ Vagrantfile             
 
 # Config
 *.cfg 
-*.ovpn 
+*.ovpn 󰖂
 
-*.bak 
+*.bak 󰁯
 
 *.torrent 
 
 # Videos
-*.mkv   
-*.webm  
-*.mp4   
-*.flv   
-*.mpg   
+*.mkv   
+*.webm  
+*.mp4   
+*.flv   
+*.mpg   
 
 # Images
 *.ico   
