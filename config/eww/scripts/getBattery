@@ -41,7 +41,9 @@ icon() {
 	fi
 
 	if [ "$per" -lt "20" ] && [ ! "$status" = "Charging" ]; then
-		dunstify -i "battery-symbolic.symbolic" -u "critical" -r 90212 "Battery Low" "Connect Charger"
+    # see https://github.com/emersion/mako/issues/252
+		notify-send -i "battery-symbolic.symbolic" -u "critical" -r 90212 "Battery Low" "Connect Charger" --hint=string:x-dunst-stack-tag:battery \
+      --hint=string:synchronous:battery
 	fi
 	echo "${icon} $per%"
 }

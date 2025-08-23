@@ -10,9 +10,6 @@ find_ntsc_perc(){
   # note: green has no space between key and value
   greenx="$(echo "$colors" | awk '/Green/ {print substr($2, 1, length($3)-1)}')"
   greeny="$(echo "$colors" | awk '/Green/ {print $3}')"
-  # echo $redx , $redy
-  # echo $bluex , $bluey
-  # echo $greenx , $greeny
   ntsc_area="0.1581936030502012"
   echo "print(int(abs(0.5*($redx*($greeny-$bluey)+$greenx*($bluey-$redy)+$bluex*($redy-$greeny)))/$ntsc_area *100))" | python3
 }

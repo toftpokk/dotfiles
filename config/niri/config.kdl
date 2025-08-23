@@ -309,3 +309,10 @@ window-rule {
     match app-id=r#"obsidian$"#
     open-floating false
 }
+
+// drag and drop box
+// https://github.com/YaLTeR/niri/issues/2153
+// window-rule {
+//   match title="^$"
+//   open-floating true
+// }

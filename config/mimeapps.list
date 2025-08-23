@@ -4,6 +4,7 @@ image/bmp=nsxiv.desktop;
 image/gif=nsxiv.desktop;
 image/jpg=nsxiv.desktop;
 image/png=nsxiv.desktop;
+image/tif=nsxiv.desktop;
 image/x-xcf=gimp.desktop;
 image/svg+xml=nsxiv.desktop;
 application/pdf=org.pwmt.zathura.desktop;

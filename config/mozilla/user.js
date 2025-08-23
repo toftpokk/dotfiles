@@ -33,4 +33,6 @@ user_pref("ui.key.menuAccessKeyFocuses", false);
 user_pref("browser.gesture.swipe.left", "");
 user_pref("browser.gesture.swipe.right", "");
 // opening newtab lets you choose containers
-user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
+// user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
+// no ai
+// user_pref("browser.ml.chat.enabled", false)

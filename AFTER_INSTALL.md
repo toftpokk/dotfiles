@@ -104,3 +104,10 @@ vim ~/.config/private_env
   Have to use a portal with support: https://wiki.archlinux.org/title/XDG_Desktop_Portal
   i.e. xdg portal is like LSP, some implementations support some features
 
+18. Check systemd boot time
+
+  systemd-analyze
+  systemd-analyze blame
+  systemd-analyze critical-chain
+
+ref: https://www.reddit.com/r/archlinux/comments/1mdvcpp/how_is_this_boot_so_fast/

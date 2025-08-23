@@ -208,6 +208,10 @@ usermod -aG docker $USER
 - ghostty
     - is too slow to spawn
     - top bars is annoying for tiling window managers
+    - some ssh targets don't work:
+      - ssh into old servers and delete becomes space
+    - pasting shows annoying dialog
+      - I know it's for security but very annoying
 
 ## Lenovo laptops
 https://wiki.archlinux.org/title/Laptop/Lenovo
