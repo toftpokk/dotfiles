@@ -1,0 +1,10 @@
+#!/bin/sh
+
+VIM='nvim'
+VIMCMD='setlocal statusline=Rename\ second\ argument\ and\ save\ `:wq`.\ Quit\ without\ saving\ `:q!`'
+
+if [ -z "$1" ]; then
+  ls | sed "s/\(.*\)/mv \'\1\' \'\1\'/" | $VIM -c "$VIMCMD"
+else
+  ls "$1" | sed "s/\(.*\)/mv \'\1\' \'\1\'/" | $VIM -c "$VIMCMD"
+fi
