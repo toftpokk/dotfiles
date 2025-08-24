@@ -1,7 +1,0 @@
-#!/bin/sh
-
-content=~/Projects/pandan/data
-blog=$content/blog
-cd "$blog"
-latest="$(ls | tail -n1)"
-nvim "$latest"

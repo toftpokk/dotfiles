@@ -1,6 +1,35 @@
 #!/bin/sh
+set -Eeuo pipefail
+usage(){
+  cat <<EOF
+Usage:
+  notes [options]
 
-notes=~/Personal/Notes
+Options:
+  -n   go to notes (default)
+  -b   go to blog
+  -g   go to uni notes
+  -h   print this help
+EOF
+}
+
+target="$HOME/Personal/Notes"
 file="index.md"
-cd "$notes"
+while getopts ":nghb" arg; do
+  case $arg in
+  n)
+    target="$HOME/Personal/Notes" ;;
+  g)
+    target="$HOME/Uni/Notes" ;;
+  b)
+    target="$HOME/Personal/Blog"
+    file="$(ls $target | tail -n1)"
+    ;;
+  h) usage; exit 0 ;;
+  \?) echo "Invalid option: -$OPTARG"
+    usage; exit 1 ;;
+  esac
+done
+
+cd "$target"
 nvim "$file"

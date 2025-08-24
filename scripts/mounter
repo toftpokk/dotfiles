@@ -1,0 +1,81 @@
+#!/bin/sh
+set -euo pipefail
+
+usage(){
+  cat <<EOF
+
+Usage:
+  mount
+  mount <command> <target>
+
+With no argument will run in interactive mode
+
+Command:
+  mount   mounts a target
+  unmount unmounts a target
+EOF
+}
+
+action=""
+if [ ! -z "${1:-}" ]; then
+  if [ -z "${2:-}" ]; then
+    echo "Missing argument: target"
+    usage; exit 1
+  fi
+  target="$2"
+  case "$1" in
+    mount) action="Mount";;
+    unmount) action="Unmount";;
+    *) 
+      echo "Invalid argument command: unknown command '$1' expected Mount,Unmount"
+      usage; exit 1
+  esac
+else
+  action="$( \
+    printf "Mount\nUnmount" | fuzzel --dmenu -p "Action: " \
+  )"
+  [ "$action" = "" ] && exit
+
+  mountpoints="$( \
+  lsblk -rpo name,type,size,label \
+    | awk '/part/{if($4 != ""){printf "%s (%s %s)\n",$1,$4,$3}else{printf "%s (%s)\n",$1,$3}}' \
+    | sed 's/\\x20/_/g' \
+    )"
+  target="$( \
+    printf "$mountpoints" | \
+    fuzzel --dmenu -p "Target: "\
+    )"
+  target=$(echo $target | awk '{print $1}')
+  [ "$target" = "" ] && exit
+fi
+
+case "$action" in
+  Mount)
+    exit_code=0
+    OUTPUT="$( \
+      udisksctl mount -b "$target" 2>&1 \
+      )" || exit_code=$?
+    if [ "$exit_code" -ne 0 ]; then
+      notify-send -i "dialog-warning" -u "critical" "Mount" "$target: $OUTPUT"
+    else
+      notify-send -i "drive-harddisk" "Mount" "Successfully mounted $target"
+    fi
+    ;;
+  Unmount)
+    exit_code=0
+    OUTPUT="$( \
+      udisksctl unmount -b "$target" 2>&1 \
+      )" || exit_code=$?
+    if [ "$exit_code" -ne 0 ]; then
+      notify-send -i "dialog-warning" -u "critical" "Unmount" "$target: $OUTPUT"
+    else
+      notify-send -i "drive-harddisk" "Unmount" "Successfully unmounted $target"
+    fi
+    ;;
+  *)
+    notify-send -i "dialog-warning" -u "critical" "Mount" "Unknown action: $action"
+    exit 1
+esac
+
+
+
