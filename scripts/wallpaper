@@ -3,7 +3,7 @@ set -Eeuo pipefail
 usage(){
   cat <<EOF
 Usage:
-  wallpaper [options] [ROOT_RELATIVE_PATH]
+  wallpaper [options] [PATH absolute or root-relative]
 
 Options
   -d ROOT_PATH    set root path
@@ -51,8 +51,17 @@ done
 # Shift to Required arguments
 shift $((OPTIND-1))
 
-# Join path or leave as is
-target="$root${1:+/$1}"
+case "${1:-}" in
+  /*)
+    # target is relative path
+    target="$1"
+    unset exclude
+    ;;
+  *)
+    # Join path if $1 is defined
+    target="$root${1:+/$1}"
+    ;;
+esac
 
 if [ -f "$target" ]; then
   image="$target"

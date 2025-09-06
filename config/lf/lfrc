@@ -69,7 +69,7 @@ cmd mkextract ${{
 }}
 
 cmd mkwall ${{
-	wallpaper -f "$f"
+	wallpaper "$f"
 }}
 
 cmd mklock ${{
