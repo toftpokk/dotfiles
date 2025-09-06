@@ -8,22 +8,24 @@ Usage:
 Options
   -d ROOT_PATH    set root path
   -l              list items in root
+  -p              interactive showcase mode
 EOF
 }
 
-random(){
+all(){
   if [ ! -z "$2" ]; then
-    find "$1" -type f -not -path "$1/$2" | shuf -n 1
+    find "$1" -type f -not -path "$1/$2"
   else
-    find "$1" -type f | shuf -n 1
+    find "$1" -type f
   fi
 }
 
 root="$HOME/Backgrounds"
 exclude="_meta/*"
+play=false
 
 OPTIND=1
-while getopts ":hd:l" arg; do
+while getopts ":hd:lp" arg; do
   case $arg in
   d)
     root="$OPTARG"
@@ -38,6 +40,7 @@ while getopts ":hd:l" arg; do
   l) echo "Available Targets:"
     ls "$root"
     exit 0 ;;
+  p) play=true;;
   \?) echo "Invalid option: -$OPTARG"
     usage; exit 1;;
   :) echo "Option -$OPTARG requires an argument"
@@ -48,12 +51,13 @@ done
 # Shift to Required arguments
 shift $((OPTIND-1))
 
-if [ "$#" -lt 1 ] || [ -z "$1" ]; then
-  image="$(random "$root" "${exclude:-}")"
-elif [ -f "$root/$1" ]; then
-  image="$root/$1"
-elif [ -d "$root/$1" ]; then
-  image="$(random "$root/$1" "${exclude:-}")"
+# Join path or leave as is
+target="$root${1:+/$1}"
+
+if [ -f "$target" ]; then
+  image="$target"
+elif [ -d "$target" ]; then
+  image="$(all "$target" "${exclude:-}" | shuf -n 1)"
 else
   echo "'$1' is not a file or directory in '$root'"
   usage; exit 1
@@ -66,8 +70,16 @@ fi
 
 if ! swww query &>/dev/null; then
   swww-daemon &
-  # If not started, set image directly, no transition
-  swww img "$image"
-else
-  swww img "$image" --transition-type wipe
 fi
+
+if ! "$play"; then
+  swww img "$image" --transition-type wipe
+else
+  printf "Interactive Mode Started.\nPress Enter to Show Next Wallpaper\nPress Control-C to Exit\n"
+  all "$target" "${exclude:-}" | while read -r image; do
+    swww img "$image" --transition-type wipe
+    echo "$image"
+    read -r < /dev/tty
+  done
+fi
+
