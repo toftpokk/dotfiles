@@ -3,23 +3,37 @@ set -Eeuo pipefail
 usage(){
   cat <<EOF
 Usage:
-  wallpaper [path relative to root]
-  wallpaper [-d root] [path relative to root]
-  wallpaper [-f path]
-  wallpaper [-l]
+  wallpaper [options] [ROOT_RELATIVE_PATH]
+
+Options
+  -d ROOT_PATH    set root path
+  -l              list items in root
 EOF
 }
 
+random(){
+  if [ ! -z "$2" ]; then
+    find "$1" -type f -not -path "$1/$2" | shuf -n 1
+  else
+    find "$1" -type f | shuf -n 1
+  fi
+}
+
 root="$HOME/Backgrounds"
-root_exclude="$root/_meta/*"
-default=""
-local=""
+exclude="_meta/*"
 
 OPTIND=1
-while getopts ":hd:f:" arg; do
+while getopts ":hd:l" arg; do
   case $arg in
-  d) root="$OPTARG" ;;
-  f) local="$OPTARG" ;;
+  d)
+    root="$OPTARG"
+    if [ ! -d "$root" ]; then
+      echo "'$root' is not a valid directory"
+      usage; exit 1
+    fi
+    # defaults to not exclude anything
+    unset exclude
+    ;;
   h) usage; exit 0 ;;
   l) echo "Available Targets:"
     ls "$root"
@@ -34,28 +48,15 @@ done
 # Shift to Required arguments
 shift $((OPTIND-1))
 
-if [ ! -z "$local" ]; then
-  # Local File
-  if [ -f "$local" ]; then
-    image="$local"
-  elif [ -d "$local" ]; then
-    image=$(find "$local" -type f | shuf -n 1)
-  else
-    echo "Argument '$local' is not a file or directory"
-    usage; exit 1
-  fi
+if [ "$#" -lt 1 ] || [ -z "$1" ]; then
+  image="$(random "$root" "${exclude:-}")"
+elif [ -f "$root/$1" ]; then
+  image="$root/$1"
+elif [ -d "$root/$1" ]; then
+  image="$(random "$root/$1" "${exclude:-}")"
 else
-  # Not local
-  if [ "$#" -lt 1 ] || [ -z "$1" ]; then
-    image="$(find "$root/$default" -type f -not -path "$root_exclude" | shuf -n 1)"
-  elif [ -f "$root/$1" ]; then
-    image="$1"
-  elif [ -d "$root/$1" ]; then
-    image="$(find "$root/$1" -type f -not -path "$root_exclude" | shuf -n 1)"
-  else
-    echo "Argument '$1' is not a file or directory in '$root'"
-    usage; exit 1
-  fi
+  echo "'$1' is not a file or directory in '$root'"
+  usage; exit 1
 fi
 
 if [ -z "$image" ]; then
