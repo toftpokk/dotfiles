@@ -3,8 +3,10 @@ set -Eeuo pipefail
 usage(){
   cat <<EOF
 Usage:
-  wallpaper [-d root] [wallpaper directory name]
-  wallpaper [-f local image or directory]
+  wallpaper [path relative to root]
+  wallpaper [-d root] [path relative to root]
+  wallpaper [-f path]
+  wallpaper [-l]
 EOF
 }
 
@@ -19,6 +21,9 @@ while getopts ":hd:f:" arg; do
   d) root="$OPTARG" ;;
   f) local="$OPTARG" ;;
   h) usage; exit 0 ;;
+  l) echo "Available Targets:"
+    ls "$root"
+    exit 0 ;;
   \?) echo "Invalid option: -$OPTARG"
     usage; exit 1;;
   :) echo "Option -$OPTARG requires an argument"
@@ -54,7 +59,7 @@ else
 fi
 
 if [ -z "$image" ]; then
-	echo "Error: Argument '$arg' is not image or directory" >&2
+	echo "Error: Argument '$image' is not image or directory" >&2
   exit 1
 fi
 

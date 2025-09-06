@@ -1,4 +1,6 @@
 #!/bin/sh
+set -euo pipefail
+
 error_exit() {
 	echo "$1" >&2
 	exit 1
@@ -13,7 +15,7 @@ help() {
 }
 
 exdir="."
-if [ ! -z "$2" ]; then
+if [ ! -z "${2:-}" ]; then
 	if [ -d "$2" ]; then
 		exdir="$2"
 	else
@@ -23,23 +25,29 @@ if [ ! -z "$2" ]; then
 fi
 
 if [ -f "$1" ]; then
+  OUTPUT=""
+  exit_code=0
 	case "$1" in
-	*.tar.bz2) tar xjf "$1" --directory="$exdir" ;;
-	*.tar.gz) tar xzf "$1" --directory="$exdir" ;;
-	*.tar.xz | *.tar.zst) tar xf "$1" --directory="$exdir" ;;
-	*.bz2) bunzip2 "$1" ;;
-	*.rar) unrar x "$1" "$exdir" ;;
-	*.gz) gunzip "$1" ;;
-	*.tar) tar xf "$1" --directory="$exdir" ;;
-	*.tbz2) tar xjf "$1" --directory="$exdir" ;;
-	*.tgz) tar xzf "$1" --directory="$exdir" ;;
-	*.zip | *.cbz) unzip "$1" -d "$exdir" ;;
-	*.Z) uncompress "$1" ;;
-	*.7z) 7z x "$1" ;;
+    *.tar.bz2)            OUTPUT="$(tar xjf "$1" --directory="$exdir" 2>&1)"|| exit_code=$? ;;
+    *.tar.gz)             OUTPUT="$(tar xzf "$1" --directory="$exdir" 2>&1)"|| exit_code=$? ;;
+    *.tar.xz | *.tar.zst) OUTPUT="$(tar xf "$1" --directory="$exdir" 2>&1)"|| exit_code=$? ;;
+    *.bz2)                OUTPUT="$(bunzip2 "$1" 2>&1)"|| exit_code=$? ;;
+    *.rar)                OUTPUT="$(unrar x "$1" "$exdir" 2>&1)"|| exit_code=$? ;;
+    *.gz)                 OUTPUT="$(gunzip "$1" 2>&1)"|| exit_code=$? ;;
+    *.tar)                OUTPUT="$(tar xf "$1" --directory="$exdir" 2>&1)"|| exit_code=$? ;;
+    *.tbz2)               OUTPUT="$(tar xjf "$1" --directory="$exdir" 2>&1)"|| exit_code=$? ;;
+    *.tgz)                OUTPUT="$(tar xzf "$1" --directory="$exdir" 2>&1)"|| exit_code=$? ;;
+    *.zip | *.cbz)        OUTPUT="$(unzip "$1" -d "$exdir" 2>&1 >/dev/null)" || exit_code=$? ;;
+    *.Z)                  OUTPUT="$(uncompress "$1" 2>&1)"|| exit_code=$? ;;
+    *.7z)                 OUTPUT="$(7z x "$1" 2>&1)"|| exit_code=$? ;;
 	*)
 		error_exit "'$1' cannot be extracted via ex()"
 		;;
 	esac
+  if [ "$exit_code" -ne 0 ]; then
+    notify-send -u critical "Extract" "$OUTPUT"
+    error_exit "$OUTPUT"
+  fi
 else
 	error_exit "'$1' is not a valid file"
 fi
