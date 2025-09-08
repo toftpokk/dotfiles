@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cur="$(brightnessctl get)"
+max="$(brightnessctl max)"
+perc=$(printf '%d' $((cur*100/max)))
+notify-send -a "brightness" \
+  -u low \
+  -i display-brightness-symbolic \
+	-h string:x-dunst-stack-tag:brightness \
+	-h int:value:$perc "Brightness"
+canberra-gtk-play -i audio-volume-change -d "brightness"

@@ -1,5 +1,10 @@
 #!/bin/sh
-sel=$(echo -e "Start\nEnd\nReset\nStart Mins\nStart Secs" | dmenu -c -l 5)
+
+dmenu() {
+	fuzzel --dmenu "$@"
+}
+
+sel=$(echo -e "Start\nEnd\nReset\nStart Mins\nStart Secs" | dmenu -l 5)
 if [ "$sel" = "End" ]; then
 	pkill pomo
 elif [ "$sel" = "Reset" ]; then
@@ -8,11 +13,11 @@ elif [ "$sel" = "Reset" ]; then
 elif [ "$sel" = "Start" ]; then
 	pomo
 elif [ "$sel" = "Start Mins" ]; then
-	time=$(echo -e "25\n20\n10\n5" | dmenu -p "Time Mins:" -c -l 5)
+	time=$(echo -e "25\n20\n10\n5" | dmenu -p "Time Mins:" -l 5)
 	echo $time
 	[ -z "$time" ] || pomo "$time"
 elif [ "$sel" = "Start Secs" ]; then
-	time=$(echo -e "25\n20\n10\n5" | dmenu -p "Time Secs:" -c -l 5)
+	time=$(echo -e "25\n20\n10\n5" | dmenu -p "Time Secs:" -l 5)
 	echo $time
 	[ -z "$time" ] || pomo "$time" "s"
 fi

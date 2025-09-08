@@ -4,7 +4,7 @@ countdown(){
 	while [ $end -ge $(date +%s) ]; do
 		time=$(($end - $(date +%s)))
 		# printf 'Time: %s\r' $(date -u -d @$time +%H:%M:%S)
-		dunstify -a "pomodoro" -u low -i alarm-symbolic.symbolic \
+		notify-send -a "pomodoro" -u low -i appointment-soon \
 			-h string:x-dunst-stack-tag:pomodoro \
 			-h int:value:$(($time *100 / $1)) \
 			-t 3000 \

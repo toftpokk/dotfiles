@@ -1,5 +1,6 @@
 #!/bin/sh
 # NSXIV Script rifle modified
+# Source: https://codeberg.org/nsxiv/nsxiv-extra/src/branch/master/scripts/nsxiv-rifle/nsxiv-rifle
 
 tmp="/tmp/nsxiv_rifle_$$"
 
@@ -9,15 +10,7 @@ listfiles() {
     sort | tee "$tmp"
 }
 
-is_img() {
-  case "${1##*.}" in
-    "jpg"|"jpeg"|"JPG"|"JPEG"|"png"|"PNG"|"gif"|"webp"|"tiff"|"bmp"|"svg") return 0 ;;
-    *) return 1 ;;
-  esac
-}
-
 open_img() {
-  is_img "$1" || exit 1
   trap 'rm -f $tmp' EXIT
   count="$(listfiles "$1" | grep -nF "$1")"
   if [ -n "$count" ]; then
