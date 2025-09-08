@@ -7,4 +7,3 @@ swaylock -f --screenshots \
         --ring-color 5066C6 \
         --key-hl-color 70CCAD \
         --fade-in 0.2 \
-        --grace 2
