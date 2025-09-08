@@ -86,8 +86,8 @@ dependencies() {
 	pacinstall 'imagemagick' 'ghostscript' 'nsxiv'
 	## File Sharing & Access
 	pacinstall 'udisks2' 'nfs-utils' 'fuse2' 'deluge-gtk' 'rsync'
-	## Web & Network
-	pacinstall 'wget' 'firefox'
+  ## Web & Network (ldns for drill)
+	pacinstall 'wget' 'firefox' 'ldns'
 	## Directory & Search
 	pacinstall 'lf' 'highlight' 'fzf' 'dua-cli' 'ripgrep' 'borg'
 	## Terminal
