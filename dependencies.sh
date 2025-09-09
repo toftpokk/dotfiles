@@ -181,7 +181,7 @@ deps(){
   simple_install mpv
 
 	## System Utilities
-	pacinstall 'usbutils' 'acpilight' 'fontconfig'
+	pacinstall 'usbutils' 'brightnessctl' 'fontconfig'
 
 	## Image Capture & Editing
 	pacinstall 'imagemagick' 'ghostscript' 'nsxiv'
