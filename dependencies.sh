@@ -35,13 +35,13 @@ simple_install() {
 }
 
 ## Custom Packages ---------------------------------------------------------
-zathura(){
+pkg-zathura(){
   pacinstall 'zathura' 'zathura-cb' 'tesseract-data-eng' 'zathura-pdf-mupdf'
 
   ln -sf $DOTS/config/zathura $CONFIG/
 }
 
-fcitx(){
+pkg-fcitx(){
   pacinstall 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk'
 
   mkdir -p "$CONFIG/fcitx5"
@@ -56,7 +56,7 @@ fcitx(){
   ln -sf $DOTS/config/fcitx5/thaumura $LOCAL/share/fcitx5/themes/thaumura
 }
 
-gtk(){
+pkg-gtk(){
   ln -sf $DOTS/config/gtk-2.0 $CONFIG/
 
   mkdir -p "$CONFIG/gtk-3.0"
@@ -66,7 +66,7 @@ gtk(){
   ln -sf $DOTS/config/gtk-4.0/settings.ini $CONFIG/gtk-4.0/
 }
 
-zsh(){
+pkg-zsh(){
   pacinstall 'zsh' 'zsh-completions'
 
   mkdir -p "$CONFIG/zsh"
@@ -79,28 +79,28 @@ zsh(){
   chsh -s /usr/bin/zsh
 }
 
-fish(){
+pkg-fish(){
   pacinstall 'fish'
 
   ln -sf $DOTS/config/fish $CONFIG/
   chsh -s /usr/bin/fish
 }
 
-cmus(){
+pkg-cmus(){
   pacinstall 'cmus'
 
   mkdir -p "$CONFIG/cmus"
   ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
 }
 
-bash(){
+pkg-bash(){
   pacinstall 'bash-completion'
 
   ln -sf $DOTS/home/bash_profile $HOME/.bash_profile
   ln -sf $DOTS/home/bashrc $HOME/.bashrc
 }
 
-firefox() {
+pkg-firefox() {
   pacinstall 'firefox'
 
   ffconfig="$HOME/.mozilla/firefox"
@@ -109,7 +109,7 @@ firefox() {
   cp "$DOTS/config/mozilla/user.js" "$ffconfig/$profile/user.js"
 }
 
-link-system(){
+pkg-system(){
   # config
   ln -sf $DOTS/config/mimeapps.list $CONFIG/
   ln -sf $DOTS/config/stalonetrayrc $CONFIG/
@@ -151,10 +151,10 @@ mkdir -p "$HOME/Mount"
 
 # System
 log System "Installing System Packages"
-link-system
+pkg-system
 pacinstall 'libnotify'
-gtk
-bash
+pkg-gtk
+pkg-bash
 
 # Custom
 log Pacman "Installing Custom Packages"
@@ -174,7 +174,7 @@ deps(){
 
   ## Documents
   pacinstall 'libreoffice-fresh'
-  zathura
+  pkg-zathura
 
   ## Audio/Visual
   pacinstall 'pipewire' 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'pavucontrol' 'pamixer'
@@ -191,7 +191,7 @@ deps(){
 
   ## Web & Network (ldns for drill)
   pacinstall 'wget' 'ldns'
-  firefox
+  pkg-firefox
 
   ## Directory & Search
   pacinstall 'fzf' 'dua-cli' 'ripgrep' 'borg'
@@ -199,7 +199,7 @@ deps(){
   simple_install lf
 
   ## Terminal
-  fish
+  pkg-fish
   simple_install ghostty
 
   ## Desktop Linux Utilities
@@ -233,6 +233,6 @@ deps
 # simple_install dunst
 # simple_install wofi
 # fcitx
-# zsh
-# cmus
-# foot
+# pkg-zsh
+# pkg-cmus
+# simple_install foot
