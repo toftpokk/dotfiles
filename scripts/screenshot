@@ -13,8 +13,8 @@ while getopts ":sa" opts; do
 	esac
 done
 
-dir="$HOME/Screenshots"
-[ -d "$dir" ] || mkdir "$dir"
+dir="$HOME/Pictures/Screenshots"
+[ -d "$dir" ] || mkdir -p "$dir"
 tmp_img="/tmp/screenshot.png"
 if [ "$select" = 1 ]; then
 	grim -g "$(slurp 2>/dev/null)" - 2>/dev/null | tee "$tmp_img" | wl-copy

@@ -73,11 +73,9 @@ selection-background = #f8f8f8
 selection-foreground = #a8a8a8
 
 background = 181828
-# Niri awaiting blur support https://www.reddit.com/r/hyprland/comments/1jmxq2t/niri/
-# https://github.com/YaLTeR/niri/pull/1634
-# background-opacity = 0.8
-# background-blur = 20
-# background-blur-radius = 40
+background-opacity = 0.8
+background-blur = 20
+background-blur-radius = 40
 
 resize-overlay = never
 
