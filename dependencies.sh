@@ -1,0 +1,238 @@
+#!/bin/sh
+set -euo pipefail
+
+# Init ---------------------------------------------------------
+if [ "$(whoami)" = "root" ]; then
+	echo "Please run script as user"
+	exit
+fi
+
+script_full_path=$(dirname "$0")
+source "$script_full_path/env.sh"
+
+# Helpers ---------------------------------------------------------
+FRED='\033[0;31m'
+FGRE='\033[0;32m'
+FBLU='\033[0;34m'
+FNON='\033[0m'
+log() {
+	echo -e "$FRED>>>>>> [$1]$FNON $2"
+}
+
+debug() {
+	if [ ! -z "${DEBUG:-}" ]; then
+		echo -e "$FGRE>>>>>> [DEBUG]$FNON $1"
+	fi
+}
+
+pacinstall() {
+  sudo pacman -Syu --noconfirm --needed "$@"
+}
+
+simple_install() {
+  pacinstall "$1"
+  ln -sf "$DOTS/config/$1" "$CONFIG/"
+}
+
+## Custom Packages ---------------------------------------------------------
+zathura(){
+  pacinstall 'zathura' 'zathura-cb' 'tesseract-data-eng' 'zathura-pdf-mupdf'
+  
+  ln -sf $DOTS/config/zathura $CONFIG/
+}
+
+fcitx(){
+  pacinstall 'fcitx5' 'fcitx5-configtool' 'fcitx5-mozc' 'fcitx5-gtk'
+
+  mkdir -p "$CONFIG/fcitx5"
+	ln -sf $DOTS/config/fcitx5/config $CONFIG/fcitx5/config
+	ln -sf $DOTS/config/fcitx5/profile $CONFIG/fcitx5/profile
+
+	mkdir -p "$CONFIG/fcitx5/conf"
+	ln -sf $DOTS/config/fcitx5/classicui.conf $CONFIG/fcitx5/conf/classicui.conf
+
+	mkdir -p "$LOCAL/share/fcitx5"
+	mkdir -p "$LOCAL/share/fcitx5/themes"
+	ln -sf $DOTS/config/fcitx5/thaumura $LOCAL/share/fcitx5/themes/thaumura
+}
+
+gtk(){
+  ln -sf $DOTS/config/gtk-2.0 $CONFIG/
+
+	mkdir -p "$CONFIG/gtk-3.0"
+	ln -sf $DOTS/config/gtk-3.0/settings.ini $CONFIG/gtk-3.0/
+
+	mkdir -p "$CONFIG/gtk-4.0"
+	ln -sf $DOTS/config/gtk-4.0/settings.ini $CONFIG/gtk-4.0/
+}
+
+zsh(){
+  pacinstall 'zsh' 'zsh-completions'
+
+	mkdir -p "$CONFIG/zsh"
+	ln -sf $DOTS/config/zsh/zshrc $CONFIG/zsh/.zshrc
+	ln -sf $DOTS/config/zsh/zprofile $CONFIG/zsh/.zprofile
+
+	mkdir -p "$STATE/zsh"
+	ln -sf $DOTS/home/zshenv $HOME/.zshenv
+
+	chsh -s /usr/bin/zsh
+}
+
+fish(){
+  pacinstall 'fish'
+
+  ln -sf $DOTS/config/fish $CONFIG/
+  chsh -s /usr/bin/fish
+}
+
+cmus(){
+  pacinstall 'cmus'
+
+	mkdir -p "$CONFIG/cmus"
+	ln -sf $DOTS/config/cmus/* $CONFIG/cmus/
+}
+
+bash(){
+  pacinstall 'bash-completion'
+
+  ln -sf $DOTS/home/bash_profile $HOME/.bash_profile
+	ln -sf $DOTS/home/bashrc $HOME/.bashrc
+}
+
+firefox() {
+  pacinstall 'firefox'
+
+	ffconfig="$HOME/.mozilla/firefox"
+	firefox --headless -CreateProfile default
+	profile="$(ls "$ffconfig" | grep "[^.]\+\.default")"
+	cp "$DOTS/config/mozilla/user.js" "$ffconfig/$profile/user.js"
+}
+
+link-system(){
+  # config
+	ln -sf $DOTS/config/mimeapps.list $CONFIG/
+	ln -sf $DOTS/config/stalonetrayrc $CONFIG/
+	ln -sf $DOTS/config/python $CONFIG/
+	ln -sf $DOTS/config/fontconfig $CONFIG/
+	ln -sf $DOTS/config/hypr $CONFIG/
+
+  # home
+	ln -sf $DOTS/home/inputrc $HOME/.inputrc
+	ln -sf $DOTS/home/Xresources $HOME/.Xresources
+
+  # scripts
+	ln -sf $DOTS/scripts $LOCAL/
+  mkdir -p "$LOCAL/bin"
+
+  # systemd
+	mkdir -p "$LOCAL/share/systemd/user"
+	ln -sf "$DOTS/systemd/automount.service" "$LOCAL/share/systemd/user/automount.service"
+	systemctl start --user automount.service
+	systemctl enable --user automount.service
+}
+
+# Main ---------------------------------------------------------
+
+# Required dirs
+log LocalDirs "Creating"
+mkdir -p "$CONFIG"
+mkdir -p "$STATE"
+mkdir -p "$LOCAL"
+
+mkdir -p "$HOME/Desktop"
+mkdir -p "$HOME/Personal"
+mkdir -p "$HOME/Personal/Notes"
+mkdir -p "$HOME/Projects"
+mkdir -p "$HOME/Backgrounds"
+mkdir -p "$HOME/Entertainment"
+mkdir -p "$HOME/test"
+mkdir -p "$HOME/Mount"
+
+# System
+log System "Installing System Packages"
+link-system
+pacinstall 'libnotify'
+gtk
+bash
+
+# Custom
+log Pacman "Installing Custom Packages"
+
+deps(){
+  ## Fonts
+  pacinstall 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-liberation' 'ttf-hack-nerd'
+
+	## Desktop Agnostic
+	pacinstall "xdg-utils"
+
+	## Meta
+	pacinstall 'man-db' 'pacman-contrib' "debugedit"
+
+	## Compression
+	pacinstall 'zip' 'unzip' 'p7zip' 'unrar'
+
+	## Documents
+	pacinstall 'libreoffice-fresh'
+  zathura
+
+	## Audio/Visual
+	pacinstall 'pipewire' 'pipewire-jack' 'pipewire-pulse' 'wireplumber' 'pavucontrol' 'pamixer'
+  simple_install mpv
+
+	## System Utilities
+	pacinstall 'usbutils' 'acpilight' 'fontconfig'
+
+	## Image Capture & Editing
+	pacinstall 'imagemagick' 'ghostscript' 'nsxiv'
+
+	## File Sharing & Access
+	pacinstall 'udisks2' 'nfs-utils' 'fuse2' 'deluge-gtk' 'rsync'
+
+  ## Web & Network (ldns for drill)
+	pacinstall 'wget' 'ldns'
+  firefox
+
+	## Directory & Search
+	pacinstall 'fzf' 'dua-cli' 'ripgrep' 'borg'
+  simple_install highlight
+  simple_install lf
+
+  ## Terminal
+  fish
+  simple_install ghostty
+
+	## Desktop Linux Utilities
+	pacinstall 'swayidle' 'wl-clipboard' \
+		'htop' 'trash-cli' 'libsixel' 'chafa' \
+    'playerctl' 'libcanberra'  'swww'
+  simple_install mako
+  simple_install fuzzel
+
+	# Dictionary
+	pacinstall 'hunspell-en_us'
+
+	## Wine
+	pacinstall 'wine'
+
+	## Powermanagement
+	pacinstall 'tlp'
+	# also do systemctl enable tlp
+    # also mask rfkill: systemctl mask systemd-rfkill.service
+    # ref: https://wiki.archlinux.org/title/TLP
+  
+	## Development
+	pacinstall 'docker' 'docker-compose' 'python-virtualenv' 'neovim' 'git' 'python-pip' \
+		'bash-language-server' 'pyright' 'rust-analyzer' 'typescript-language-server' 'shfmt'
+}
+deps
+
+# Deprecated
+# simple_install waybar
+# simple_install niri
+# simple_install dunst
+# simple_install wofi
+# fcitx
+# zsh
+# cmus
+# foot
