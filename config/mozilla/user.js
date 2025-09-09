@@ -34,5 +34,17 @@ user_pref("browser.gesture.swipe.left", "");
 user_pref("browser.gesture.swipe.right", "");
 // opening newtab lets you choose containers
 // user_pref("privacy.userContext.newTabContainerOnLeftClick.enabled", true);
-// no ai
-// user_pref("browser.ml.chat.enabled", false)
+
+// ARKENFOX disable geolocation
+user_pref("geo.provider.ms-windows-location", false); // [WINDOWS]
+user_pref("geo.provider.use_corelocation", false); // [MAC]
+user_pref("geo.provider.use_geoclue", false); // [FF102+] [LINUX]
+
+// ARKENFOX disable about:addons recommendations (Uses google analytics)
+user_pref("extensions.getAddons.showPane", false);
+user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
+user_pref("browser.discovery.enabled", false);
+
+// Font
+// Assuming default font Noto Sans Thai
+user_pref("font.name.sans-serif.th","Noto Sans Thai Looped")
