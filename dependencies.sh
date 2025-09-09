@@ -109,6 +109,12 @@ pkg-firefox() {
   cp "$DOTS/config/mozilla/user.js" "$ffconfig/$profile/user.js"
 }
 
+pkg-hyprland() {
+  pacinstall 'hyprland'
+
+  ln -sf $DOTS/config/hypr $CONFIG/
+}
+
 pkg-system(){
   # config
   ln -sf $DOTS/config/mimeapps.list $CONFIG/
@@ -208,6 +214,7 @@ deps(){
     'playerctl' 'libcanberra'  'swww'
   simple_install mako
   simple_install fuzzel
+  pkg-hyprland
 
   # Dictionary
   pacinstall 'hunspell-en_us'

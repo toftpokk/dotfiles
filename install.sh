@@ -3,9 +3,6 @@
 set -euo pipefail
 
 # Init ---------------------------------------------------------
-echo 'Warn: Install script in its current form is untested'
-exit 1
-
 if [ "$(whoami)" = "root" ]; then
   echo "Please run script as user"
   exit
