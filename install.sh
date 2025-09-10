@@ -12,27 +12,12 @@ script_full_path=$(dirname "$0")
 source "$script_full_path/env.sh"
 
 # Helpers ---------------------------------------------------------
-FRED='\033[0;31m'
-FGRE='\033[0;32m'
-FBLU='\033[0;34m'
-FNON='\033[0m'
-log() {
-  echo -e "$FRED>>>>>> [$1]$FNON $2"
-}
-
-debug() {
-  if [ ! -z "${DEBUG:-}" ]; then
-    echo -e "$FGRE>>>>>> [DEBUG]$FNON $1"
-  fi
-}
-
 pacman() {
   newpacman="$DOTS/root/etc/pacman.conf"
   if cmp -s "/etc/pacman.conf" "$newpacman"; then
-    log Pacman "Config up to date"
+    log Pacman "Skipped. Pacman configuration up to date"
     return
   fi
-  log Pacman "Installing Config"
   sudo mv "/etc/pacman.conf" "/etc/pacman.conf.bak"
   sudo cp "$newpacman" "/etc/pacman.conf"
   sudo chmod 644 "/etc/pacman.conf"
@@ -41,6 +26,7 @@ pacman() {
 
 # Main ---------------------------------------------------------
 log Install "Starting..."
+
 debug "$(cat <<EOF
 ENVS:
   HOME=$HOME
@@ -52,13 +38,19 @@ ENVS:
 EOF
 )"
 
-log Install "Pacman"
-# pacman
+log Install "Installing Pacman Configuration"
 
-log Install "Dependencies"
+pacman
+
+log Install "Installing Dependencies (dependencies.sh)"
+
 $script_full_path/dependencies.sh
 
-log Install "Done!"
+log Install "Installing Git Dependencies (git-dependencies.sh)"
+
+$script_full_path/dependencies.sh
+
+log Install "Installation Done!"
 
 log TODO "Next Steps:
 1. AUR only packages

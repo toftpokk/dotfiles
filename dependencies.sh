@@ -11,20 +11,6 @@ script_full_path=$(dirname "$0")
 source "$script_full_path/env.sh"
 
 # Helpers ---------------------------------------------------------
-FRED='\033[0;31m'
-FGRE='\033[0;32m'
-FBLU='\033[0;34m'
-FNON='\033[0m'
-log() {
-  echo -e "$FRED>>>>>> [$1]$FNON $2"
-}
-
-debug() {
-  if [ ! -z "${DEBUG:-}" ]; then
-    echo -e "$FGRE>>>>>> [DEBUG]$FNON $1"
-  fi
-}
-
 pacinstall() {
   sudo pacman -Syu --noconfirm --needed "$@"
 }
@@ -110,7 +96,7 @@ pkg-firefox() {
 }
 
 pkg-hyprland() {
-  pacinstall 'hyprland'
+  pacinstall 'hyprland' 'xdg-desktop-portal-hyprland'
 
   ln -sf $DOTS/config/hypr $CONFIG/
 }
@@ -129,7 +115,6 @@ pkg-system(){
 
   # scripts
   ln -sf $DOTS/scripts $LOCAL/
-  mkdir -p "$LOCAL/bin"
 
   # systemd
   mkdir -p "$LOCAL/share/systemd/user"
@@ -140,8 +125,8 @@ pkg-system(){
 
 # Main ---------------------------------------------------------
 
-# Required dirs
-log LocalDirs "Creating"
+log Dependencies "Creating Local Directories"
+
 mkdir -p "$CONFIG"
 mkdir -p "$STATE"
 mkdir -p "$LOCAL"
@@ -155,15 +140,14 @@ mkdir -p "$HOME/Entertainment"
 mkdir -p "$HOME/test"
 mkdir -p "$HOME/Mount"
 
-# System
-log System "Installing System Packages"
+log Dependencies "Installing System Packages"
+
 pkg-system
 pacinstall 'libnotify'
 pkg-gtk
 pkg-bash
 
-# Custom
-log Pacman "Installing Custom Packages"
+log Dependencies "Installing Custom Packages"
 
 deps(){
   ## Fonts
