@@ -30,6 +30,7 @@ cargo build --release --no-default-features --features=wayland
 mv target/release/eww "$LOCAL/bin/"
 eww -V
 popd
+ln -sf "$DOTS/config/eww" "$CONFIG/"
 
 # Vim
 git clone --depth 1 https://github.com/toftpokk/nvim-config

@@ -143,7 +143,7 @@ mkdir -p "$HOME/Mount"
 log Dependencies "Installing System Packages"
 
 pkg-system
-pacinstall 'libnotify'
+pacinstall 'libnotify' 'base-devel'
 pkg-gtk
 pkg-bash
 
