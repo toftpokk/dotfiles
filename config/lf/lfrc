@@ -111,7 +111,7 @@ cmd trash-rem %{{
 cmd trash-put %{{
   for i in $fx; do
     if [ -d "$i" ]; then
-      rmdir "$i" || trash-put "$i"
+      rmdir "$i" 2>/dev/null || trash-put "$i"
     else
       trash-put "$i"
     fi
