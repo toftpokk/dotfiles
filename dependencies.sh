@@ -206,7 +206,7 @@ deps(){
 
   ## Terminal
   pkg-fish
-  simple_install ghostty
+  simple_install foot
 
   ## Desktop Linux Utilities
   pacinstall 'swayidle' 'wl-clipboard' \
@@ -243,3 +243,4 @@ deps
 # pkg-zsh
 # pkg-cmus
 # simple_install foot
+# ghostty

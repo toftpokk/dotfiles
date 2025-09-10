@@ -5,7 +5,7 @@ case $mimetype in
 	application/json|text/*|application/javascript|message/rfc822)
 		highlight "$1" -s $HOME/.config/highlight/toft-colors.theme -O truecolor --force;;
   image/*)
-    chafa -f symbols -s "$2x$3" --animate off --polite on "$1"
+    chafa -f sixels -s "$2x$3" --animate off --polite on "$1"
     exit 1
     ;;
 	audio/*|video/*) ~/.config/lf/scripts/audinfo "$1";;
