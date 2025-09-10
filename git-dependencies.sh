@@ -14,6 +14,7 @@ pacinstall() {
   sudo pacman -Syu --noconfirm --needed "$@"
 }
 
+# Main ---------------------------------------------------------
 log Git-Dependencies "Creating Directories"
 
 mkdir -p "$LOCAL/bin"
@@ -22,18 +23,22 @@ mkdir -p "$GIT_PROJECTS"
 log Git-Dependencies "Installing"
 pushd "$HOME/git-projects"
 
-# Eww
-pacinstall 'libdbusmenu-gtk3' 'gtk-layer-shell'
-git clone --depth 1 https://github.com/elkowar/eww
-pushd eww
-cargo build --release --no-default-features --features=wayland
-mv target/release/eww "$LOCAL/bin/"
-eww -V
+# Paru
+git clone --depth 1 https://aur.archlinux.org/paru.git
+pushd paru
+makepkg -si
 popd
+
+# Eww
+paru -S eww
 ln -sf "$DOTS/config/eww" "$CONFIG/"
 
-# Vim
+# Nvim config
 git clone --depth 1 https://github.com/toftpokk/nvim-config
 ln -sf "$GIT_PROJECTS/nvim-config" "$CONFIG/nvim"
 
+paru -S ripdrag-git
+paru -S vscodium-bin
+paru -S hunspell-th
+paru -S swaylock-effects
 popd

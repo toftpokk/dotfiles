@@ -48,14 +48,6 @@ $script_full_path/dependencies.sh
 
 log Install "Installing Git Dependencies (git-dependencies.sh)"
 
-$script_full_path/dependencies.sh
+$script_full_path/git-dependencies.sh
 
 log Install "Installation Done!"
-
-log TODO "Next Steps:
-1. AUR only packages
-'fonts-tlwg' 'swaylock-effects' 'wl-gammarelay' 'safeeyes' 'ripdrag-git' \
-  'hunspell-th' 'vscodium-bin'
-
-2. Install Neovim
-"
