@@ -33,4 +33,19 @@
 
 .widget-tray {
   @include widget-style;
+  menu {
+    background-color: $gray-2;
+    menuitem {
+      color: $white;
+      padding: 3px 5px;
+
+      &:disabled label {
+        color: $black
+      }
+
+      &:hover {
+        background-color: $gray-3
+      }
+    }
+  }
 }

@@ -2,5 +2,6 @@
     (systray
       :orientation "h"
       :class "widget-tray"
+      :spacing 5
     )
   )
