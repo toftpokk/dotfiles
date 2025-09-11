@@ -23,14 +23,14 @@ default-timeout=8000
 background-color=#161616
 border-color=#565656
 text-color=#ffffff
-on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
+on-notify=exec canberra-gtk-play -i message
 
 [urgency=critical]
 default-timeout=0
 background-color=#C20618
 border-color=#D70015
 text-color=#ffffff
-on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/dialog-warning.oga
+on-notify=exec canberra-gtk-play -i dialog-warning
 
 [app-name=udiskie]
 default-timeout=2500
