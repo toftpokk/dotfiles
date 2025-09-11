@@ -93,6 +93,8 @@ pkg-firefox() {
   firefox --headless -CreateProfile default
   profile="$(ls "$ffconfig" | grep "[^.]\+\.default")"
   cp "$DOTS/config/mozilla/user.js" "$ffconfig/$profile/user.js"
+  mkdir -p "/usr/lib/firefox/distribution/"
+  cp "$DOTS/root/usr/lib/firefox/distribution/policies.json" "/usr/lib/firefox/distribution/"
 }
 
 pkg-hyprland() {
@@ -110,8 +112,8 @@ pkg-system(){
   ln -sf $DOTS/config/hypr $CONFIG/
 
   # home
-  ln -sf $DOTS/home/inputrc $HOME/.inputrc
-  ln -sf $DOTS/home/Xresources $HOME/.Xresources
+  # ln -sf $DOTS/home/inputrc $HOME/.inputrc
+  # ln -sf $DOTS/home/Xresources $HOME/.Xresources
 
   # scripts
   ln -sf $DOTS/scripts $LOCAL/

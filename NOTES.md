@@ -9,3 +9,10 @@ fcitx still "stuck" at `<input>`. This means cannot change typing
 language at terminal.
 Solution:
 deselect `<input>` when switching to terminal
+
+## Policies.json
+
+ID is from `guid` in https://addons.mozilla.org/api/v5/addons/addon/ublock-origin/
+Where this link is from? Searching in extensions and copying the name in the URL
+Nobody has any idea where it's from.
+
