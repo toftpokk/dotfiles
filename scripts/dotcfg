@@ -1,0 +1,25 @@
+#!/bin/sh
+
+menu(){
+  echo -en "$1" | fuzzel --dmenu
+}
+
+COMMAND="$(menu "\
+xdg-icon
+xdg-sound
+")"
+[ -z "$COMMAND" ] && exit 1
+
+case "$COMMAND" in
+  xdg-icon)
+    icon_name="$(find /usr/share/icons -type f -printf "%f\n" | sed 's/\.[^.]*$//' | sort | uniq | fuzzel --dmenu)"
+    notify-send "dotcfg" "xdg-icon" -i "$icon_name"
+    ;;
+  xdg-sound)
+    sound_id="$(find /usr/share/sounds -type f -printf "%f\n" | sed 's/\.[^.]*$//' | sort | uniq | fuzzel --dmenu)"
+    canberra-gtk-play -i "$sound_id"
+    ;;
+  *)
+    exit 1
+esac
+

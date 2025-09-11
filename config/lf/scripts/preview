@@ -8,7 +8,18 @@ case $mimetype in
     chafa -f sixels -s "$2x$3" --animate off --polite on "$1"
     exit 1
     ;;
-	audio/*|video/*) ~/.config/lf/scripts/audinfo "$1";;
+  video/*)
+    CACHE_DIR="$HOME/.cache/preview"
+    mkdir -p "$CACHE_DIR"
+    thumb="$CACHE_DIR/$(echo "$1" | sed 's/\//_/g')"
+    # missing or outdated
+    if [ ! -f "$thumb" ] || [ "$1" -nt "$thumb" ]; then 
+      ffmpegthumbnailer -i "$1" -o "$thumb"
+    fi
+    chafa -f sixels -s "$2x$3" --animate off --polite on "$thumb"
+    exit 1
+    ;;
+	audio/*) ~/.config/lf/scripts/audinfo "$1";;
 	application/pdf) pdftotext -l 10 -nopgbrk -q -- "$1" -;;
   application/gzip|application/x-tar|application/zip|application/x-rar) printf "\e[0;29;44m Archived Files ($mimetype) \e[0m\n" && bsdtar --list --file "$1" ;;
 	inode/x-empty) printf "\e[0;30;43m Empty \e[0m\n" ;;

@@ -103,10 +103,21 @@ pkg-hyprland() {
   ln -sf $DOTS/config/hypr $CONFIG/
 }
 
+pkg-stalonetray(){
+  pacinstall 'stalonetray'
+
+  ln -sf $DOTS/config/stalonetrayrc $CONFIG/
+}
+
+pkg-gammastep(){
+  pacinstall 'gammastep' 'geoclue2'
+
+  ln -sf $DOTS/config/gammastep $CONFIG/
+}
+
 pkg-system(){
   # config
   ln -sf $DOTS/config/mimeapps.list $CONFIG/
-  ln -sf $DOTS/config/stalonetrayrc $CONFIG/
   ln -sf $DOTS/config/python $CONFIG/
   ln -sf $DOTS/config/fontconfig $CONFIG/
   ln -sf $DOTS/config/hypr $CONFIG/
@@ -197,10 +208,11 @@ deps(){
   ## Desktop Linux Utilities
   pacinstall 'swayidle' 'wl-clipboard' \
     'htop' 'trash-cli' 'libsixel' 'chafa' \
-    'playerctl' 'libcanberra'  'swww'
+    'playerctl' 'libcanberra'  'swww' 'ffmpegthumbnailer'
   simple_install mako
   simple_install fuzzel
   pkg-hyprland
+  pkg-gammastep
 
   # Dictionary
   pacinstall 'hunspell-en_us'
@@ -230,3 +242,4 @@ deps
 # pkg-cmus
 # simple_install foot
 # ghostty
+# pkg-stalonetray
