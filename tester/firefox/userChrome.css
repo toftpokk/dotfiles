@@ -1,0 +1,78 @@
+@import url('url-bar.css');
+@import url('context-menu.css');
+@import url('tab.css');
+@import url('downloads.css');
+@import url('util.css');
+
+
+/* *{ */
+/*   background-color: green !important; */
+/* } */
+/* * {
+  background-color: red !important; 
+} */
+
+/* TESTING*/
+                                              
+
+/* :root {
+  --bg1: light-dark(#f5f6f6, #383838);
+  --bg2: light-dark(#fff, #454545);
+  --bg3: light-dark(rgba(50, 50, 50, .1), rgba(225, 225, 225, .1));
+  --bg4: light-dark(rgba(255, 255, 255, .75), rgba(15, 15, 12, .75));
+  --bs1: 0 5px 15px rgba(0, 0, 0, .2), 0 0 0 .5px rgba(0, 0, 0, .15);
+  --bs2: 0 5px 15px rgba(0, 0, 0, .25), 0 0 0 .5px rgba(0, 0, 0, .5);
+  --outline-color: light-dark(#7db0f7, #2c749f);
+  --button-bgcolor: light-dark(rgba(70, 70, 70, .12), rgba(170, 170, 170, .15)) !important;
+  --button-hover-bgcolor: light-dark(rgba(70, 70, 70, .1), rgba(170, 170, 170, .2)) !important;
+  --button-active-bgcolor: light-dark(rgba(70, 70, 70, .15), rgba(170, 170, 170, .3)) !important;
+  --button-background-color: var(--button-bgcolor) !important;
+  --button-background-color-hover: var(--button-hover-bgcolor) !important;
+  --button-background-color-active: var(--button-active-bgcolor) !important;
+  --in-content-primary-button-background: light-dark(#2b87fb, #3078ef) !important;
+  --in-content-primary-button-background-hover: light-dark(#227cfb, #2566e1) !important;
+  --in-content-primary-button-background-active: light-dark(#1c66e8, #225cca) !important;
+  --in-content-primary-button-text-color: #fff !important;
+  --devtools-splitter-color: transparent !important;
+  --button-text-color-primary: #fff !important;
+  --button-primary-color: #fff !important;
+  --color-accent-primary: light-dark(#2b87fb, #3078ef) !important;
+  --color-accent-primary-hover: light-dark(#FF0000, #FF0000) !important;
+  --color-accent-primary-active: light-dark(#FF0000, #FF0000) !important;
+  --button-primary-bgcolor: light-dark(#2b87fb, #3078ef) !important;
+  --button-primary-hover-bgcolor: light-dark(#227cfb, #2566e1) !important;
+  --button-primary-active-bgcolor: light-dark(#1c66e8, #225cca) !important;
+  --in-content-button-background: light-dark(rgba(70, 70, 70, .1), rgba(170, 170, 170, .2)) !important;
+  --in-content-button-background-hover: light-dark(rgba(70, 70, 70, .15), rgba(170, 170, 170, .3)) !important;
+  --in-content-button-background-active: light-dark(rgba(70, 70, 70, .12), rgba(170, 170, 170, .15)) !important;
+  --link-color: light-dark(#4481f2, #1280fd) !important;
+  --toolbar-field-focus-background-color: light-dark(rgba(155, 155, 155, .25), rgba(195, 195, 195, .25)) !important;
+  --urlbarView-result-button-hover-color: light-dark(rgba(0, 0, 0, .8), rgba(255, 255, 255, .8)) !important;
+  --urlbarView-result-button-hover-background-color: light-dark(rgba(155, 155, 155, .5), rgba(195, 195, 195, .5)) !important;
+  --toolbarbutton-icon-fill-attention: light-dark(#4481f2, #1280fd) !important;
+  --arrowpanel-background: light-dark(#fff, #383838) !important;
+  --focus-outline-color: transparent !important;
+  --in-content-box-background: light-dark(rgba(155, 155, 155, .2), rgba(195, 195, 195, .2)) !important;
+  --background-color-box: light-dark(rgba(155, 155, 155, .2), rgba(195, 195, 195, .2)) !important;
+  --in-content-box-border-color: transparent !important;
+  --sidebar-background-color: transparent !important;
+  --sidebar-border-color: transparent !important;
+  --sidebar-box-border: transparent !important;
+  --sidebar-box-background: light-dark(rgba(102, 105, 108, .1), rgba(165, 165, 165, .1)) !important;
+  --urlbarView-hover-background: light-dark(rgba(155, 155, 155, .2), rgba(195, 195, 195, .2)) !important;
+  --urlbarView-highlight-background: light-dark(rgba(155, 155, 155, .3), rgba(195, 195, 195, .3)) !important;
+  --urlbarView-highlight-color: light-dark(#000, #fff) !important;
+  --input-bgcolor: light-dark(rgba(70, 70, 70, .1), rgba(170, 170, 170, .2)) !important;
+  --input-border-color: transparent !important;
+  --tabstrip-min-height: unset !important;
+  --tab-icon-overlay-fill: light-dark(rgba(0, 0, 0, .8), rgba(225, 225, 225, .8)) !important;
+  --toolbarbutton-hover-background: color-mix(in srgb, currentColor 10%, transparent) !important;
+  --toolbarbutton-active-background: color-mix(in srgb, currentColor 15%, transparent) !important;
+  @media (-moz-platform: windows) {
+  --bs1: 0 45px 65px rgba(0, 0, 0, .35), 0 0 0 1px rgba(0, 0, 0, .17);
+  --bs2: 0 45px 65px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .15);    
+  }
+} */
+
+
+

@@ -1,0 +1,4 @@
+/*
+Fix tiler squish: https://www.reddit.com/r/hyprland/comments/1kcesdx/firefox_in_tiling_mode_rendering_squashed_on/
+*/
+html {min-width:0 !important; } 

@@ -1,0 +1,63 @@
+/*
+Ref: https://www.reddit.com/r/FirefoxCSS/comments/1bac7qj/rightclick_context_menu_change_highlight_color_on/?sort=old
+
+menupopup = pop up menus
+#appMenu-popup = top right hamburger menu
+
+
+For Specific Menus
+Bookmarks: #PersonalToolbar menupopup
+Context Menu: #mainPopupSet menupopup
+Alt Toolbar #toolbar-menubar menupopup
+ref: https://www.reddit.com/r/firefox/comments/nt7e5y/firefox_color_how_to_change_color_of_context_menu/
+ref: https://www.reddit.com/r/FirefoxCSS/comments/1bac7qj/rightclick_context_menu_change_highlight_color_on/?sort=old
+
+*/
+
+/*
+Menu itself
+*/
+menupopup, 
+#appMenu-popup
+{
+  --panel-background: #FFFFFF55 !important;
+  --panel-border-color: #444444 !important; 
+  --panel-color: red !important;
+  --panel-separator-zap-gradient: linear-gradient(90deg, #FF0000 0%, #00FF00 52.08%, #0000FF 100%);
+}
+/*
+Menu button
+*/
+menuitem:hover:not([disabled="true"]),
+#appMenu-popup toolbarbutton:hover
+{
+  background-color: purple !important;
+  color: wheat !important;
+}
+/*
+Menu Button just scrolled past
+*/
+menuitem:where([_moz-menuactive="true"]:not([disabled="true"]))
+{
+  background-color: gray !important;
+}
+/*
+Submenu button
+*/
+menu:where([_moz-menuactive="true"]:not([disabled="true"])), 
+#appMenu-popup .subviewbutton-nav:hover
+{
+  background-color: pink !important;
+  color: wheat !important;
+}
+
+/*
+Separators
+*/
+menuseparator {
+  color: blue !important;
+}
+#appMenu-popup toolbarseparator {
+  background-color: blue !important;
+}
+

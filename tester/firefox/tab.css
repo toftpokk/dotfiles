@@ -1,0 +1,88 @@
+/*
+Note: Side panel background = browser background
+*/
+/* #browser {
+  clip-path: circle(100%);
+  background: transparent !important;
+} */
+
+/*
+Tab background = browser-toolbox background
+*/
+.browser-toolbox-background {
+  background: transparent !important;
+}
+
+/*
+Tabs & Bars
+*/
+#nav-bar, /* URL bar */
+#PersonalToolbar, /* bookmarks */
+#TabsToolbar /* behind both */
+{
+  background: transparent !important;
+}
+
+:root {
+  --tab-selected-outline-color: red !important;
+  --tab-selected-bgcolor: wheat !important;
+  --tab-hover-background-color: green !important;
+  
+  /* tabs */
+  --toolbox-textcolor-inactive: red !important;
+  --toolbox-textcolor: red !important;
+  
+  /* nav & bookmarks */
+  --toolbar-color: red !important;
+  
+  /* preview & extensions & downloads */
+  --arrowpanel-color: teal !important;
+  --text-color-deemphasized: yellow !important;
+  --arrowpanel-background: pink !important;
+}
+
+/*
+Tab close icon & button
+Note: vertical tabs minimized mode doesn't set background
+*/
+.tabbrowser-tab .close-icon {
+  fill: #c00 !important;
+}
+.tabbrowser-tab .close-icon:hover {
+  fill: white !important;
+}
+.tabbrowser-tab .tab-close-button:hover {
+  background: #0F0 !important;
+}
+
+
+/*
+New Tab button
+*/
+/* #tabbrowser-arrowscrollbox-periphery {
+  color: red !important;
+} */
+
+/*
+All tabs + scroll box
+*/
+#tabbrowser-arrowscrollbox {
+  /*
+  color: red !important;
+  Uses: --toolbox-textcolor
+  */
+}
+
+
+/*
+Tab Preview
+*/
+/* #tab-preview-panel .tab-preview-title {
+  color: brown !important;
+}
+#tab-preview-panel .tab-preview-uri {
+  color: brown !important;
+}
+#tab-preview-panel {
+  --arrowpanel-background: pink !important;
+} */

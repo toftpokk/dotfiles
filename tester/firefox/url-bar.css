@@ -1,0 +1,23 @@
+/* 
+The URL bar dropdown list
+ref: https://github.com/ahloiscreamo/Illit/blob/master/home/userChrome.css
+*/
+.urlbarView-row[selected] {
+  background-color: red !important;
+}
+.urlbarView-row:hover {
+  background-color: blue !important;
+}
+
+.urlbarView {
+  /*
+  Bug for backdrop blur
+  https://bugzilla.mozilla.org/show_bug.cgi?id=1773402
+  backdrop-filter: blur(90%);
+  */
+  background: #FF000055 !important;
+}
+
+#urlbar-background {
+    display: none !important;
+}
