@@ -136,6 +136,11 @@ Clipboard to wine
 
   wl-paste -t text -w xclip -selection clipboard
 
+Favorites Folder
+
+  cd ~/.wine/drive_c/users/$USER/Favorites
+  ln -s ~ home
+
 ### 2.13 Formatting
 
 For json processing
@@ -174,10 +179,6 @@ Do an fc-cache as well
 
 ### 2.18 Office suite
 
-To install libreoffice
-
-	pacman -S local/libreoffice-fresh
-
 Fo dark mode, install adwaita-qt6 and adwaita-qt5 <!-- TODO Needs more testing-->
 
 ## 2.20 Network Control
@@ -212,6 +213,11 @@ usermod -aG docker $USER
       - ssh into old servers and delete becomes space
     - pasting shows annoying dialog
       - I know it's for security but very annoying
+- hyprland
+	- suspend and wake is a little wonky. niri supports this better
+	- swallow is a little weird.
+		- Opening pdfs and quitting sometimes leaves a terminal hanging
+		- Sometimes swallowing does not shift focus to created window (hitting q quits the swallower)
 
 ## Lenovo laptops
 https://wiki.archlinux.org/title/Laptop/Lenovo

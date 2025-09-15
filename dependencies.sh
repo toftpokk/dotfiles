@@ -167,7 +167,7 @@ deps(){
   pacinstall 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-liberation' 'ttf-hack-nerd'
 
   ## Desktop Agnostic
-  pacinstall "xdg-utils"
+  pacinstall 'xdg-utils' 'jq'
 
   ## Meta
   pacinstall 'man-db' 'pacman-contrib' "debugedit"
