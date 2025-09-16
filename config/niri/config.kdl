@@ -61,6 +61,8 @@ layout {
 spawn-at-startup "eww" "open" "bar"
 spawn-at-startup "wallpaper"
 spawn-at-startup "mako"
+spawn-at-startup "gammastep-indicator"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "lock" "before-sleep" "lock"
 // for steam, nsxiv & co
 spawn-at-startup "xwayland-satellite"
