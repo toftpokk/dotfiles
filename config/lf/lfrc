@@ -103,10 +103,10 @@ cmd goto_mount %{{
 
 # cmd trash-put %trash-put "$fx"
 cmd trash-rem %{{
-	for i in $fx; do
-    t=$(basename "$i")
-		trash-rm "$t"
-	done
+  while IFS= read -r file; do
+    filename="$(basename "$file")"
+    trash-rm "$filename"
+  done <<< "$fx"
 }}
 cmd trash-put %{{
   for i in $fx; do

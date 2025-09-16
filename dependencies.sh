@@ -237,6 +237,8 @@ deps
 # simple_install niri
 # simple_install dunst
 # simple_install wofi
+# simple_install grim
+# simple_install slurp
 # fcitx
 # pkg-zsh
 # pkg-cmus
