@@ -2,7 +2,7 @@
 
 mimetype="$(file --mime-type -L -b -- "$1" )"
 case $mimetype in
-	application/json|text/*|application/javascript|message/rfc822)
+	application/json|application/x-ndjson|text/*|application/javascript|message/rfc822)
 		highlight "$1" -s $HOME/.config/highlight/toft-colors.theme -O truecolor --force;;
   image/*)
     chafa -f sixels -s "$2x$3" --animate off --polite on "$1"

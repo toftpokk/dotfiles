@@ -6,6 +6,6 @@ perc=$(printf '%d' $((cur*100/max)))
 notify-send -a "brightness" \
   -u low \
   -i display-brightness-symbolic \
-	-h string:x-dunst-stack-tag:brightness \
-	-h int:value:$perc "Brightness"
+  -h string:x-dunst-stack-tag:brightness \
+  -h int:value:$perc "Brightness" "$perc"
 canberra-gtk-play -i audio-volume-change -d "brightness"

@@ -3,13 +3,13 @@
 perc="$(pamixer --get-volume)"
 message=""
 if [ "$(pamixer --get-mute)" = "true" ] || [ $perc -eq 0 ]; then
-	message="Volume Muted"
+  message="Muted"
 else
-	message="Volume $vol%"
+  message="$perc%"
 fi
 notify-send -a "volume" \
   -u low \
   -i audio-volume-high-symbolic \
-	-h string:x-dunst-stack-tag:volume \
-	-h int:value:$vol $message
-  canberra-gtk-play -i audio-volume-change -d "volume"
+  -h string:x-dunst-stack-tag:volume \
+  -h int:value:$perc "Volume" "$message"
+canberra-gtk-play -i audio-volume-change -d "volume"
