@@ -11,6 +11,8 @@ anchor=top-right
 # For some reason only searches 16x16 and not symbolic or scalable folders
 # Ref: https://github.com/emersion/mako/issues/383
 icon-path=/usr/share/icons/Adwaita:/usr/share/icons/AdwaitaLegacy
+# maximum height
+height=500
 
 [urgency=low]
 default-timeout=2500

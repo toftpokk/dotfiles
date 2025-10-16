@@ -16,6 +16,16 @@ ID is from `guid` in https://addons.mozilla.org/api/v5/addons/addon/ublock-origi
 Where this link is from? Searching in extensions and copying the name in the URL
 Nobody has any idea where it's from.
 
+## Mako
+Always show truncated messages
+
+To get full messages
+```sh
+busctl --user call org.freedesktop.Notifications /fr/emersion/Mako fr.emersion.Mako ListNotifications -j \
+        | jq -r '.data[][] | select(.body.type == "s") | "\(.["app-name"].data)\n  \(.summary.data)\n  \(.body.data)\n"'
+```
+ref: https://github.com/emersion/mako/issues/540
+
 # New things
 - yazi is weird coming from lf:
     - wrapping top & bottom
