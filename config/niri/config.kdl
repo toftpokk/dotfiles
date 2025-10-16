@@ -83,7 +83,7 @@ binds {
     Mod+R hotkey-overlay-title="Open a File Explorer: LF" { spawn "foot" "-e" "lf"; }
     Mod+B hotkey-overlay-title="Open a Browser: Firefox" { spawn "firefox"; }
     Mod+G hotkey-overlay-title="Open Power" { spawn "powermenu"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "lock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn "sh" "-c" "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ && notify-volume"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "sh" "-c" "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1- && notify-volume"; }

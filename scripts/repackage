@@ -4,9 +4,9 @@ set -euo pipefail
 
 usage() {
   cat <<EOF
-Usage: repackage <zip_file>
+Usage: repackage <zip files...>
 
-Repackage a zip file.
+Repackage zip files.
 
 Supports:
   .epub: fix epub errors

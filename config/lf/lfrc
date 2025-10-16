@@ -101,13 +101,12 @@ cmd goto_mount %{{
 	lf -remote "send $id cd /run/media/$USER"
 }}
 
-# cmd trash-put %trash-put "$fx"
-cmd trash-rem %{{
-  while IFS= read -r file; do
-    filename="$(basename "$file")"
-    trash-rm "$filename"
-  done <<< "$fx"
-}}
+# cmd trash-rem %{{
+#   while IFS= read -r file; do
+#     filename="$(basename "$file")"
+#     trash-rm "$filename"
+#   done <<< "$fx"
+# }}
 cmd trash-put %{{
   for i in $fx; do
     if [ -d "$i" ]; then
@@ -157,7 +156,7 @@ map mx mkextract
 map mv img_view
 map mp mkpdf
 map tt trash-put
-map tr trash-rem
+# map tr trash-rem -- uses regex: too dangerous
 # map td perm-delete -- last time delete important stuff
 map f fuzzy_find
 map D duplicate
