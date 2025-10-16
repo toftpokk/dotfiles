@@ -16,7 +16,33 @@ opuree.com##[aria-label="adsok"]
 ! https://www.reddit.com/r/firefox/comments/1digcp4/comment/l93oijg/
 $3p,to=facebook.*,from=~facebook.*|~instagram.com|~messenger.com|~meta.*|~threads.*
 
-!||reddit.com
-!||twitter.com
+||reddit.com
+||twitter.com
+||x.com
 ||amway.co.th
 
+! Aug 20, 2025 https://www.findaphd.com
+www.findaphd.com##.cmpwrapper
+www.findaphd.com###credential_picker_container
+
+! Aug 24, 2025 https://www.reddit.com
+www.reddit.com###credential_picker_container
+
+! Aug 26, 2025 https://www.4khd.com
+www.4khd.com##.popup
+
+! Aug 27, 2025 https://www.traveloka.com
+www.traveloka.com###credential_picker_container
+
+! Sep 8, 2025 https://unix.stackexchange.com
+unix.stackexchange.com###credential_picker_container
+
+! Sep 25, 2025 https://th.jobsdb.com
+th.jobsdb.com###credential_picker_container
+
+! Oct 1, 2025 https://www.findamasters.com
+www.findamasters.com##.show.modal-popup.fade.modal-signup.modal
+www.findamasters.com##.show.fade.modal-backdrop
+
+! Oct 10, 2025 https://fastwork.co
+fastwork.co###credential_picker_container
