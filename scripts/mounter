@@ -36,11 +36,33 @@ else
   )"
   [ "$action" = "" ] && exit
 
-  mountpoints="$( \
-  lsblk -rpo name,type,size,label \
-    | awk '/part/{if($4 != ""){printf "%s (%s %s)\n",$1,$4,$3}else{printf "%s (%s)\n",$1,$3}}' \
-    | sed 's/\\x20/_/g' \
-    )"
+  case "$action" in
+    Mount)
+      mountpoints="$( \
+        lsblk \
+          --raw \
+          --paths \
+          --filter 'MOUNTPOINT =~ "^$" && TYPE !~ "disk" && HOTPLUG == 1' \
+          --output path,type,size,label \
+        | awk '/part/{if($4 != ""){printf "%s (%s %s)\n",$1,$4,$3}else{printf "%s (%s)\n",$1,$3}}' \
+        | sed 's/\\x20/_/g' \
+        )"
+      ;;
+    Unmount)
+      mountpoints="$( \
+        lsblk \
+          --raw \
+          --paths \
+          --filter 'MOUNTPOINT !~ "^$" && TYPE !~ "disk" && HOTPLUG == 1' \
+          --output path,type,size,label \
+        | awk '/part/{if($4 != ""){printf "%s (%s %s)\n",$1,$4,$3}else{printf "%s (%s)\n",$1,$3}}' \
+        | sed 's/\\x20/_/g' \
+        )"
+      ;;
+    *) 
+      exit
+  esac
+
   target="$( \
     printf "$mountpoints" | \
     fuzzel --dmenu -p "Target: "\
@@ -56,9 +78,9 @@ case "$action" in
       udisksctl mount -b "$target" 2>&1 \
       )" || exit_code=$?
     if [ "$exit_code" -ne 0 ]; then
-      notify-send -i "dialog-warning" -u "critical" "Mount" "$target: $OUTPUT"
+      notify-send -i "dialog-warning" -u "critical" "Mount $target" "$OUTPUT"
     else
-      notify-send -i "drive-harddisk" "Mount" "Successfully mounted $target"
+      notify-send -i "drive-harddisk" "Mount $target" "Successfully mounted"
     fi
     ;;
   Unmount)
@@ -67,13 +89,13 @@ case "$action" in
       udisksctl unmount -b "$target" 2>&1 \
       )" || exit_code=$?
     if [ "$exit_code" -ne 0 ]; then
-      notify-send -i "dialog-warning" -u "critical" "Unmount" "$target: $OUTPUT"
+      notify-send -i "dialog-warning" -u "critical" "Unmount $target" "$OUTPUT"
     else
-      notify-send -i "drive-harddisk" "Unmount" "Successfully unmounted $target"
+      notify-send -i "drive-harddisk" "Unmount $target" "Successfully unmounted"
     fi
     ;;
   *)
-    notify-send -i "dialog-warning" -u "critical" "Mount" "Unknown action: $action"
+    notify-send -i "dialog-warning" -u "critical" "Mount $target" "Unknown action: $action"
     exit 1
 esac
 
